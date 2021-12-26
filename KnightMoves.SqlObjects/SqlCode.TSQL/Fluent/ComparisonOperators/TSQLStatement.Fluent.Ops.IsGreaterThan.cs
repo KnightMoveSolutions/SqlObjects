@@ -1,0 +1,108 @@
+﻿using System;
+using System.Data;
+
+namespace KnightMoves.SqlObjects.SqlCode.TSQL
+{
+    public abstract partial class TSQLStatement : SqlStatement
+    {
+        /// <summary>
+        /// Continue a calculation or a condition with the '>' sign
+        /// </summary>
+        public override SqlStatement IsGreaterThan()
+        {
+            ComparisonOperator = SqlComparisonOperators.IsGreaterThan;
+            return this;
+        }
+
+        /// <summary>
+        /// Finish a calculation or a condition as '>' a column as the right operand 
+        /// </summary>
+        public override SqlStatement IsGreaterThan(string multiPartIdentifier, string value)
+        {
+            SqlDbType? rightDbType = null;
+            if (string.IsNullOrEmpty(multiPartIdentifier)) rightDbType = SqlDbType.VarChar;
+            var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
+            var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsGreaterThan, multiPartIdentifier, value, rightDbType);
+            parent.Children.Add(basicCondition);
+            return parent;
+        }
+
+        /// <summary>
+        /// Finish a calculation or a condition as '>' an <see cref="int"/> as the right operand
+        /// </summary>
+        public override SqlStatement IsGreaterThan(int value)
+        {
+            var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
+            var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsGreaterThan, null, value.ToString(), SqlDbType.Int);
+            parent.Children.Add(basicCondition);
+            return parent;
+        }
+
+        /// <summary>
+        /// Finish a calculation or a condition as '>' a <see cref="DateTime"/> as the right operand
+        /// </summary>
+        public override SqlStatement IsGreaterThan(DateTime value)
+        {
+            var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
+            var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsGreaterThan, null, value.ToString(SqlDataType.SQL_DATE_STRING_FORMAT), SqlDbType.DateTime);
+            parent.Children.Add(basicCondition);
+            return parent;
+        }
+
+        /// <summary>
+        /// Finish a calculation or a condition as '>' a <see cref="bool"/> as the right operand
+        /// </summary>
+        public override SqlStatement IsGreaterThan(bool value)
+        {
+            var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
+            var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsGreaterThan, null, value ? "1" : "0", SqlDbType.Bit);
+            parent.Children.Add(basicCondition);
+            return parent;
+        }
+
+        /// <summary>
+        /// Finish a calculation or a condition as '>' a <see cref="long"/> as the right operand
+        /// </summary>
+        public override SqlStatement IsGreaterThan(long value)
+        {
+            var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
+            var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsGreaterThan, null, value.ToString(), SqlDbType.BigInt);
+            parent.Children.Add(basicCondition);
+            return parent;
+        }
+
+        /// <summary>
+        /// Finish a calculation or a condition as '>' a <see cref="Guid"/> as the right operand
+        /// </summary>
+        public override SqlStatement IsGreaterThan(Guid value)
+        {
+            var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
+            var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsGreaterThan, null, value.ToString(), SqlDbType.UniqueIdentifier);
+            parent.Children.Add(basicCondition);
+            return parent;
+        }
+
+        /// <summary>
+        /// Finish a calculation or a condition as '>' a <see cref="char"/> as the right operand
+        /// </summary>
+        public override SqlStatement IsGreaterThan(char value)
+        {
+            var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
+            var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsGreaterThan, null, value.ToString(), SqlDbType.Char);
+            parent.Children.Add(basicCondition);
+            return parent;
+        }
+
+        /// <summary>
+        /// Finish a calculation or a condition as '>' a <see cref="decimal"/> as the right operand
+        /// </summary>
+        public override SqlStatement IsGreaterThan(decimal value)
+        {
+            var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
+            var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsGreaterThan, null, value.ToString(), SqlDbType.Decimal);
+            parent.Children.Add(basicCondition);
+            return parent;
+        }
+
+    }
+}
