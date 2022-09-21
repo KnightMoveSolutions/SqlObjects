@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$id$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/KnightMoveSolutions/Pipelines/blob/master/License.txt</licenseUrl>
+    <projectUrl>https://github.com/KnightMoveSolutions/Pipelines</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Initial Version 1.0.0 Package</releaseNotes>
+    <summary>A C# wrapper to the SQL language for creating SQL code in .NET projects for use with ADO, Dapper, or other ORMs</summary>
+    <icon>knight_move_solutions_logo.png</icon>
+    <copyright>Copyright 2021</copyright>
+    <repository type="git" />
+    <tags>sql dapper orm c# dotnet</tags>
+  </metadata>
+</package>
