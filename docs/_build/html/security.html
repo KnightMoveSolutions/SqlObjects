@@ -1,0 +1,550 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Security &mdash; KnightMoves.SqlObjects 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Advanced Concepts" href="advanced-concepts.html" />
+    <link rel="prev" title="Debugging" href="debugging.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0255a3" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/knight_move_solutions_sqlobjects_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="select.html">SELECT FROM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="join.html">JOIN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insert.html">INSERT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update.html">UPDATE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete.html">DELETE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="where.html">WHERE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="case.html">CASE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group-by.html">GROUP BY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="order-by.html">ORDER BY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="having.html">HAVING</a></li>
+<li class="toctree-l1"><a class="reference internal" href="union.html">UNION</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculations.html">Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subqueries.html">Subqueries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comments.html">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="serialization.html">Serialization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameterized-queries.html">Parameterized Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameterized-queries">Parameterized Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#strongly-typed-values">Strongly Typed Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interpolated-strings">Interpolated Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sanitization">Sanitization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#attack-detection">Attack Detection</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced-concepts.html">Advanced Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">KnightMoves.SqlObjects</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Security</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/security.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p><a class="reference external" href="https://docs.knightmovesolutions.com">Documentation Home</a></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>All examples used are valid against the <a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/linq/downloading-sample-databases">Microsoft Northwind Sample Database</a>
+You can run the resulting SQL from the examples against Northwind in order to test and play with the SqlObjects library.</p>
+</div>
+<div class="section" id="security">
+<h1>Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>TL;DR;</strong></p>
+<p>Use <a class="reference internal" href="parameterized-queries.html"><span class="doc">Parameterized Queries</span></a> to be safe. This library has not been fully battle-tested against any attacks
+including SQL Injection yet. A great deal of effort was made to build this library with security in mind. However,
+modern ORMs have been in existence far longer and have been tested more thoroughly. Therefore, it is safest to
+use this library to produce <a class="reference internal" href="parameterized-queries.html"><span class="doc">Parameterized Queries</span></a> that can be submitted to your chosen ORM along with
+a value object and leave the security to the ORM.</p>
+<p>The intention is to fully pen-test this library at some point to verify its mitigations. After that this
+documentation will be updated. For now, it is highly recommended that you use <a class="reference internal" href="parameterized-queries.html"><span class="doc">Parameterized Queries</span></a>.
+Use other features of this library at your own risk.</p>
+</div>
+<p>Security is of paramount importance especially when it comes to the data access layer. Attempting to exploit
+SQL injection vulnerabilities is one of the first vectors of attack utilized by adversaries. This library
+provides protection against SQL injection attacks in the following ways.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Parameterized Queries</p></li>
+<li><p>Strongly-Typed Values</p></li>
+<li><p>Protecting Interpolated Strings</p></li>
+<li><p>Value Sanitizing</p></li>
+<li><p>Attack Detection</p></li>
+</ul>
+</div></blockquote>
+<p>Each of these security features is described in their respective sections below.</p>
+</div>
+<div class="section" id="parameterized-queries">
+<h2>Parameterized Queries<a class="headerlink" href="#parameterized-queries" title="Permalink to this headline">¶</a></h2>
+<p>This library provides full support for Parameterized Queries. Anywhere that it makes sense to add an explicit
+value, you can instead provide parameters in the <code class="docutils literal notranslate"><span class="pre">&#64;paramName</span></code> format. The SQL code will be rendered using
+parameter names without quotes so that it conforms to the expected parameterized SQL statement format.</p>
+<p>Examples of using <code class="docutils literal notranslate"><span class="pre">&#64;paramName</span></code> are shown throughout this documentation. All examples of parameterized SQL
+statements assume that you will provide the parameter value object to the <code class="docutils literal notranslate"><span class="pre">.Build()</span></code> method (not recommended
+except for <a class="reference internal" href="debugging.html"><span class="doc">Debugging</span></a> purposes)
+or the ORM (recommended).</p>
+<p>Examples using value objects with parameterized SQL statements are provided on the following pages in this documentation:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="parameterized-queries.html"><span class="doc">Parameterized Queries</span></a></p></li>
+<li><p><a class="reference internal" href="debugging.html"><span class="doc">Debugging</span></a></p></li>
+</ul>
+</div></blockquote>
+<p>You <strong>SHOULD NOT</strong> embed variables directly into hand-coded <a class="reference internal" href="scripts.html"><span class="doc">Scripts</span></a> using the <code class="docutils literal notranslate"><span class="pre">.Script()</span></code> method or
+the <code class="docutils literal notranslate"><span class="pre">.Literal()</span></code> method. Doing so circumvents protections provided by this library or your ORM.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>NEVER do this</p>
+<p><code class="docutils literal notranslate"><span class="pre">.Script($&quot;</span> <span class="pre">...</span> <span class="pre">{varFromInput}</span> <span class="pre">...&quot;)</span></code></p>
+<p>OR this</p>
+<p><code class="docutils literal notranslate"><span class="pre">.Literal($&quot;</span> <span class="pre">...</span> <span class="pre">{varFromInput}</span> <span class="pre">...&quot;)</span></code></p>
+<p>OR any string concatenation equivalent in a <code class="docutils literal notranslate"><span class="pre">.Script()</span></code> or <code class="docutils literal notranslate"><span class="pre">.Literal()</span></code> method call. This is a security hole waiting to
+be exploited.</p>
+<p>INSTEAD USE:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="parameterized-queries.html"><span class="doc">Parameterized Queries</span></a> (recommended)</p></li>
+<li><p>Strongly-Typed Method Calls (recommended below)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TSQLLiteral</span></code> objects for interpolated strings (explained below but NOT recommended)</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="strongly-typed-values">
+<h2>Strongly Typed Values<a class="headerlink" href="#strongly-typed-values" title="Permalink to this headline">¶</a></h2>
+<p>The Fluent API provided in this library offers strongly-typed method overloads for the following data types, which will
+render in a compatible way to the expected SQL Server data types below:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">long</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decimal</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">char</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DateTime</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Guid</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">String</span></code></p></li>
+</ul>
+<p>For example, the <code class="docutils literal notranslate"><span class="pre">.IsEqualTo()</span></code> method offers the following overloads for the above data types:</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="n">IsEqualTo</span><span class="p">(</span><span class="kt">int</span> <span class="k">value</span><span class="p">);</span>
+<span class="n">IsEqualTo</span><span class="p">(</span><span class="kt">long</span> <span class="k">value</span><span class="p">);</span>
+<span class="n">IsEqualTo</span><span class="p">(</span><span class="kt">decimal</span> <span class="k">value</span><span class="p">);</span>
+<span class="n">IsEqualTo</span><span class="p">(</span><span class="kt">bool</span> <span class="k">value</span><span class="p">);</span>
+<span class="n">IsEqualTo</span><span class="p">(</span><span class="kt">char</span> <span class="k">value</span><span class="p">);</span>
+<span class="n">IsEqualTo</span><span class="p">(</span><span class="n">DateTime</span> <span class="k">value</span><span class="p">);</span>
+<span class="n">IsEqualTo</span><span class="p">(</span><span class="n">Guid</span> <span class="k">value</span><span class="p">);</span>
+<span class="n">IsEqualTo</span><span class="p">(</span><span class="kt">string</span> <span class="k">value</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>You can provide hard-coded values or variables into these method overloads, or any of the many other methods with the same overloads,
+and not worry about it.</p>
+<p>You may be wondering</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">What about the <code class="docutils literal notranslate"><span class="pre">string</span></code> overload?</div>
+<div class="line">Surely we should not provide user input values into a string method</div>
+</div>
+</div></blockquote>
+<p>When using the <code class="docutils literal notranslate"><span class="pre">string</span></code> method overloads provided by the Fluent API it will sanitize the value for you.</p>
+<p>For example, if you use the <code class="docutils literal notranslate"><span class="pre">.IsEqualTo(string</span> <span class="pre">value)</span></code> overload with an input variable as shown below, you
+will see that it produces a sanitized value.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">inputVar</span> <span class="p">=</span> <span class="s">&quot;&#39;; sql attack here /*&quot;</span><span class="p">;</span>
+
+<span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">UPDATE</span><span class="p">(</span><span class="s">&quot;Categories&quot;</span><span class="p">).</span><span class="n">SET</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;CategoryName&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;Vegan&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;Description&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;Exclusively plant-based food&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">WHERE</span><span class="p">(</span><span class="s">&quot;CategoryName&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="n">inputVar</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span> <span class="p">[</span><span class="n">Categories</span><span class="p">]</span> <span class="k">SET</span>
+ <span class="p">[</span><span class="n">CategoryName</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Vegan&#39;</span>
+<span class="k">WHERE</span> <span class="mi">1</span><span class="o">=</span><span class="mi">1</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">CategoryName</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;; sql attack here /*&#39;</span>
+</pre></div>
+</div>
+<p>You can see above that the attempted attack is not executable and will fail.</p>
+<p>If you’re curious, it does this by wrapping the string value in a <code class="docutils literal notranslate"><span class="pre">TSQLLiteral</span></code> object as explained in the
+Interpolated Strings section below. However, the difference is that the <code class="docutils literal notranslate"><span class="pre">string</span></code> overloaded methods in the
+Fluent API do not cause the sanitization to fail by wrapping the value in quotes first as explained in the
+Interpolated Strings section below. The Fluent API methods prevent that error so you don’t have to worry
+about it.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Just use <a class="reference internal" href="parameterized-queries.html"><span class="doc">Parameterized Queries</span></a>. It’s safer.</p>
+</div>
+</div>
+<div class="section" id="interpolated-strings">
+<h2>Interpolated Strings<a class="headerlink" href="#interpolated-strings" title="Permalink to this headline">¶</a></h2>
+<p>If you <strong>really</strong> insist on embedding a variable inside of an interpolated string or through string concatenation,
+which is strongly discouraged (you should be using <a class="reference internal" href="parameterized-queries.html"><span class="doc">Parameterized Queries</span></a>) then put the interpolated string
+inside of a manually created <code class="docutils literal notranslate"><span class="pre">TSQLLiteral</span></code> object as shown below.</p>
+<p>But first …</p>
+<p><strong>DO NOT DO THIS!</strong></p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">inputVar</span> <span class="p">=</span> <span class="s">&quot;&#39;; sql attack here --&quot;</span><span class="p">;</span>
+
+ <span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+     <span class="p">.</span><span class="n">UPDATE</span><span class="p">(</span><span class="s">&quot;Categories&quot;</span><span class="p">).</span><span class="n">SET</span><span class="p">()</span>
+       <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;CategoryName&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;Vegan&quot;</span><span class="p">)</span>
+       <span class="p">.</span><span class="n">Literal</span><span class="p">(</span><span class="s">&quot;[Description] = &#39;&quot;</span> <span class="p">+</span> <span class="n">inputVar</span> <span class="p">+</span> <span class="s">&quot;&#39;&quot;</span> <span class="p">+</span> <span class="n">Environment</span><span class="p">.</span><span class="n">NewLine</span><span class="p">)</span>
+     <span class="p">.</span><span class="n">WHERE</span><span class="p">(</span><span class="s">&quot;CategoryID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="m">9</span><span class="p">)</span>
+     <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+ <span class="p">;</span>
+
+ <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span> <span class="p">[</span><span class="n">Categories</span><span class="p">]</span> <span class="k">SET</span>
+ <span class="p">[</span><span class="n">CategoryName</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Vegan&#39;</span><span class="p">,</span>
+ <span class="p">[</span><span class="n">Description</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span> <span class="k">sql</span> <span class="n">attack</span> <span class="n">here</span> <span class="cm">/*&#39;  WHERE 1=1</span>
+<span class="cm"> AND [CategoryID] = 9</span>
+</pre></div>
+</div>
+<p>As you can see above <strong>the attack is successfully executed!</strong></p>
+<p>A better way …</p>
+<p>A safer (yet tedious) way to do it is to plant the <code class="docutils literal notranslate"><span class="pre">inputVar</span></code> in a <code class="docutils literal notranslate"><span class="pre">TSQLLiteral</span></code> object. The <code class="docutils literal notranslate"><span class="pre">TSQLLiteral</span></code>
+object takes care of sanitizing the string so it is safe to use in a SQL statement.</p>
+<p>!! BUT YOU MUST <strong>NOT</strong> WRAP IT IN QUOTES !!</p>
+<div class="highlight-csharp notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="kt">var</span> <span class="n">inputVar</span> <span class="p">=</span> <span class="s">&quot;&#39;; sql attack here --&quot;</span><span class="p">;</span>
+
+ <span class="kt">var</span> <span class="n">literal</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TSQLLiteral</span>
+ <span class="p">{</span>
+     <span class="n">DataType</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TSQLDataType</span><span class="p">(</span><span class="n">SqlDbType</span><span class="p">.</span><span class="n">VarChar</span><span class="p">),</span>
+     <span class="n">Value</span> <span class="p">=</span> <span class="n">inputVar</span>
+ <span class="p">};</span>
+
+ <span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+     <span class="p">.</span><span class="n">UPDATE</span><span class="p">(</span><span class="s">&quot;Categories&quot;</span><span class="p">).</span><span class="n">SET</span><span class="p">()</span>
+       <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;CategoryName&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;Vegan&quot;</span><span class="p">)</span>
+       <span class="p">.</span><span class="n">Literal</span><span class="p">(</span><span class="s">&quot;[Description] = &quot;</span> <span class="p">+</span> <span class="n">literal</span> <span class="p">+</span> <span class="n">Environment</span><span class="p">.</span><span class="n">NewLine</span><span class="p">)</span>
+     <span class="p">.</span><span class="n">WHERE</span><span class="p">(</span><span class="s">&quot;CategoryID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="m">9</span><span class="p">)</span>
+     <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+ <span class="p">;</span>
+
+ <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span> <span class="p">[</span><span class="n">Categories</span><span class="p">]</span> <span class="k">SET</span>
+ <span class="p">[</span><span class="n">CategoryName</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Vegan&#39;</span><span class="p">,</span>
+ <span class="p">[</span><span class="n">Description</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;; sql attack here /*&#39;</span>
+<span class="k">WHERE</span> <span class="mi">1</span><span class="o">=</span><span class="mi">1</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">CategoryID</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
+</pre></div>
+</div>
+<p>Notice on <code class="docutils literal notranslate"><span class="pre">line</span> <span class="pre">13</span></code> that the <code class="docutils literal notranslate"><span class="pre">literal</span></code> object concatenated into the string is not surrounded by
+single quotes. The <code class="docutils literal notranslate"><span class="pre">TSQLLiteral</span></code> object does the job of rendering the string with quotes for you.
+If you wrap it in quotes then you will undo the sanitization performed by the <code class="docutils literal notranslate"><span class="pre">TSQLLiteral</span></code> object
+and expose the SQL to injection.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you decide to use string interpolation or concatenation protected by a <code class="docutils literal notranslate"><span class="pre">TSQLLiteral</span></code> object then
+you <strong>MUST NOT</strong> place the variable in single quotes. The <code class="docutils literal notranslate"><span class="pre">TSQLLiteral</span></code> object will render the
+string with quotes for you.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Just don’t use string interpolation or string concatenation. Use <a class="reference internal" href="parameterized-queries.html"><span class="doc">Parameterized Queries</span></a> instead.
+It’s safer.</p>
+</div>
+</div>
+<div class="section" id="sanitization">
+<h2>Sanitization<a class="headerlink" href="#sanitization" title="Permalink to this headline">¶</a></h2>
+<p>You have the option to sanitize a value using this library before you involve it in any SQL code or Fluent
+API calls if you choose. If this interests you for any reason you can accomplish this with the security
+filter used by this library as explained below.</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>Create the <code class="docutils literal notranslate"><span class="pre">SQLSecurityFilter</span></code> object using the static factory method below.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">securityFilter</span> <span class="p">=</span> <span class="n">SQLSecurityFactory</span><span class="p">.</span><span class="n">Create</span><span class="p">();</span>
+</pre></div>
+</div>
+</li>
+<li><p>Next, you sanitize the input value</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// result will contain the sanitized string</span>
+<span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">securityFilter</span><span class="p">.</span><span class="n">SanitizeInput</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="n">inputVar</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div></blockquote>
+<p>At this point you can do what you will with the sanitized string.</p>
+<p>If you provide any other primitive data type to the <code class="docutils literal notranslate"><span class="pre">SanitizeInput&lt;T&gt;(string</span> <span class="pre">val)</span></code> method, then it will return
+a default value suitable for data type <code class="docutils literal notranslate"><span class="pre">T</span></code> if the <code class="docutils literal notranslate"><span class="pre">inputVar</span></code> string is not a valid value for that data type.</p>
+<p>For example:</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">inputVar</span> <span class="p">=</span> <span class="s">&quot;X&quot;</span><span class="p">;</span>
+
+<span class="c1">// result will be == 0 and be of data type int</span>
+<span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">securityFilter</span><span class="p">.</span><span class="n">SanitizeInput</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;(</span><span class="n">inputVar</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>If the string value is suitable for data type <code class="docutils literal notranslate"><span class="pre">T</span></code> then it will return the value as data type <code class="docutils literal notranslate"><span class="pre">T</span></code>.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">inputVar</span> <span class="p">=</span> <span class="m">99</span><span class="p">;</span>
+
+<span class="c1">// result will be == 99 and be of data type int</span>
+<span class="kt">var</span> <span class="n">result</span> <span class="p">=</span> <span class="n">securityFilter</span><span class="p">.</span><span class="n">SanitizeInput</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;(</span><span class="n">inputVar</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="attack-detection">
+<h2>Attack Detection<a class="headerlink" href="#attack-detection" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">SQLSecurityFilter</span></code> object also provides a <code class="docutils literal notranslate"><span class="pre">CheckInput&lt;T&gt;(string</span> <span class="pre">val)</span></code> method that returns a tuple of
+type <code class="docutils literal notranslate"><span class="pre">(bool,</span> <span class="pre">IEnumerable&lt;string&gt;)</span></code>. Here is the signature.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="kt">bool</span><span class="p">,</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;)</span> <span class="n">CheckInput</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kt">string</span> <span class="n">val</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">bool</span></code> value will be <code class="docutils literal notranslate"><span class="pre">true</span></code> if the <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">val</span></code> is valid for type <code class="docutils literal notranslate"><span class="pre">T</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code> if not.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">IEnumerable&lt;string&gt;</span></code> collection will contain the SQL Injection signatures that were detected in <code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">val</span></code>
+if any were found. The <code class="docutils literal notranslate"><span class="pre">Sanitize&lt;T&gt;(string</span> <span class="pre">val)</span></code> method does not check for any attack signatures. It simply
+returns a value suitable for type <code class="docutils literal notranslate"><span class="pre">T</span></code>, whereas the <code class="docutils literal notranslate"><span class="pre">CheckInput&lt;T&gt;(string</span> <span class="pre">val)</span></code> method runs the value through
+a number of SQL injection signature rules and returns <code class="docutils literal notranslate"><span class="pre">false</span></code> if the value is not good along with the messages
+showing which attack signatures it detected.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">securityFilter</span> <span class="p">=</span> <span class="n">SQLSecurityFactory</span><span class="p">.</span><span class="n">Create</span><span class="p">();</span>
+
+<span class="kt">var</span> <span class="p">(</span><span class="n">okay</span><span class="p">,</span> <span class="n">warnings</span><span class="p">)</span> <span class="p">=</span> <span class="n">securityFilter</span><span class="p">.</span><span class="n">CheckInput</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span><span class="n">inputVar</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(!</span><span class="n">okay</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="c1">// Log warnings, send alert, publish event, or whatever ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This can be used for “trip wire” type intrusion detection functionality where you can check input strings and log
+the signatures triggered by the security filter’s rules. Logs that include the IP address and other details can be sent
+to a monitoring system for alerts.</p>
+<p>If you use this to check values on a public-internet-facing system that anyone can access, then you are likely to
+trigger many logs of attacks. This may or may not be useful since it is practically a 100% certainty that all
+publicly facing systems will indeed be attacked.</p>
+<p>However, you may find it more useful to embed this type of intrusion detection within internal systems where an attack
+is more likely to be rare and therefore very alarming, making this feature incredibly useful. If you are concerned or
+even curious if there are roque employees, or that an adversary has quietly infiltrated your organization’s systems
+then this type of intrusion detection could be a way to help solidify your security posture in the spirit of Defense
+in Depth principles.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="advanced-concepts.html" class="btn btn-neutral float-right" title="Advanced Concepts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="debugging.html" class="btn btn-neutral float-left" title="Debugging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ricardo Pena.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

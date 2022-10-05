@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Serialization &mdash; KnightMoves.SqlObjects 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Parameterized Queries" href="parameterized-queries.html" />
+    <link rel="prev" title="Comments" href="comments.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0255a3" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/knight_move_solutions_sqlobjects_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="select.html">SELECT FROM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="join.html">JOIN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insert.html">INSERT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update.html">UPDATE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete.html">DELETE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="where.html">WHERE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="case.html">CASE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group-by.html">GROUP BY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="order-by.html">ORDER BY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="having.html">HAVING</a></li>
+<li class="toctree-l1"><a class="reference internal" href="union.html">UNION</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculations.html">Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subqueries.html">Subqueries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comments.html">Comments</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Serialization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tojson">ToJson()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fromjson">FromJson()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-serialization">Custom Serialization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parameterized-queries.html">Parameterized Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced-concepts.html">Advanced Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">KnightMoves.SqlObjects</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Serialization</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/serialization.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p><a class="reference external" href="https://docs.knightmovesolutions.com">Documentation Home</a></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>All examples used are valid against the <a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/linq/downloading-sample-databases">Microsoft Northwind Sample Database</a>
+You can run the resulting SQL from the examples against Northwind in order to test and play with the SqlObjects library.</p>
+</div>
+<div class="section" id="serialization">
+<h1>Serialization<a class="headerlink" href="#serialization" title="Permalink to this headline">¶</a></h1>
+<p>If you haven’t caught on by now, this SQL builder creates a full object model that represents
+the SQL statements crafted via the Fluent API. As such, that object model can be serialized
+and deserialized for various purposes.</p>
+<div class="section" id="tojson">
+<h2>ToJson()<a class="headerlink" href="#tojson" title="Permalink to this headline">¶</a></h2>
+<p>Serialization into a JSON string is provided by simply calling the <code class="docutils literal notranslate"><span class="pre">.ToJson()</span></code> method on the
+resulting object model before calling the <code class="docutils literal notranslate"><span class="pre">.Build()</span></code> method as shown below.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// sqlObj contains the object model</span>
+<span class="kt">var</span> <span class="n">sqlObj</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+   <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+     <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;ProductID&quot;</span><span class="p">)</span>
+     <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;ProductName&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;Products&quot;</span><span class="p">)</span>
+   <span class="c1">//.Build()  &lt;-- Do not build or else it will return the string</span>
+<span class="p">;</span>
+
+<span class="c1">// Here you can do all sorts of stuff with sqlObj</span>
+
+<span class="c1">// You can still get the SQL while retaining the object model</span>
+<span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">sqlObj</span><span class="p">.</span><span class="n">Build</span><span class="p">();</span>
+
+<span class="c1">// Serialize to JSON with .ToJson() (uses Newtonsoft.Json under the hood)</span>
+<span class="kt">var</span> <span class="n">json</span> <span class="p">=</span> <span class="n">sqlObj</span><span class="p">.</span><span class="n">ToJson</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Once you have the <code class="docutils literal notranslate"><span class="pre">json</span></code> string you can:</p>
+<ul class="simple">
+<li><p>Persist it to a database or NoSQL data store</p></li>
+<li><p>Save it to a file</p></li>
+<li><p>Push it over the network perhaps as the result of an API call</p></li>
+<li><p>Capture it in a log</p></li>
+<li><p>etc.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The JSON resulting from serialization of the SQL object model is <strong>non-trivial</strong>.
+As such, even for the smallest SQL statement the JSON will emit a large payload.
+Keep that in mind when deciding to use it in your application. The impact on
+storage and network performance will need to be considered.</p>
+</div>
+</div>
+<div class="section" id="fromjson">
+<h2>FromJson()<a class="headerlink" href="#fromjson" title="Permalink to this headline">¶</a></h2>
+<p>If you retrieve a JSON string representing a serialized KnightMoves.SqlObjects
+model, you can deserialize it easily by calling the static <code class="docutils literal notranslate"><span class="pre">.FromJson()</span></code> method
+on the <code class="docutils literal notranslate"><span class="pre">SqlStatement</span></code> class.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">KnightMoves.SqlObjects.SqlCode</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">json</span> <span class="p">=</span> <span class="n">myJsonGetter</span><span class="p">();</span> <span class="c1">// whatever that is</span>
+
+<span class="kt">var</span> <span class="n">sqlObj</span> <span class="p">=</span> <span class="n">SqlStatement</span><span class="p">.</span><span class="n">FromJson</span><span class="p">(</span><span class="n">json</span><span class="p">);</span>
+
+<span class="c1">// Now you can get whatever SQL was built into that model</span>
+<span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">sqlObj</span><span class="p">.</span><span class="n">Build</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="custom-serialization">
+<h2>Custom Serialization<a class="headerlink" href="#custom-serialization" title="Permalink to this headline">¶</a></h2>
+<p>If you need to customize your serialization with a JsonConverter or Formatter, you
+will have to take all of the steps below.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="nn">Newtonsoft.Json</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Build your object model</span>
+<span class="kt">var</span> <span class="n">sqlObj</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+   <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+     <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;ProductID&quot;</span><span class="p">)</span>
+     <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;ProductName&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;Products&quot;</span><span class="p">)</span>
+
+<span class="p">;</span>
+
+<span class="c1">// You must work from the root</span>
+<span class="kt">var</span> <span class="n">script</span> <span class="p">=</span> <span class="n">sqlObj</span><span class="p">.</span><span class="n">Root</span> <span class="p">??</span> <span class="n">sqlObj</span><span class="p">;</span>
+
+<span class="c1">// After calling this it disables some stuff that messes up serialization</span>
+<span class="c1">// due to circular referencing issues. Therefore, you can&#39;t use the object</span>
+<span class="c1">// model while it is marked for serialization.</span>
+<span class="n">script</span><span class="p">.</span><span class="n">MarkAsSerializable</span><span class="p">();</span>
+
+<span class="c1">// Serialize the object model directly but here you have the ability to</span>
+<span class="c1">// use converters, formatters, settings, etc.</span>
+<span class="kt">var</span> <span class="n">json</span> <span class="p">=</span> <span class="n">JsonConvert</span><span class="p">.</span><span class="n">SerializeObject</span><span class="p">(</span><span class="n">script</span><span class="p">);</span>
+
+<span class="c1">// Restore the full functionality of the object model by unmarking it for serialization</span>
+<span class="n">script</span><span class="p">.</span><span class="n">UnMarkAsSerializable</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>If you don’t have a need to do any sort of custom stuff then just use the <code class="docutils literal notranslate"><span class="pre">.ToJson()</span></code>
+method above so you don’t have to deal with the hassle.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="parameterized-queries.html" class="btn btn-neutral float-right" title="Parameterized Queries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="comments.html" class="btn btn-neutral float-left" title="Comments" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ricardo Pena.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

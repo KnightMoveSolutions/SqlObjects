@@ -1,0 +1,454 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Scripts &mdash; KnightMoves.SqlObjects 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Comments" href="comments.html" />
+    <link rel="prev" title="Functions" href="functions.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0255a3" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/knight_move_solutions_sqlobjects_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="select.html">SELECT FROM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="join.html">JOIN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insert.html">INSERT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update.html">UPDATE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete.html">DELETE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="where.html">WHERE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="case.html">CASE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group-by.html">GROUP BY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="order-by.html">ORDER BY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="having.html">HAVING</a></li>
+<li class="toctree-l1"><a class="reference internal" href="union.html">UNION</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculations.html">Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subqueries.html">Subqueries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#script-vs-literal">Script() vs. Literal()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#script-example">Script() Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#literal-example">Literal() Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="comments.html">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="serialization.html">Serialization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameterized-queries.html">Parameterized Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced-concepts.html">Advanced Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">KnightMoves.SqlObjects</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Scripts</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/scripts.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p><a class="reference external" href="https://docs.knightmovesolutions.com">Documentation Home</a></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>All examples used are valid against the <a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/linq/downloading-sample-databases">Microsoft Northwind Sample Database</a>
+You can run the resulting SQL from the examples against Northwind in order to test and play with the SqlObjects library.</p>
+</div>
+<div class="section" id="scripts">
+<h1>Scripts<a class="headerlink" href="#scripts" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>There are two ways that you can provide ad hoc SQL scripts when necessary. You might want to
+involve some stored-procedure-like logic that needs to be executed in the database or you
+may need to compensate for something that isn’t implemented in this library. A great deal of
+effort has been made to accommodate that majority of use cases for a .NET SQL builder in this
+library but not all of the possible variations of SQL code are covered. The intention at this
+time is to improve the library and add missing features over time but for now, whatever is
+missing can be accommodated with manually crafted SQL code using the two methods below.</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">.Script()</span></code> Method</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">.Literal()</span></code> Method</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">.Script()</span></code> and <code class="docutils literal notranslate"><span class="pre">.Literal()</span></code> methods essentially do the same thing, which is to output
+whatever you type into them exactly as you typed it. There is no effort to transform the code
+in any way (there is some whitespace formatting however - more on that below).</p>
+</div>
+<div class="section" id="script-vs-literal">
+<h2>Script() vs. Literal()<a class="headerlink" href="#script-vs-literal" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">.Script()</span></code> method will do two things for you.</p>
+<p>First is that the code you enter into the <code class="docutils literal notranslate"><span class="pre">.Script()</span></code> method will be added as a child of the
+root SQL object in the underlying object model. Therefore, when it is rendered, it will not be
+indented if you reference it anywhere in the middle of the Fluent script. This is strictly
+eye-candy! It has no impact on the validity of the SQL you type into the script. The database
+engine doesn’t care how ugly your SQL code is formatted. But if you want to ensure that your code
+looks optimally readable so you can have a pleasant debugging experience (which is one of the
+goals of this library), then you should only use the <code class="docutils literal notranslate"><span class="pre">.Script()</span></code> method at the top or the bottom
+of high-level SQL code structures. For example, use it before starting a <code class="docutils literal notranslate"><span class="pre">.SELECT()</span></code> query or
+after a <code class="docutils literal notranslate"><span class="pre">.SELECT()</span></code> query. If the SELECT is part of a UNION then only at the bottom, etc. In short,
+it is just a formatting issue.</p>
+<p>Keep in mind that the use of <code class="docutils literal notranslate"><span class="pre">.Script()</span></code> is garbage in garbage out. Your mileage will vary based on the quality of your
+manually-entered code.</p>
+<p>Secondly, the <code class="docutils literal notranslate"><span class="pre">.Script()</span></code> method will deal with multi-line code. You are free to indent your code
+so it looks pretty in the C# source and the object built by the <code class="docutils literal notranslate"><span class="pre">.Script()</span></code> method does the job of
+removing excessive indentation meant for pretty C# code and replaces it with whitespace suitable for
+rendering pretty SQL code.</p>
+<p>For example, if you do this in C#:</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
+
+          <span class="c1">// Your C# code is indented way over here because of your</span>
+          <span class="c1">// namespace, class, and method declaration so you do this:</span>
+
+          <span class="p">.</span><span class="n">Script</span><span class="p">(</span><span class="s">@&quot;</span>
+<span class="s">             DECLARE @someVar INT</span>
+<span class="s">             SET @someVar = 99</span>
+<span class="s">          &quot;</span><span class="p">)</span>
+          <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+            <span class="p">.</span><span class="n">STAR</span><span class="p">()</span>
+          <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;MyTable&quot;</span><span class="p">)</span>
+          <span class="p">.</span><span class="n">WHERE</span><span class="p">(</span><span class="s">&quot;Id&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;@someVar&quot;</span><span class="p">)</span>
+
+<span class="p">...</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">Without any intervention, the SQL code would be rendered like this:</div>
+</div>
+<div class="highlight-SQL notranslate"><div class="highlight"><pre><span></span>                 <span class="k">DECLARE</span> <span class="o">@</span><span class="n">someVar</span> <span class="nb">INT</span>
+                 <span class="k">SET</span> <span class="o">@</span><span class="n">someVar</span> <span class="o">=</span> <span class="mi">99</span>
+
+  <span class="k">SELECT</span>
+   <span class="o">*</span>
+  <span class="k">FROM</span> <span class="p">[</span><span class="n">MyTable</span><span class="p">]</span>
+  <span class="k">WHERE</span> <span class="mi">1</span><span class="o">=</span><span class="mi">1</span>
+   <span class="k">AND</span> <span class="p">[</span><span class="n">Id</span><span class="p">]</span> <span class="o">=</span> <span class="o">@</span><span class="n">someVar</span>
+
+<span class="p">...</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">That looks weird and ugly so the use of <code class="docutils literal notranslate"><span class="pre">.Script()</span></code> doesn’t do that. It cleans that up for you and gives you this:</div>
+</div>
+<div class="highlight-SQL notranslate"><div class="highlight"><pre><span></span><span class="k">DECLARE</span> <span class="o">@</span><span class="n">someVar</span> <span class="nb">INT</span>
+<span class="k">SET</span> <span class="o">@</span><span class="n">someVar</span> <span class="o">=</span> <span class="mi">99</span>
+
+<span class="k">SELECT</span>
+ <span class="o">*</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">MyTable</span><span class="p">]</span>
+<span class="k">WHERE</span> <span class="mi">1</span><span class="o">=</span><span class="mi">1</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">Id</span><span class="p">]</span> <span class="o">=</span> <span class="o">@</span><span class="n">someVar</span>
+</pre></div>
+</div>
+<p>Now, the <code class="docutils literal notranslate"><span class="pre">.Literal()</span></code> method will also do two things for you.</p>
+<p>One is that it will respect the place that you put it. Wherever in the fluent code you use it, then
+it will be output indented at that level. It is basically a “child” script. Just keep in mind that
+whatever you code in that <code class="docutils literal notranslate"><span class="pre">.Literal()</span></code> will have to make sense and jive with the code above and
+below it.</p>
+<p>Just as with <code class="docutils literal notranslate"><span class="pre">.Script()</span></code>, the <code class="docutils literal notranslate"><span class="pre">.Literal()</span></code> method takes manually-entered code and its use is garbage in
+garbage out so your mileage will also vary based on the quality of your code.</p>
+<p>The second thing that the <code class="docutils literal notranslate"><span class="pre">.Literal()</span></code> method does for you is that the underlying object that
+it produces implements the <code class="docutils literal notranslate"><span class="pre">ISqlQueryExpression</span></code> interface, which is an implementation
+detail that you don’t have to deal with but essentially means that it can be used anywhere that a
+query expression is used and it will be treated as such. That means that it will automatically add
+your script as a child of one of the following parent SQL statements:</p>
+<dl class="simple">
+<dt><strong>SELECT</strong></dt><dd><p>In the SELECT list</p>
+</dd>
+<dt><strong>JOIN</strong></dt><dd><p>Can be used in JOIN conditions</p>
+</dd>
+<dt><strong>WHERE Clause</strong></dt><dd><p>Can be used in conditions under the WHERE Clause</p>
+</dd>
+<dt><strong>Condition Group</strong></dt><dd><p>Can be used within the scope delimted by parentheses <code class="docutils literal notranslate"><span class="pre">(</span> <span class="pre">...</span> <span class="pre">)</span></code>, typically necessary when scoping multiple
+conditions with <code class="docutils literal notranslate"><span class="pre">OR</span></code></p>
+</dd>
+<dt><strong>INSERT</strong></dt><dd><p>Can be used under INSERT statements</p>
+</dd>
+<dt><strong>GROUP BY</strong></dt><dd><p>Can be used to manually create a grouping expression</p>
+</dd>
+<dt><strong>ORDER BY</strong></dt><dd><p>Can be used to manually create a sorting expression</p>
+</dd>
+<dt><strong>HAVING Clause</strong></dt><dd><p>Similar to a WHERE clause it can be used in conditions under the HAVING clause</p>
+</dd>
+</dl>
+<p>One final thing to note about <code class="docutils literal notranslate"><span class="pre">.Literal()</span></code> is that it is meant for single lines. Unlike the <code class="docutils literal notranslate"><span class="pre">.Script()</span></code>
+method you will get no such multi-line clean-up. If you need multiple lines of SQL code in the middle of
+your structure then you should utilize multiple calls to the <code class="docutils literal notranslate"><span class="pre">.Literal()</span></code> method, one for each line.</p>
+<p>All that said, please READ THE WARNING BELOW!</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When adding manually-crafted SQL code using <code class="docutils literal notranslate"><span class="pre">.Script()</span></code> or <code class="docutils literal notranslate"><span class="pre">.Literal()</span></code> you should know that it will be
+vulnerable to SQL Injection attacks. Do not concatenate or string-interpolate variables containing values set
+from an untrusted source like …</p>
+<p>&lt;shivers&gt; a user’s data entry screen &lt;/shivers&gt;</p>
+<p>This, nor any other library, will protect you from a hack injected through that variable.</p>
+<p>Please read the <a class="reference internal" href="security.html"><span class="doc">Security</span></a> documentation to learn about the security features provided with this library
+as well as its limitations.</p>
+<p>You have been warned!</p>
+</div>
+</div>
+<div class="section" id="script-example">
+<h2>Script() Example<a class="headerlink" href="#script-example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">Script</span><span class="p">(</span><span class="s">@&quot;</span>
+<span class="s">      DECLARE @dateVar DATETIME, @now DATETIME</span>
+<span class="s">      SET @dateVar = DATEADD(Month, -3, GETDATE())</span>
+<span class="s">      SET @now = GETDATE()</span>
+<span class="s">    &quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;EmployeeID&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;FirstName&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;LastName&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;HireDate&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;Employees&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">WHERE</span><span class="p">(</span><span class="s">&quot;HireDate&quot;</span><span class="p">).</span><span class="n">IsGreaterThanOrEqualTo</span><span class="p">(</span><span class="s">&quot;@dateVar&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Script</span><span class="p">(</span><span class="s">@&quot;</span>
+<span class="s">      EXEC [dbo].[Employee Sales by Country] @dateVar, @now</span>
+<span class="s">    &quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DECLARE</span> <span class="o">@</span><span class="n">dateVar</span> <span class="n">DATETIME</span><span class="p">,</span> <span class="o">@</span><span class="n">now</span> <span class="n">DATETIME</span>
+<span class="k">SET</span> <span class="o">@</span><span class="n">dateVar</span> <span class="o">=</span> <span class="n">DATEADD</span><span class="p">(</span><span class="k">Month</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="n">GETDATE</span><span class="p">())</span>
+<span class="k">SET</span> <span class="o">@</span><span class="n">now</span> <span class="o">=</span> <span class="n">GETDATE</span><span class="p">()</span>
+
+<span class="k">SELECT</span>
+ <span class="p">[</span><span class="n">EmployeeID</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">FirstName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">LastName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">HireDate</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">Employees</span><span class="p">]</span>
+<span class="k">WHERE</span> <span class="mi">1</span><span class="o">=</span><span class="mi">1</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">HireDate</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="o">@</span><span class="n">dateVar</span>
+
+<span class="k">EXEC</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Employee</span> <span class="n">Sales</span> <span class="k">by</span> <span class="n">Country</span><span class="p">]</span> <span class="o">@</span><span class="n">dateVar</span><span class="p">,</span> <span class="o">@</span><span class="n">now</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="where-1-equals-1.html"><span class="doc">WHERE 1=1 ?</span></a></p>
+</div>
+<div class="section" id="literal-example">
+<h2>Literal() Example<a class="headerlink" href="#literal-example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;EmployeeID&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;FirstName&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;LastName&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;HireDate&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">Literal</span><span class="p">(</span><span class="s">&quot;[FirstName] + &#39; &#39; + [LastName] AS [FullName]&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;Employees&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">WHERE</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">Literal</span><span class="p">(</span><span class="s">&quot;RIGHT(DATENAME(Month, [HireDate]), 3) = &#39;ber&#39;&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="p">[</span><span class="n">EmployeeID</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">FirstName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">LastName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">HireDate</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">FirstName</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="p">[</span><span class="n">LastName</span><span class="p">]</span> <span class="k">AS</span> <span class="p">[</span><span class="n">FullName</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">Employees</span><span class="p">]</span>
+<span class="k">WHERE</span> <span class="mi">1</span><span class="o">=</span><span class="mi">1</span>
+ <span class="k">AND</span> <span class="k">RIGHT</span><span class="p">(</span><span class="n">DATENAME</span><span class="p">(</span><span class="k">Month</span><span class="p">,</span> <span class="p">[</span><span class="n">HireDate</span><span class="p">]),</span> <span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;ber&#39;</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="where-1-equals-1.html"><span class="doc">WHERE 1=1 ?</span></a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="comments.html" class="btn btn-neutral float-right" title="Comments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="functions.html" class="btn btn-neutral float-left" title="Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ricardo Pena.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -25,8 +25,8 @@ pygments_style = 'vs'
 
 # -- Project information -----------------------------------------------------
 
-html_logo = 'knight_move_solutions_pipelines_logo.png'
-project = 'KnightMoves.Pipelines'
+html_logo = 'knight_move_solutions_sqlobjects_logo.png'
+project = 'KnightMoves.SqlObjects'
 copyright = '2021, Ricardo Pena'
 author = 'Ricardo Pena'
 

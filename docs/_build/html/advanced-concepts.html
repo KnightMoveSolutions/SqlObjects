@@ -1,0 +1,1050 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Advanced Concepts &mdash; KnightMoves.SqlObjects 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Support" href="support.html" />
+    <link rel="prev" title="Security" href="security.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0255a3" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/knight_move_solutions_sqlobjects_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="select.html">SELECT FROM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="join.html">JOIN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insert.html">INSERT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update.html">UPDATE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete.html">DELETE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="where.html">WHERE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="case.html">CASE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group-by.html">GROUP BY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="order-by.html">ORDER BY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="having.html">HAVING</a></li>
+<li class="toctree-l1"><a class="reference internal" href="union.html">UNION</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculations.html">Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subqueries.html">Subqueries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comments.html">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="serialization.html">Serialization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameterized-queries.html">Parameterized Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sharing-columns">Sharing Columns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-to-merging-sql-objects">Adding To &amp; Merging SQL Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#terminate">Terminate()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#withid-findbyid">WithId() / FindById()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#withname">WithName()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#withdoc">WithDoc()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#walking-the-tree">Walking the Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#checking-fragment-types">Checking Fragment Types</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">KnightMoves.SqlObjects</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Advanced Concepts</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/advanced-concepts.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p><a class="reference external" href="https://docs.knightmovesolutions.com">Documentation Home</a></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>All examples used are valid against the <a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/linq/downloading-sample-databases">Microsoft Northwind Sample Database</a>
+You can run the resulting SQL from the examples against Northwind in order to test and play with the SqlObjects library.</p>
+</div>
+<div class="section" id="advanced-concepts">
+<h1>Advanced Concepts<a class="headerlink" href="#advanced-concepts" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>If you’ve read through any significant portions of this documentation then you’ve probably noticed by now
+that this library is backed by a full object model. The Fluent API doesn’t simply execute functions that
+return strings. Rather the functions create stateful objects each of which produces the SQL for their
+respective SQL fragments. Because there is a full object model underneath, it opens the door for all sorts
+of possibilities.</p>
+<p>When crafting a SQL statement using the Fluent API, you must call the <code class="docutils literal notranslate"><span class="pre">.Build()</span></code> method to return the
+SQL code as a string. If you do not execute the <code class="docutils literal notranslate"><span class="pre">.Build()</span></code> method then the Fluent API methods return
+objects that implement the <code class="docutils literal notranslate"><span class="pre">SqlStatement</span></code> base class.</p>
+<p>The concrete type of the <code class="docutils literal notranslate"><span class="pre">SqlStatement</span></code> object
+returned by the Fluent API methods will differ depending on the method that was called but it will represent
+some SQL fragment. The SQL fragment represented by the <code class="docutils literal notranslate"><span class="pre">SqlStatement</span></code> object may be a fragment in the
+middle of the SQL statement being built or it may be the SQL object at the top.</p>
+<p>The SQL object model is in the form of a tree, where the <code class="docutils literal notranslate"><span class="pre">SqLStatement</span></code> base class is a self-referencing
+type containing a collection of child <code class="docutils literal notranslate"><span class="pre">SqlStatement</span></code> objects (children). Rendering the SQL for any fragment
+will automatically render the SQL for all children, children of those children, etc. recursively down the tree.
+The <code class="docutils literal notranslate"><span class="pre">.Build()</span></code> method essentially renders the SQL from the root object in order to produce the entire SQL
+statement.</p>
+<p>To illustrate, the example below shows that <code class="docutils literal notranslate"><span class="pre">sql1</span></code> and <code class="docutils literal notranslate"><span class="pre">sql2</span></code> are equivalent.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sqlObj</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;ProductID&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;ProductName&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;Products&quot;</span><span class="p">)</span>
+
+<span class="p">;</span>
+
+<span class="kt">var</span> <span class="n">sql1</span> <span class="p">=</span> <span class="n">sqlObj</span><span class="p">.</span><span class="n">Build</span><span class="p">();</span>
+<span class="kt">var</span> <span class="n">sql2</span> <span class="p">=</span> <span class="n">sqlObj</span><span class="p">.</span><span class="n">Root</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql1</span> <span class="p">==</span> <span class="n">sql2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="n">True</span>
+</pre></div>
+</div>
+<p>Once you understand that the Fluent API is building a tree of <code class="docutils literal notranslate"><span class="pre">SqlStatement</span></code> objects, then you can take
+advantage of the model to do all sorts of cool things if you want to. The sections below demonstrate some
+of the things you can do with the SQL object model produced with this library.</p>
+</div>
+<div class="section" id="sharing-columns">
+<h2>Sharing Columns<a class="headerlink" href="#sharing-columns" title="Permalink to this headline">¶</a></h2>
+<p>Consider as an example the <code class="docutils literal notranslate"><span class="pre">Employees</span></code> table in the Microsoft Northwind Database, which has been the
+subject database of all the examples in this documentation. This table has the following columns.</p>
+<ul class="simple">
+<li><p>EmployeeID</p></li>
+<li><p>LastName</p></li>
+<li><p>FirstName</p></li>
+<li><p>Title</p></li>
+<li><p>TitleOfCourtesy</p></li>
+<li><p>BirthDate</p></li>
+<li><p>HireDate</p></li>
+<li><p>Address</p></li>
+<li><p>City</p></li>
+<li><p>Region</p></li>
+<li><p>PostalCode</p></li>
+<li><p>Country</p></li>
+<li><p>HomePhone</p></li>
+<li><p>Extension</p></li>
+<li><p>Photo</p></li>
+<li><p>Notes</p></li>
+<li><p>ReportsTo</p></li>
+<li><p>PhotoPath</p></li>
+</ul>
+<p>In addition to that, imagine that some day you may have to add a column to that table. This causes some
+maintenance overhead in the application code if you aren’t using some SQL code builder to help you manage
+your queries.</p>
+<p>There are several ways you can make this easier in your application code but let’s examine the most basic,
+which is to share a collection of strings that your various SQL queries can utilize as demonstrated below.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">table</span> <span class="p">=</span> <span class="s">&quot;Employees&quot;</span><span class="p">;</span>
+
+<span class="c1">// Somewhere you can create your collection of column name strings.</span>
+<span class="c1">// You can put it in a base class, inject it with your IoC container ... whatever.</span>
+<span class="kt">var</span> <span class="n">columns</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span>
+<span class="p">{</span>
+     <span class="s">&quot;EmployeeID&quot;</span><span class="p">,</span>
+     <span class="s">&quot;LastName&quot;</span><span class="p">,</span>
+     <span class="s">&quot;FirstName&quot;</span><span class="p">,</span>
+     <span class="s">&quot;Title &quot;</span><span class="p">,</span>
+     <span class="s">&quot;TitleOfCourtesy&quot;</span><span class="p">,</span>
+     <span class="s">&quot;BirthDate&quot;</span><span class="p">,</span>
+     <span class="s">&quot;HireDate&quot;</span><span class="p">,</span>
+     <span class="s">&quot;Address&quot;</span><span class="p">,</span>
+     <span class="s">&quot;City&quot;</span><span class="p">,</span>
+     <span class="s">&quot;Region&quot;</span><span class="p">,</span>
+     <span class="s">&quot;PostalCode&quot;</span><span class="p">,</span>
+     <span class="s">&quot;Country&quot;</span><span class="p">,</span>
+     <span class="s">&quot;HomePhone&quot;</span><span class="p">,</span>
+     <span class="s">&quot;Extension&quot;</span><span class="p">,</span>
+     <span class="s">&quot;Photo&quot;</span><span class="p">,</span>
+     <span class="s">&quot;Notes&quot;</span><span class="p">,</span>
+     <span class="s">&quot;ReportsTo&quot;</span><span class="p">,</span>
+     <span class="s">&quot;PhotoPath&quot;</span>
+<span class="p">};</span>
+
+<span class="c1">// Utilize it in your different SQL statements that require it</span>
+<span class="kt">var</span> <span class="n">insert</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+     <span class="p">.</span><span class="n">INSERT</span><span class="p">().</span><span class="n">INTO</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+       <span class="p">.</span><span class="n">COLUMNS</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+     <span class="p">.</span><span class="n">VALUES</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="p">;</span>
+
+<span class="kt">var</span> <span class="n">selectAll</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+     <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+       <span class="p">.</span><span class="n">COLUMNS</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+     <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+
+<span class="p">;</span>
+
+<span class="kt">var</span> <span class="n">selectById</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+     <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+       <span class="p">.</span><span class="n">COLUMNS</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+     <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+     <span class="p">.</span><span class="n">WHERE</span><span class="p">(</span><span class="s">&quot;EmployeeID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;@EmployeeID&quot;</span><span class="p">)</span>
+
+<span class="p">;</span>
+
+<span class="kt">var</span> <span class="n">update</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+     <span class="p">.</span><span class="n">UPDATE</span><span class="p">(</span><span class="n">table</span><span class="p">).</span><span class="n">SET</span><span class="p">()</span>
+       <span class="p">.</span><span class="n">COLUMNS</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+     <span class="p">.</span><span class="n">WHERE</span><span class="p">(</span><span class="s">&quot;EmployeeID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;@EmployeeID&quot;</span><span class="p">)</span>
+
+<span class="p">;</span>
+</pre></div>
+</div>
+<p>It is easy enough to utilize a collection of strings for <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> statements in regular old
+concatenated or interpolated SQL strings but it isn’t as easy to produce the parameterized
+queries that the <code class="docutils literal notranslate"><span class="pre">.INSERT()</span></code> and <code class="docutils literal notranslate"><span class="pre">.UPDATE()</span></code> suite of Fluent API methods gives you.</p>
+<p>Furthermore, the collection of columns can be <code class="docutils literal notranslate"><span class="pre">TSQLColumn</span></code> objects, which offer the ability
+to include data type information.</p>
+<p>Lastly, the <code class="docutils literal notranslate"><span class="pre">.COLUMNS()</span></code> method offers an overload to apply a multipart identifier
+to all the columns in the collection. That way, anywhere you need to JOIN to another table you
+have an easy way to disambiguate the column references.</p>
+<p>You can imagine ways to take this further by, for example, deriving the column names
+from an entity model class using reflection or by pulling the column names directly from the
+database using a schema metadata query, both of which can be executed on startup and placed in
+a singleton so the performance hit is taken only one time.</p>
+<p>In short, the ability to manage the columns in a table in one place is powerful making the
+application code far more maintainable while also promoting the DRY principle.</p>
+</div>
+<div class="section" id="adding-to-merging-sql-objects">
+<h2>Adding To &amp; Merging SQL Objects<a class="headerlink" href="#adding-to-merging-sql-objects" title="Permalink to this headline">¶</a></h2>
+<p>Obtaining a SQL object model also provides the opportunity to add to an already-existing SQL object
+graph or combine SQL fragments that were independently built. You simply have to identify the fragment
+you want to attach another fragment to and thereby add to or combine multiple object graphs to produce
+a new single SQL statement.</p>
+<p><strong>Basic Add</strong></p>
+<p>Below is an example where we use a base SQL select statement for pulling all records but then
+utilize it to produce a SQL statement for retrieving a single record by adding to the object
+graph that already exists.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">table</span> <span class="p">=</span> <span class="s">&quot;Products&quot;</span><span class="p">;</span>
+<span class="kt">var</span> <span class="n">columns</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="p">{</span> <span class="s">&quot;ProductID&quot;</span><span class="p">,</span> <span class="s">&quot;ProductName&quot;</span> <span class="p">};</span>
+
+<span class="kt">var</span> <span class="n">baseSelect</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMNS</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+
+<span class="p">;</span>
+
+<span class="kt">var</span> <span class="n">selectAll</span> <span class="p">=</span> <span class="n">baseSelect</span>
+                    <span class="p">.</span><span class="n">Build</span><span class="p">();</span>
+
+<span class="kt">var</span> <span class="n">selectOne</span> <span class="p">=</span> <span class="n">baseSelect</span>
+                    <span class="p">.</span><span class="n">WHERE</span><span class="p">(</span><span class="s">&quot;ProductID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;@ProductID&quot;</span><span class="p">)</span>
+                    <span class="p">.</span><span class="n">Build</span><span class="p">();</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">selectAll</span><span class="p">);</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">selectOne</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="p">[</span><span class="n">ProductID</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">ProductName</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">Products</span><span class="p">]</span>
+
+<span class="k">SELECT</span>
+ <span class="p">[</span><span class="n">ProductID</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">ProductName</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">Products</span><span class="p">]</span>
+<span class="k">WHERE</span> <span class="mi">1</span><span class="o">=</span><span class="mi">1</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">ProductID</span><span class="p">]</span> <span class="o">=</span> <span class="o">@</span><span class="n">ProductID</span>
+</pre></div>
+</div>
+<p><strong>Adding to Arbitrary Fragments</strong></p>
+<p>The trouble you might run into is that you may not obtain a reference to the SQL fragment
+that you are trying to add to. When this happens you have a couple of options.</p>
+<ol class="arabic">
+<li><p>Tag the target fragment with an ID using <code class="docutils literal notranslate"><span class="pre">WithId()</span></code> so that you can use the <code class="docutils literal notranslate"><span class="pre">FindById()</span></code>
+method to obtain a reference to that fragment later.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">productCols</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="p">{</span> <span class="s">&quot;ProductID&quot;</span><span class="p">,</span> <span class="s">&quot;ProductName&quot;</span> <span class="p">};</span>
+<span class="kt">var</span> <span class="n">categoryCols</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="p">{</span> <span class="s">&quot;CategoryID&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryName&quot;</span> <span class="p">};</span>
+
+<span class="kt">var</span> <span class="n">sqlObj</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="c1">// Tag the SELECT object with an ID to lookup later</span>
+    <span class="p">.</span><span class="n">SELECT</span><span class="p">().</span><span class="n">WithId</span><span class="p">(</span><span class="s">&quot;abc123&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMNS</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="n">productCols</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Products&quot;</span><span class="p">,</span> <span class="s">&quot;p&quot;</span><span class="p">)</span>
+
+<span class="p">;</span>
+
+<span class="c1">// See the type of object returned at this point</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;sqlObj: &quot;</span> <span class="p">+</span> <span class="n">sqlObj</span><span class="p">.</span><span class="n">GetType</span><span class="p">().</span><span class="n">Name</span><span class="p">);</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+
+<span class="c1">// Grab a reference to the SELECT object using the ID.</span>
+<span class="c1">// MUST find starting at a node above the target object.</span>
+<span class="c1">// Using Root to guarantee the lookup</span>
+<span class="kt">var</span> <span class="n">selectFragment</span> <span class="p">=</span> <span class="n">sqlObj</span><span class="p">.</span><span class="n">Root</span><span class="p">.</span><span class="n">FindById</span><span class="p">(</span><span class="s">&quot;abc123&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">SqlStatement</span><span class="p">;</span>
+
+<span class="c1">// Confirm that we looked up the desired SELECT object</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;selectFragment: &quot;</span> <span class="p">+</span> <span class="n">selectFragment</span><span class="p">.</span><span class="n">GetType</span><span class="p">().</span><span class="n">Name</span><span class="p">);</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+
+<span class="c1">// Now we can do extra stuff with the original SQL object graph</span>
+<span class="n">selectFragment</span>
+  <span class="p">.</span><span class="n">COLUMNS</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="n">categoryCols</span><span class="p">)</span>
+  <span class="p">.</span><span class="n">INNERJOIN</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Categories&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">).</span><span class="n">ON</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryID&quot;</span><span class="p">);</span>
+
+<span class="c1">// Build and output the whole thing</span>
+<span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">selectFragment</span><span class="p">.</span><span class="n">Build</span><span class="p">();</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sqlObj</span><span class="p">:</span> <span class="n">TSQLFrom</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">selectFragment</span><span class="p">:</span> <span class="n">TSQLSelect</span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductID</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductName</span><span class="p">],</span>
+ <span class="p">[</span><span class="k">c</span><span class="p">].[</span><span class="n">CategoryID</span><span class="p">],</span>
+ <span class="p">[</span><span class="k">c</span><span class="p">].[</span><span class="n">CategoryName</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Products</span><span class="p">]</span> <span class="n">p</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Categories</span><span class="p">]</span> <span class="k">c</span> <span class="k">ON</span> <span class="p">[</span><span class="k">c</span><span class="p">].[</span><span class="n">CategoryID</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">CategoryID</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Keep in mind that when looking up by <code class="docutils literal notranslate"><span class="pre">Id</span></code> you must start the lookup from a fragment that is above the fragment
+you’re looking for. If you start the find from the <code class="docutils literal notranslate"><span class="pre">Root</span></code> object then you are guaranteed to get a successful
+lookup assuming you provide an <code class="docutils literal notranslate"><span class="pre">Id</span></code> that exists in the object graph. This is because the <code class="docutils literal notranslate"><span class="pre">.FindById()</span></code> method
+recursively walks the tree of SQL objects downward starting from the object you call the method upon BUT it
+will not go UP the tree to check the ancestors.</p>
+</li>
+<li><p>You can manually walk the tree of <code class="docutils literal notranslate"><span class="pre">SqlStatement</span></code> objects checking each node until you find the one you’re
+looking for and obtain a reference to the desired SQL fragment that way.</p>
+<p>Below is the same example except that instead of using the <code class="docutils literal notranslate"><span class="pre">.FindById()</span></code> method, you can walk the tree manually
+to accomplish the same thing. For example, you may need to do this if the fragment you’re looking for is not
+tagged with an ID.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">productCols</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="p">{</span> <span class="s">&quot;ProductID&quot;</span><span class="p">,</span> <span class="s">&quot;ProductName&quot;</span> <span class="p">};</span>
+<span class="kt">var</span> <span class="n">categoryCols</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="p">{</span> <span class="s">&quot;CategoryID&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryName&quot;</span> <span class="p">};</span>
+
+<span class="kt">var</span> <span class="n">sqlObj</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="c1">// This SELECT object is not tagged with an identifier</span>
+    <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMNS</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="n">productCols</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Products&quot;</span><span class="p">,</span> <span class="s">&quot;p&quot;</span><span class="p">)</span>
+
+<span class="p">;</span>
+
+<span class="c1">// See the type of object returned at this point</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;sqlObj: &quot;</span> <span class="p">+</span> <span class="n">sqlObj</span><span class="p">.</span><span class="n">GetType</span><span class="p">().</span><span class="n">Name</span><span class="p">);</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+
+<span class="n">SqlStatement</span> <span class="n">selectFragment</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+
+<span class="c1">// ProcessTree recurses the tree for you. Each object s in the lambda</span>
+<span class="c1">// is a SqlStatement node in the hierarchical object graph. You just</span>
+<span class="c1">// check for what you&#39;re looking for, in this case a SELECT statement.</span>
+<span class="n">sqlObj</span><span class="p">.</span><span class="n">Root</span><span class="p">.</span><span class="n">ProcessTree</span><span class="p">(</span><span class="n">s</span> <span class="p">=&gt;</span>
+<span class="p">{</span>
+    <span class="kt">var</span> <span class="n">sqlFragment</span> <span class="p">=</span> <span class="n">s</span> <span class="k">as</span> <span class="n">SqlStatement</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">sqlFragment</span><span class="p">.</span><span class="n">IsSelect</span><span class="p">)</span>
+        <span class="n">selectFragment</span> <span class="p">=</span> <span class="n">sqlFragment</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="c1">// Confirm that we looked up the desired SELECT object</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;selectFragment: &quot;</span> <span class="p">+</span> <span class="n">selectFragment</span><span class="p">.</span><span class="n">GetType</span><span class="p">().</span><span class="n">Name</span><span class="p">);</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+
+<span class="c1">// Now we can do extra stuff with the original SQL object graph</span>
+<span class="n">selectFragment</span>
+  <span class="p">.</span><span class="n">COLUMNS</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="n">categoryCols</span><span class="p">)</span>
+  <span class="p">.</span><span class="n">INNERJOIN</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Categories&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">).</span><span class="n">ON</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryID&quot;</span><span class="p">);</span>
+
+<span class="c1">// Build and output the whole thing</span>
+<span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">selectFragment</span><span class="p">.</span><span class="n">Build</span><span class="p">();</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sqlObj</span><span class="p">:</span> <span class="n">TSQLFrom</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">selectFragment</span><span class="p">:</span> <span class="n">TSQLSelect</span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductID</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductName</span><span class="p">],</span>
+ <span class="p">[</span><span class="k">c</span><span class="p">].[</span><span class="n">CategoryID</span><span class="p">],</span>
+ <span class="p">[</span><span class="k">c</span><span class="p">].[</span><span class="n">CategoryName</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Products</span><span class="p">]</span> <span class="n">p</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Categories</span><span class="p">]</span> <span class="k">c</span> <span class="k">ON</span> <span class="p">[</span><span class="k">c</span><span class="p">].[</span><span class="n">CategoryID</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">CategoryID</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p><strong>Merging SQL Object Graphs Together</strong></p>
+<p>In some cases where you have two independently created statements you may need to combine them.
+To make this easier, you can call the <code class="docutils literal notranslate"><span class="pre">Merge()</span></code> method to combine two SQL object graphs together.
+This is not a simple concatenation of SQL strings. This method will do the job of adding the SQL
+object fragments from the second object graph under the SQL object fragments of the first object
+graph.</p>
+<p>Consider the example below where two independently created SQL statements are combined to produce
+a multi-data set result. We can combine the two ro</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">selectA</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">STAR</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;Products&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Terminate</span><span class="p">()</span>
+<span class="p">;</span>
+
+<span class="kt">var</span> <span class="n">selectB</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">STAR</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;Categories&quot;</span><span class="p">)</span>
+<span class="p">;</span>
+
+<span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">selectA</span>
+            <span class="p">.</span><span class="n">Merge</span><span class="p">(</span><span class="n">selectB</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">Build</span><span class="p">();</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="o">*</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">Products</span><span class="p">];</span>
+<span class="k">SELECT</span>
+ <span class="o">*</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">Categories</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>An important thing to consider in the example above is the use of the <code class="docutils literal notranslate"><span class="pre">Terminate()</span></code>
+method, which is explained in detail below.</p>
+</div>
+<div class="section" id="terminate">
+<h2>Terminate()<a class="headerlink" href="#terminate" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Terminate()</span></code> method simply ensures that the immediately preceding SQL fragment
+is output with a terminating semicolon <code class="docutils literal notranslate"><span class="pre">;</span></code> character. You may need to use this if
+you have a complex query or script that must or should be delineated by an explicitly
+terminated statement.</p>
+<p>The example below, similar to the example above where they are independently built and
+merged, shows two SELECT statements meant to return a multi-data-set result, which
+can be crafted in a single fluent statement.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">STAR</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;Products&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Terminate</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">STAR</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;Categories&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="o">*</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">Products</span><span class="p">];</span>
+<span class="k">SELECT</span>
+ <span class="o">*</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">Categories</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>You can see that the first SELECT statement is terminated with the semicolon character <code class="docutils literal notranslate"><span class="pre">;</span></code>,
+which was placed there using the <code class="docutils literal notranslate"><span class="pre">Terminate()</span></code> method.</p>
+</div>
+<div class="section" id="withid-findbyid">
+<span id="withid"></span><h2>WithId() / FindById()<a class="headerlink" href="#withid-findbyid" title="Permalink to this headline">¶</a></h2>
+<p>Any SQL fragment object can be tagged with an identifier using the <code class="docutils literal notranslate"><span class="pre">WithId()</span></code> method if you
+plan to obtain a reference to that particular fragment later. It can then be used in
+combination with the <code class="docutils literal notranslate"><span class="pre">FindById()</span></code> method when the time comes to find it and use it.</p>
+<p>Under the hood, the <code class="docutils literal notranslate"><span class="pre">WithId()</span></code> method populates the <code class="docutils literal notranslate"><span class="pre">Id</span></code> property of the immediately preceding
+SQL fragment object with the value provided in the method call.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">productCols</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="p">{</span> <span class="s">&quot;ProductID&quot;</span><span class="p">,</span> <span class="s">&quot;ProductName&quot;</span> <span class="p">};</span>
+
+<span class="kt">var</span> <span class="n">sqlObj</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMNS</span><span class="p">(</span><span class="n">productCols</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;Products&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">WHERE</span><span class="p">(</span><span class="s">&quot;CategoryID&quot;</span><span class="p">).</span><span class="n">WithId</span><span class="p">(</span><span class="s">&quot;wc&quot;</span><span class="p">)</span> <span class="c1">// Tag WHERE with Id = &quot;wc&quot;</span>
+        <span class="p">.</span><span class="n">IN</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">);</span>
+<span class="p">;</span>
+
+<span class="c1">// Now grab a reference to the WHERE clause</span>
+<span class="c1">// It&#39;s good practice to start at the Root object</span>
+<span class="kt">var</span> <span class="n">whereClause</span> <span class="p">=</span> <span class="n">sqlObj</span><span class="p">.</span><span class="n">Root</span><span class="p">.</span><span class="n">FindById</span><span class="p">(</span><span class="s">&quot;wc&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">SqlStatement</span><span class="p">;</span>
+
+<span class="c1">// Confirm we have the WHERE clause object</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">whereClause</span><span class="p">.</span><span class="n">GetType</span><span class="p">().</span><span class="n">Name</span><span class="p">);</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">();</span>
+
+<span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">whereClause</span>
+            <span class="p">.</span><span class="n">OR</span><span class="p">().</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;ProductID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="m">99</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">Build</span><span class="p">();</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TSQLWhereClause</span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="p">[</span><span class="n">ProductID</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">ProductName</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">Products</span><span class="p">]</span>
+<span class="k">WHERE</span> <span class="mi">1</span><span class="o">=</span><span class="mi">1</span>
+ <span class="k">AND</span> <span class="s1">&#39;CategoryID&#39;</span> <span class="k">IN</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+ <span class="k">OR</span> <span class="p">[</span><span class="n">ProductID</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>
+</pre></div>
+</div>
+<p>Keep in mind that when looking up by <code class="docutils literal notranslate"><span class="pre">Id</span></code> you must start the lookup from a fragment that is above the fragment
+you’re looking for. If you start the find from the <code class="docutils literal notranslate"><span class="pre">Root</span></code> object then you are guaranteed to get a successful
+lookup assuming you provide an <code class="docutils literal notranslate"><span class="pre">Id</span></code> that exists in the object graph. This is because the <code class="docutils literal notranslate"><span class="pre">FindById()</span></code> method
+recursively walks the tree of SQL objects downward starting from the object you call the method upon BUT it
+will not go UP the tree to check the ancestors.</p>
+</div>
+<div class="section" id="withname">
+<h2>WithName()<a class="headerlink" href="#withname" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">WithName()</span></code> method functions exactly like the <code class="docutils literal notranslate"><span class="pre">Withid()</span></code> method except that it is
+simply for a different purpose. Tagging a fragment with an identifier is typically meant
+for numeric values or GUIDs whereas tagging a fragment with a name is for labeling the
+fragment with something human readable.</p>
+<p>However, the name is strictly metadata where the major difference is that there is NO corresponding
+<code class="docutils literal notranslate"><span class="pre">FindByName()</span></code> method. You could use the <code class="docutils literal notranslate"><span class="pre">Name</span></code> property of the SQL object when <a class="reference internal" href="#walking-the-tree"><span class="std std-ref">Walking the Tree</span></a> to
+print the underlying <code class="docutils literal notranslate"><span class="pre">Name</span></code> property or use it to find an object but typically if you want to find a SQL
+fragment it is easier to tag it with an <code class="docutils literal notranslate"><span class="pre">Id</span></code> and then use the <code class="docutils literal notranslate"><span class="pre">FindById()</span></code> method.</p>
+<p>You may find it most useful if you are building a UI that utilizes the underlying object model directly
+instead of the Fluent API and you need to label the objects for display in a form. Another use case is
+to plant names on the objects so that they make sense when looking at the serialized JSON of the SQL
+object graph.</p>
+</div>
+<div class="section" id="withdoc">
+<h2>WithDoc()<a class="headerlink" href="#withdoc" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">WithDoc()</span></code> is most like the <code class="docutils literal notranslate"><span class="pre">WithName()</span></code> method where the <code class="docutils literal notranslate"><span class="pre">WithDoc()</span></code> method populates the
+object’s <code class="docutils literal notranslate"><span class="pre">Description</span></code> property with the value provided in the method call.</p>
+<p>The purpose of this is to add documentation about the SQL query in cases where the SQL object may
+need to be examined in JSON or conceivably, for example, in a UI that is designed to serve as a SQL
+object explorer. You can imagine hovering the mouse over a SQL fragment that is wired up to
+display the <code class="docutils literal notranslate"><span class="pre">Description</span></code> text in a pop-over.</p>
+<p>It’s basically metadata that lives with the object graph but is completely ignored when producing the
+actual SQL code.</p>
+<p>You can see how it works by adding doc to a SQL fragment and then using <a class="reference internal" href="serialization.html"><span class="doc">Serialization</span></a> to render the
+object graph into JSON. An exercise I leave to the curious reader.</p>
+</div>
+<div class="section" id="walking-the-tree">
+<span id="id1"></span><h2>Walking the Tree<a class="headerlink" href="#walking-the-tree" title="Permalink to this headline">¶</a></h2>
+<p>Though it may come as no surprise, the KnightMoves.SQLObjects library utilizes the <a class="reference external" href="https://www.nuget.org/packages/KnightMoves.Hierarchical/">KnightMoves.Hierarchical</a>
+library at its core. Examining <a class="reference external" href="https://github.com/KnightMoveSolutions/Hierarchical#knightmoveshierarchical">the documentation for the KnightMoves.Hierarchical library</a> will give you
+insight into how this library functions.</p>
+<p>The SQL object graph that you build with the Fluent API basically creates a tree of objects that implement
+the <code class="docutils literal notranslate"><span class="pre">SqlStatement</span></code> base class. Once you know that it is a tree built with the <a class="reference external" href="https://www.nuget.org/packages/KnightMoves.Hierarchical/">KnightMoves.Hierarchical</a>
+library, you can see that the underlying SQL objects are tree nodes with all of the methods and properties
+that come with a tree node. As such, you can take advantage of the features offered by the <a class="reference external" href="https://www.nuget.org/packages/KnightMoves.Hierarchical/">KnightMoves.Hierarchical</a>
+library.</p>
+<p>In particular, this object structure could be useful when you need to process the SQL objects recursively or
+in other words … when you need to “walk the tree”. The <a class="reference external" href="https://www.nuget.org/packages/KnightMoves.Hierarchical/">KnightMoves.Hierarchical</a> library offers three methods
+for doing so, listed below.</p>
+<ul class="simple">
+<li><p>ProcessTree()</p></li>
+<li><p>ProcessChildren()</p></li>
+<li><p>ProcessAncestors()</p></li>
+</ul>
+<p>Each of these is described below.</p>
+<p>For each of the examples consider the following SQL object graph built with the Fluent API below.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sqlObj</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryName&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COUNT</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;ProductID&quot;</span><span class="p">).</span><span class="n">AS</span><span class="p">(</span><span class="s">&quot;TotalProducts&quot;</span><span class="p">).</span><span class="n">WithId</span><span class="p">(</span><span class="s">&quot;abc123&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">AVG</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;UnitPrice&quot;</span><span class="p">).</span><span class="n">AS</span><span class="p">(</span><span class="s">&quot;AvgPrice&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Products&quot;</span><span class="p">,</span> <span class="s">&quot;p&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">INNERJOIN</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Categories&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">).</span><span class="n">ON</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryID&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">GROUPBY</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryName&quot;</span><span class="p">)</span>
+
+<span class="p">;</span>
+</pre></div>
+</div>
+<p>Notice that we tagged the <code class="docutils literal notranslate"><span class="pre">COUNT()</span></code> method with and identifier, which we will make use of later.
+So with that object graph above, you can walk the tree up or down using the relevant methods below.</p>
+<p><strong>ProcessTree()</strong></p>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">ProcessTree()</span></code> method to walk the tree of objects down from AND INCLUDING the object that
+the method is called from.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="n">sqlObj</span><span class="p">.</span><span class="n">Root</span><span class="p">.</span><span class="n">ProcessTree</span><span class="p">(</span><span class="n">node</span> <span class="p">=&gt;</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">IndentString</span> <span class="p">+</span> <span class="n">node</span><span class="p">.</span><span class="n">GetType</span><span class="p">().</span><span class="n">Name</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>In the code above, notice that we reference the <code class="docutils literal notranslate"><span class="pre">Root</span></code> object. The <code class="docutils literal notranslate"><span class="pre">Root</span></code> object is referenced by
+every node in the entire tree so you can get to the top of the tree from anywhere.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ProcessTree()</span></code> method accepts a lambda where the parameter (here we called it <code class="docutils literal notranslate"><span class="pre">node</span></code>) is the
+object in the tree passed to your lambda function as it is recursively walking down the tree.</p>
+<p>Also notice that we utilize the <code class="docutils literal notranslate"><span class="pre">node.IndentString</span></code> property to display the values with indentation
+so it is easier to see the structure of the tree. In fact, the <code class="docutils literal notranslate"><span class="pre">IndentString</span></code> property is used to format
+the SQL output when calling <code class="docutils literal notranslate"><span class="pre">.Build()</span></code> as you’ve seen throughout this documentation.</p>
+<p>Here’s the output of the <code class="docutils literal notranslate"><span class="pre">ProcessTree()</span></code> logic above.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TSQLScript</span>
+ <span class="n">TSQLSelect</span>
+  <span class="n">TSQLColumn</span>
+  <span class="n">TSQLFuncCount</span>
+  <span class="n">TSQLFuncAvg</span>
+ <span class="n">TSQLFrom</span>
+ <span class="n">TSQLInnerJoin</span>
+  <span class="n">TSQLBasicCondition</span>
+   <span class="n">TSQLColumn</span>
+   <span class="n">TSQLColumn</span>
+ <span class="n">TSQLGroupBy</span>
+  <span class="n">TSQLColumn</span>
+</pre></div>
+</div>
+<p>This reveals the types of objects that are being created by the Fluent API as you call its methods to
+build your SQL object graph. If you cast the <code class="docutils literal notranslate"><span class="pre">node</span></code> object as <code class="docutils literal notranslate"><span class="pre">SqlStatement</span></code> or its concrete type
+then you can access their relevant properties or call the <code class="docutils literal notranslate"><span class="pre">SQL()</span></code> method to pull the SQL output from
+them individually.</p>
+<p>The most common use case for this is if you need to find an object so you can reference it for the purpose
+of building more SQL under it using the Fluent API, assuming you cannot use the <code class="docutils literal notranslate"><span class="pre">FindById()</span></code> method.
+Once you have a reference to it and cast it to <code class="docutils literal notranslate"><span class="pre">SqlStatement</span></code>, then you can call the Fluent API methods
+upon it to continue to insert SQL statements at that point. The other objects below it will still remain.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Manually obtaining references to SQL fragments is not the primary use case for this library so your
+mileage may vary. What you do with it may or may not work as intended.</p>
+</div>
+<p><strong>ProcessChildren()</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ProcessChildren()</span></code> method functions just like the <code class="docutils literal notranslate"><span class="pre">ProcessTree()</span></code> method except that it will begin
+its processing starting with the child nodes. In the case of the <code class="docutils literal notranslate"><span class="pre">Root</span></code> object in this example, which is
+a <code class="docutils literal notranslate"><span class="pre">TSQLScript</span></code> object, then processing will not include itself (i.e. the <code class="docutils literal notranslate"><span class="pre">TSQLScript</span></code> object).</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="n">sqlObj</span><span class="p">.</span><span class="n">Root</span><span class="p">.</span><span class="n">ProcessChildren</span><span class="p">(</span><span class="n">node</span> <span class="p">=&gt;</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">IndentString</span> <span class="p">+</span> <span class="n">node</span><span class="p">.</span><span class="n">GetType</span><span class="p">().</span><span class="n">Name</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>And here’s the output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TSQLSelect</span>
+ <span class="n">TSQLColumn</span>
+ <span class="n">TSQLFuncCount</span>
+ <span class="n">TSQLFuncAvg</span>
+<span class="n">TSQLFrom</span>
+<span class="n">TSQLInnerJoin</span>
+ <span class="n">TSQLBasicCondition</span>
+  <span class="n">TSQLColumn</span>
+  <span class="n">TSQLColumn</span>
+<span class="n">TSQLGroupBy</span>
+ <span class="n">TSQLColumn</span>
+</pre></div>
+</div>
+<p>You can see that the <code class="docutils literal notranslate"><span class="pre">TSQLScript</span></code> object was not included. Use this if you do not want to include the
+current object in the recursion - you only want it to recurse the objects below the current object.</p>
+<p><strong>ProcessAncestors()</strong></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ProcessAncestors()</span></code> is a bit more robust. Full documentation of this method is provided in <a class="reference external" href="https://github.com/KnightMoveSolutions/Hierarchical#knightmoveshierarchical">the
+KnightMoves.Hierarchical documentation</a>.</p>
+<p>In the example below, we obtain a reference to the SQL COUNT() function that we tagged with an identifier
+so that once we have a reference to a SQL fragment object in the middle of the tree somewhere, we can then
+walk UP the tree using the <code class="docutils literal notranslate"><span class="pre">ProcessAncestors()</span></code> method.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">countFunction</span> <span class="p">=</span> <span class="n">sqlObj</span><span class="p">.</span><span class="n">Root</span><span class="p">.</span><span class="n">FindById</span><span class="p">(</span><span class="s">&quot;abc123&quot;</span><span class="p">);</span>
+
+<span class="n">countFunction</span><span class="p">.</span><span class="n">ProcessAncestors</span><span class="p">(</span>
+    <span class="n">node</span> <span class="p">=&gt;</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">IndentString</span> <span class="p">+</span> <span class="n">node</span><span class="p">.</span><span class="n">GetType</span><span class="p">().</span><span class="n">Name</span><span class="p">);</span>
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="n">countFunction</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Since we are going up the tree and printing the type names with indentation, it has the effect of flipping
+the tree upside down from the point we started processing.</p>
+<p>Here is the output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">TSQLFuncCount</span>
+ <span class="n">TSQLSelect</span>
+<span class="n">TSQLScript</span>
+</pre></div>
+</div>
+<p>The first argument to the <code class="docutils literal notranslate"><span class="pre">ProcessAncestors()</span></code> method is a lambda that functions just like the <code class="docutils literal notranslate"><span class="pre">ProcessTree()</span></code>
+and <code class="docutils literal notranslate"><span class="pre">ProcessChildren()</span></code> methods except that instead of recursing down the tree it is recusing up the tree for you.</p>
+<p>The second argument to the <code class="docutils literal notranslate"><span class="pre">ProcessAncestors()</span></code> method is the object that you want to start from, in this case
+the reference to the SQL COUNT() function. The process is inclusive of the starting point as you can see in the
+output that it begins with printing the name of the <code class="docutils literal notranslate"><span class="pre">TSQLFuncCount</span></code> class.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Keep in mind that when recursing up the tree, it is going from parent to parent and siblings are ignored. This
+means that the inverted tree output only goes so far. In the example above you see that the other SELECT list
+items are not displayed because they are siblings of the COUNT() function.</p>
+</div>
+<p>Whether you need to go up or down the tree for whatever purpose you desire, you can see that using the methods
+above should provide you with the tools to do pretty much anything you want.</p>
+</div>
+<div class="section" id="checking-fragment-types">
+<h2>Checking Fragment Types<a class="headerlink" href="#checking-fragment-types" title="Permalink to this headline">¶</a></h2>
+<p>If you take advantage of the underlying SQL object model in any way, you are likely find it useful to check what
+type of SQL fragment you are dealing with. Since each SQL fragment object implements the <code class="docutils literal notranslate"><span class="pre">SqlStatement</span></code> base
+class, they will all provide the following boolean properties that will tell you what sort of object you’re
+dealing with, without having to know the name of the actual C# object type.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 77%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property</p></th>
+<th class="head"><p>Remarks</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>IsDelete</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DELETE</span></code> statement</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsFrom</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">FROM</span></code> clause</p></td>
+</tr>
+<tr class="row-even"><td><p>IsGroupBy</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> statement</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsInsert</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">INSERT</span></code> statement</p></td>
+</tr>
+<tr class="row-even"><td><p>IsJoin</p></td>
+<td><p>Any <code class="docutils literal notranslate"><span class="pre">JOIN</span></code> statement</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsRightJoin</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">RIGHT</span> <span class="pre">JOIN</span></code> statement. If true then <code class="docutils literal notranslate"><span class="pre">IsJoin</span></code> is also true</p></td>
+</tr>
+<tr class="row-even"><td><p>IsLeftJoin</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">JOIN</span></code> statement. If true then <code class="docutils literal notranslate"><span class="pre">IsJoin</span></code> is also true</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsInnerJoin</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">INNER</span> <span class="pre">JOIN</span></code> statement. If true then <code class="docutils literal notranslate"><span class="pre">IsJoin</span></code> is also true</p></td>
+</tr>
+<tr class="row-even"><td><p>IsScript</p></td>
+<td><p>True if the object is an ad hoc script or the root script</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsSelect</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SELECT</span></code> statement</p></td>
+</tr>
+<tr class="row-even"><td><p>IsUnion</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">UNION</span></code> clause</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsUpdate</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">UPDATE</span></code> statement</p></td>
+</tr>
+<tr class="row-even"><td><p>IsWhereClause</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">WHERE</span></code> clause</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsBasicCondition</p></td>
+<td><p>Condition as <code class="docutils literal notranslate"><span class="pre">LeftOperand</span></code> <code class="docutils literal notranslate"><span class="pre">Operator</span></code> <code class="docutils literal notranslate"><span class="pre">RightOperand</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>IsBetween</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BETWEEN</span></code> condition</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsCalculation</p></td>
+<td><p>Calculation as <code class="docutils literal notranslate"><span class="pre">LeftOperand</span></code> <code class="docutils literal notranslate"><span class="pre">ArithmeticOperator</span></code> <code class="docutils literal notranslate"><span class="pre">RightOperand</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>IsColumn</p></td>
+<td><p>A column specification</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsComment</p></td>
+<td><p>An object containing a SQL comment</p></td>
+</tr>
+<tr class="row-even"><td><p>IsCondition</p></td>
+<td><p>Any condition</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsConditionGroup</p></td>
+<td><p>A scope containing coditions output between <code class="docutils literal notranslate"><span class="pre">(</span></code> and <code class="docutils literal notranslate"><span class="pre">)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>IsDistinct</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DISTINCT</span></code> keyword</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsFunction</p></td>
+<td><p>Any type of function call</p></td>
+</tr>
+<tr class="row-even"><td><p>IsFunctionAbs</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ABS()</span></code> function call</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsFunctionAvg</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AVG()</span></code> function call</p></td>
+</tr>
+<tr class="row-even"><td><p>IsFunctionCeiling</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CEILING()</span></code> function call</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsFunctionCount</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">COUNT()</span></code> function call</p></td>
+</tr>
+<tr class="row-even"><td><p>IsFunctionDateAdd</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DATEADD()</span></code> function call</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsFunctionDateDiff</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DATEDIFF()</span></code> function call</p></td>
+</tr>
+<tr class="row-even"><td><p>IsFunctionDateName</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DATENAME()</span></code> function call</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsFunctionDatePart</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DATEPART()</span></code> function call</p></td>
+</tr>
+<tr class="row-even"><td><p>IsFunctionDay</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DAY()</span></code> function call</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsFunctionFloor</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">FLOOR()</span></code> function call</p></td>
+</tr>
+<tr class="row-even"><td><p>IsFunctionGetDate</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">GETDATE()</span></code> function call</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsFunctionMax</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MAX()</span></code> function call</p></td>
+</tr>
+<tr class="row-even"><td><p>IsFunctionMin</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MIN()</span></code> function call</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsFunctionMonth</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MONTH()</span></code> function call</p></td>
+</tr>
+<tr class="row-even"><td><p>IsFunctionParameter</p></td>
+<td><p>A function parameter object</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsFunctionSum</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SUM()</span></code> function call</p></td>
+</tr>
+<tr class="row-even"><td><p>IsFunctionYear</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">YEAR()</span></code> function call</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsHaving</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">HAVING</span></code> clause</p></td>
+</tr>
+<tr class="row-even"><td><p>IsInList</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IN</span> <span class="pre">(...)</span></code> condition</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsLike</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LIKE</span> <span class="pre">''</span></code> condition</p></td>
+</tr>
+<tr class="row-even"><td><p>IsLiteral</p></td>
+<td><p>An object containing an ad hoc literal</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsOrderBy</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clause</p></td>
+</tr>
+<tr class="row-even"><td><p>IsOrderByExpression</p></td>
+<td><p>An expression under and <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clause making a sort specification</p></td>
+</tr>
+<tr class="row-odd"><td><p>IsQueryExpression</p></td>
+<td><p>Any SQL fragment that constitutes a valid query expression</p></td>
+</tr>
+<tr class="row-even"><td><p>IsSubQuery</p></td>
+<td><p>A subquery scope denoted by <code class="docutils literal notranslate"><span class="pre">(</span></code> and <code class="docutils literal notranslate"><span class="pre">)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>IsTop</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TOP</span></code> filter against the rows of a <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> result</p></td>
+</tr>
+</tbody>
+</table>
+<p>These boolean properties can be utilized to identify the type of object you are seeking in your logic
+while processing the SQL fragments in the tree.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="support.html" class="btn btn-neutral float-right" title="Support" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="security.html" class="btn btn-neutral float-left" title="Security" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ricardo Pena.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

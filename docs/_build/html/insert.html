@@ -1,0 +1,527 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>INSERT &mdash; KnightMoves.SqlObjects 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="UPDATE" href="update.html" />
+    <link rel="prev" title="JOIN" href="join.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0255a3" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/knight_move_solutions_sqlobjects_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="select.html">SELECT FROM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="join.html">JOIN</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">INSERT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update.html">UPDATE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete.html">DELETE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="where.html">WHERE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="case.html">CASE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group-by.html">GROUP BY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="order-by.html">ORDER BY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="having.html">HAVING</a></li>
+<li class="toctree-l1"><a class="reference internal" href="union.html">UNION</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculations.html">Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subqueries.html">Subqueries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comments.html">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="serialization.html">Serialization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameterized-queries.html">Parameterized Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced-concepts.html">Advanced Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">KnightMoves.SqlObjects</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>INSERT</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/insert.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p><a class="reference external" href="https://docs.knightmovesolutions.com">Documentation Home</a></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>All examples used are valid against the <a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/linq/downloading-sample-databases">Microsoft Northwind Sample Database</a>
+You can run the resulting SQL from the examples against Northwind in order to test and play with the SqlObjects library.</p>
+</div>
+<div class="section" id="insert">
+<h1>INSERT<a class="headerlink" href="#insert" title="Permalink to this headline">¶</a></h1>
+<p><strong>Basic Insert</strong></p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">INSERT</span><span class="p">().</span><span class="n">INTO</span><span class="p">(</span><span class="s">&quot;Categories&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;CategoryName&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;Description&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">VALUES</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">VALUE</span><span class="p">(</span><span class="s">&quot;Vegan&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">VALUE</span><span class="p">(</span><span class="s">&quot;Exclusively plant-based food&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="p">[</span><span class="n">Categories</span><span class="p">]</span>
+<span class="p">(</span>
+ <span class="p">[</span><span class="n">CategoryName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">Description</span><span class="p">]</span>
+<span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span>
+ <span class="s1">&#39;Vegan&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;Exclusively plant-based food&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Basic Insert with Table Schema</strong></p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">INSERT</span><span class="p">().</span><span class="n">INTO</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Categories&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;CategoryName&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;Description&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">VALUES</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">VALUE</span><span class="p">(</span><span class="s">&quot;Vegan&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">VALUE</span><span class="p">(</span><span class="s">&quot;Exclusively plant-based food&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Categories</span><span class="p">]</span>
+<span class="p">(</span>
+ <span class="p">[</span><span class="n">CategoryName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">Description</span><span class="p">]</span>
+<span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span>
+ <span class="s1">&#39;Vegan&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;Exclusively plant-based food&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Insert Using a Collection of Strings for Column Names</strong></p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">columns</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="p">{</span> <span class="s">&quot;CategoryName&quot;</span><span class="p">,</span> <span class="s">&quot;Description&quot;</span> <span class="p">};</span>
+
+<span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">INSERT</span><span class="p">().</span><span class="n">INTO</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Categories&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMNS</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">VALUES</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">VALUE</span><span class="p">(</span><span class="s">&quot;Vegan&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">VALUE</span><span class="p">(</span><span class="s">&quot;Exclusively plant-based food&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Categories</span><span class="p">]</span>
+<span class="p">(</span>
+ <span class="p">[</span><span class="n">CategoryName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">Description</span><span class="p">]</span>
+<span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span>
+ <span class="s1">&#39;Vegan&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;Exclusively plant-based food&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Insert Using a Collection of Strings for Columns and Values</strong></p>
+<p>Specifying an <code class="docutils literal notranslate"><span class="pre">IEnumerable&lt;string&gt;</span></code> collection for the VALUES clause will produce parameters using the
+column names as a naming convention.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">columns</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="p">{</span> <span class="s">&quot;CategoryName&quot;</span><span class="p">,</span> <span class="s">&quot;Description&quot;</span> <span class="p">};</span>
+
+<span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">INSERT</span><span class="p">().</span><span class="n">INTO</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Categories&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMNS</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">VALUES</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Categories</span><span class="p">]</span>
+<span class="p">(</span>
+ <span class="p">[</span><span class="n">CategoryName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">Description</span><span class="p">]</span>
+<span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span>
+ <span class="o">@</span><span class="n">CategoryName</span><span class="p">,</span>
+ <span class="o">@</span><span class="n">Description</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Insert Using a Collection of</strong> <code class="docutils literal notranslate"><span class="pre">TSQLColumn</span></code> <strong>Objects</strong></p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">columns</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">TSQLColumn</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">new</span> <span class="n">TSQLColumn</span> <span class="p">{</span> <span class="n">ColumnName</span> <span class="p">=</span> <span class="s">&quot;CategoryName&quot;</span> <span class="p">},</span>
+    <span class="k">new</span> <span class="n">TSQLColumn</span> <span class="p">{</span> <span class="n">ColumnName</span> <span class="p">=</span> <span class="s">&quot;Description&quot;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">INSERT</span><span class="p">().</span><span class="n">INTO</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Categories&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMNS</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">VALUES</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">VALUE</span><span class="p">(</span><span class="s">&quot;Vegan&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">VALUE</span><span class="p">(</span><span class="s">&quot;Exclusively plant-based food&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Categories</span><span class="p">]</span>
+<span class="p">(</span>
+ <span class="p">[</span><span class="n">CategoryName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">Description</span><span class="p">]</span>
+<span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span>
+ <span class="s1">&#39;Vegan&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;Exclusively plant-based food&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Insert Using a Collection of</strong> <code class="docutils literal notranslate"><span class="pre">TSQLColumn</span></code> <strong>Objects for Columns and Values</strong></p>
+<p>Specifying a collection of <code class="docutils literal notranslate"><span class="pre">TSQLColumn</span></code> objects for the VALUES clause will produce parameters using the
+column names as a naming convention.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">columns</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">TSQLColumn</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">new</span> <span class="n">TSQLColumn</span> <span class="p">{</span> <span class="n">ColumnName</span> <span class="p">=</span> <span class="s">&quot;CategoryName&quot;</span> <span class="p">},</span>
+    <span class="k">new</span> <span class="n">TSQLColumn</span> <span class="p">{</span> <span class="n">ColumnName</span> <span class="p">=</span> <span class="s">&quot;Description&quot;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">INSERT</span><span class="p">().</span><span class="n">INTO</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Categories&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMNS</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">VALUES</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Categories</span><span class="p">]</span>
+<span class="p">(</span>
+ <span class="p">[</span><span class="n">CategoryName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">Description</span><span class="p">]</span>
+<span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span>
+ <span class="o">@</span><span class="n">CategoryName</span><span class="p">,</span>
+ <span class="o">@</span><span class="n">Description</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Insert Using Explicit Parameter Names for the</strong> <code class="docutils literal notranslate"><span class="pre">VALUES</span></code> <strong>Clause</strong></p>
+<p>Parameter names can be specified for the VALUES clause manually.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">INSERT</span><span class="p">().</span><span class="n">INTO</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Categories&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;CategoryName&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;Description&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">VALUES</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">VALUE</span><span class="p">(</span><span class="s">&quot;@CategoryName&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">VALUE</span><span class="p">(</span><span class="s">&quot;@Description&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Categories</span><span class="p">]</span>
+<span class="p">(</span>
+ <span class="p">[</span><span class="n">CategoryName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">Description</span><span class="p">]</span>
+<span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span>
+ <span class="o">@</span><span class="n">CategoryName</span><span class="p">,</span>
+ <span class="o">@</span><span class="n">Description</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Insert Using a SELECT statement</strong></p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">INSERT</span><span class="p">().</span><span class="n">INTO</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Categories&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;CategoryName&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;Description&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">VALUE</span><span class="p">(</span><span class="s">&quot;Vegan&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">VALUE</span><span class="p">(</span><span class="s">&quot;Exclusively plant-based food&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Categories</span><span class="p">]</span>
+<span class="p">(</span>
+ <span class="p">[</span><span class="n">CategoryName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">Description</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="k">SELECT</span>
+ <span class="s1">&#39;Vegan&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;Exclusively plant-based food&#39;</span>
+</pre></div>
+</div>
+<p><strong>Insert Using a SELECT Statement with a Collection of Strings</strong></p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">columns</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="p">{</span> <span class="s">&quot;CategoryName&quot;</span><span class="p">,</span> <span class="s">&quot;Description&quot;</span> <span class="p">};</span>
+
+<span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">INSERT</span><span class="p">().</span><span class="n">INTO</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Categories&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMNS</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">VALUES</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Categories</span><span class="p">]</span>
+<span class="p">(</span>
+ <span class="p">[</span><span class="n">CategoryName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">Description</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="k">SELECT</span>
+ <span class="o">@</span><span class="n">CategoryName</span><span class="p">,</span>
+ <span class="o">@</span><span class="n">Description</span>
+</pre></div>
+</div>
+<p><strong>Insert Using a SELECT Statement with a Collection of</strong> <code class="docutils literal notranslate"><span class="pre">TSQLColumn</span></code> <strong>Objects</strong></p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">columns</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">TSQLColumn</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">new</span> <span class="n">TSQLColumn</span> <span class="p">{</span> <span class="n">ColumnName</span> <span class="p">=</span> <span class="s">&quot;CategoryName&quot;</span> <span class="p">},</span>
+    <span class="k">new</span> <span class="n">TSQLColumn</span> <span class="p">{</span> <span class="n">ColumnName</span> <span class="p">=</span> <span class="s">&quot;Description&quot;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">INSERT</span><span class="p">().</span><span class="n">INTO</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Categories&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMNS</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">VALUES</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Categories</span><span class="p">]</span>
+<span class="p">(</span>
+ <span class="p">[</span><span class="n">CategoryName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">Description</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="k">SELECT</span>
+ <span class="o">@</span><span class="n">CategoryName</span><span class="p">,</span>
+ <span class="o">@</span><span class="n">Description</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="update.html" class="btn btn-neutral float-right" title="UPDATE" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="join.html" class="btn btn-neutral float-left" title="JOIN" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ricardo Pena.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

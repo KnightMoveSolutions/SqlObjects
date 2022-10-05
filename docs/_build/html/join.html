@@ -1,0 +1,575 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>JOIN &mdash; KnightMoves.SqlObjects 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="INSERT" href="insert.html" />
+    <link rel="prev" title="SELECT FROM" href="select.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0255a3" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/knight_move_solutions_sqlobjects_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="select.html">SELECT FROM</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">JOIN</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#inner-join">INNER JOIN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#left-join">LEFT JOIN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#right-join">RIGHT JOIN</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="insert.html">INSERT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update.html">UPDATE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete.html">DELETE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="where.html">WHERE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="case.html">CASE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group-by.html">GROUP BY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="order-by.html">ORDER BY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="having.html">HAVING</a></li>
+<li class="toctree-l1"><a class="reference internal" href="union.html">UNION</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculations.html">Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subqueries.html">Subqueries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comments.html">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="serialization.html">Serialization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameterized-queries.html">Parameterized Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced-concepts.html">Advanced Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">KnightMoves.SqlObjects</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>JOIN</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/join.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p><a class="reference external" href="https://docs.knightmovesolutions.com">Documentation Home</a></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>All examples used are valid against the <a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/linq/downloading-sample-databases">Microsoft Northwind Sample Database</a>
+You can run the resulting SQL from the examples against Northwind in order to test and play with the SqlObjects library.</p>
+</div>
+<div class="section" id="join">
+<h1>JOIN<a class="headerlink" href="#join" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="inner-join">
+<h2>INNER JOIN<a class="headerlink" href="#inner-join" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+     <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+       <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;ProductID&quot;</span><span class="p">)</span>
+       <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryName&quot;</span><span class="p">)</span>
+     <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Products&quot;</span><span class="p">,</span> <span class="s">&quot;p&quot;</span><span class="p">)</span>
+     <span class="p">.</span><span class="n">INNERJOIN</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Categories&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">).</span><span class="n">ON</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryID&quot;</span><span class="p">)</span>
+     <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductID</span><span class="p">],</span>
+ <span class="p">[</span><span class="k">c</span><span class="p">].[</span><span class="n">CategoryName</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Products</span><span class="p">]</span> <span class="n">p</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Categories</span><span class="p">]</span> <span class="k">c</span> <span class="k">ON</span> <span class="p">[</span><span class="k">c</span><span class="p">].[</span><span class="n">CategoryID</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">CategoryID</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Multiple tables joined</strong></p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+ <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;ProductID&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;ProductName&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryName&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;s&quot;</span><span class="p">,</span> <span class="s">&quot;CompanyName&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Products&quot;</span><span class="p">,</span> <span class="s">&quot;p&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">INNERJOIN</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Categories&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">).</span><span class="n">ON</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryID&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">INNERJOIN</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Suppliers&quot;</span><span class="p">,</span> <span class="s">&quot;s&quot;</span><span class="p">).</span><span class="n">ON</span><span class="p">(</span><span class="s">&quot;s&quot;</span><span class="p">,</span> <span class="s">&quot;SupplierID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;SupplierID&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductID</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductName</span><span class="p">],</span>
+ <span class="p">[</span><span class="k">c</span><span class="p">].[</span><span class="n">CategoryName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">s</span><span class="p">].[</span><span class="n">CompanyName</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Products</span><span class="p">]</span> <span class="n">p</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Categories</span><span class="p">]</span> <span class="k">c</span> <span class="k">ON</span> <span class="p">[</span><span class="k">c</span><span class="p">].[</span><span class="n">CategoryID</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">CategoryID</span><span class="p">]</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Suppliers</span><span class="p">]</span> <span class="n">s</span> <span class="k">ON</span> <span class="p">[</span><span class="n">s</span><span class="p">].[</span><span class="n">SupplierID</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">SupplierID</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Join with multiple conditions using .AND(…)</strong></p>
+<p>You can put the left column join condition in the <code class="docutils literal notranslate"><span class="pre">.AND()</span></code> method</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+ <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;ProductID&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;ProductName&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;s&quot;</span><span class="p">,</span> <span class="s">&quot;CompanyName&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Products&quot;</span><span class="p">,</span> <span class="s">&quot;p&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">INNERJOIN</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Suppliers&quot;</span><span class="p">,</span> <span class="s">&quot;s&quot;</span><span class="p">).</span><span class="n">ON</span><span class="p">(</span><span class="s">&quot;s&quot;</span><span class="p">,</span> <span class="s">&quot;SupplierID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;SupplierID&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">AND</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;Discontinued&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="k">false</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductID</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">s</span><span class="p">].[</span><span class="n">CompanyName</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Products</span><span class="p">]</span> <span class="n">p</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Suppliers</span><span class="p">]</span> <span class="n">s</span> <span class="k">ON</span> <span class="p">[</span><span class="n">s</span><span class="p">].[</span><span class="n">SupplierID</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">SupplierID</span><span class="p">]</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">Discontinued</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p><strong>Join with multiple conditions using .COLUMN(…)</strong></p>
+<p>You can also explicitly use the <code class="docutils literal notranslate"><span class="pre">.COLUMN()</span></code> method to specify the left column of the join condition</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+ <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;ProductID&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;ProductName&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;s&quot;</span><span class="p">,</span> <span class="s">&quot;CompanyName&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Products&quot;</span><span class="p">,</span> <span class="s">&quot;p&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">INNERJOIN</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Suppliers&quot;</span><span class="p">,</span> <span class="s">&quot;s&quot;</span><span class="p">).</span><span class="n">ON</span><span class="p">(</span><span class="s">&quot;s&quot;</span><span class="p">,</span> <span class="s">&quot;SupplierID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;SupplierID&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">AND</span><span class="p">().</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;Discontinued&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="k">false</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductID</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">s</span><span class="p">].[</span><span class="n">CompanyName</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Products</span><span class="p">]</span> <span class="n">p</span>
+<span class="k">INNER</span> <span class="k">JOIN</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Suppliers</span><span class="p">]</span> <span class="n">s</span> <span class="k">ON</span> <span class="p">[</span><span class="n">s</span><span class="p">].[</span><span class="n">SupplierID</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">SupplierID</span><span class="p">]</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">Discontinued</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="left-join">
+<h2>LEFT JOIN<a class="headerlink" href="#left-join" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+     <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+       <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;ProductID&quot;</span><span class="p">)</span>
+       <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryName&quot;</span><span class="p">)</span>
+     <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Products&quot;</span><span class="p">,</span> <span class="s">&quot;p&quot;</span><span class="p">)</span>
+     <span class="p">.</span><span class="n">LEFTJOIN</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Categories&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">).</span><span class="n">ON</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryID&quot;</span><span class="p">)</span>
+     <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductID</span><span class="p">],</span>
+ <span class="p">[</span><span class="k">c</span><span class="p">].[</span><span class="n">CategoryName</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Products</span><span class="p">]</span> <span class="n">p</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Categories</span><span class="p">]</span> <span class="k">c</span> <span class="k">ON</span> <span class="p">[</span><span class="k">c</span><span class="p">].[</span><span class="n">CategoryID</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">CategoryID</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Multiple tables joined</strong></p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+ <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;ProductID&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;ProductName&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryName&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;s&quot;</span><span class="p">,</span> <span class="s">&quot;CompanyName&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Products&quot;</span><span class="p">,</span> <span class="s">&quot;p&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">LEFTJOIN</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Categories&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">).</span><span class="n">ON</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryID&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">LEFTJOIN</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Suppliers&quot;</span><span class="p">,</span> <span class="s">&quot;s&quot;</span><span class="p">).</span><span class="n">ON</span><span class="p">(</span><span class="s">&quot;s&quot;</span><span class="p">,</span> <span class="s">&quot;SupplierID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;SupplierID&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductID</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductName</span><span class="p">],</span>
+ <span class="p">[</span><span class="k">c</span><span class="p">].[</span><span class="n">CategoryName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">s</span><span class="p">].[</span><span class="n">CompanyName</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Products</span><span class="p">]</span> <span class="n">p</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Categories</span><span class="p">]</span> <span class="k">c</span> <span class="k">ON</span> <span class="p">[</span><span class="k">c</span><span class="p">].[</span><span class="n">CategoryID</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">CategoryID</span><span class="p">]</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Suppliers</span><span class="p">]</span> <span class="n">s</span> <span class="k">ON</span> <span class="p">[</span><span class="n">s</span><span class="p">].[</span><span class="n">SupplierID</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">SupplierID</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Join with multiple conditions using .AND(…)</strong></p>
+<p>You can put the left column join condition in the <code class="docutils literal notranslate"><span class="pre">.AND()</span></code> method</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+ <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;ProductID&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;ProductName&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;s&quot;</span><span class="p">,</span> <span class="s">&quot;CompanyName&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Products&quot;</span><span class="p">,</span> <span class="s">&quot;p&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">LEFTJOIN</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Suppliers&quot;</span><span class="p">,</span> <span class="s">&quot;s&quot;</span><span class="p">).</span><span class="n">ON</span><span class="p">(</span><span class="s">&quot;s&quot;</span><span class="p">,</span> <span class="s">&quot;SupplierID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;SupplierID&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">AND</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;Discontinued&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="k">false</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductID</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">s</span><span class="p">].[</span><span class="n">CompanyName</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Products</span><span class="p">]</span> <span class="n">p</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Suppliers</span><span class="p">]</span> <span class="n">s</span> <span class="k">ON</span> <span class="p">[</span><span class="n">s</span><span class="p">].[</span><span class="n">SupplierID</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">SupplierID</span><span class="p">]</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">Discontinued</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p><strong>Join with multiple conditions using .COLUMN(…)</strong></p>
+<p>You can also explicitly use the <code class="docutils literal notranslate"><span class="pre">.COLUMN()</span></code> method to specify the left column of the join condition</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+ <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;ProductID&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;ProductName&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;s&quot;</span><span class="p">,</span> <span class="s">&quot;CompanyName&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Products&quot;</span><span class="p">,</span> <span class="s">&quot;p&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">LEFTJOIN</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Suppliers&quot;</span><span class="p">,</span> <span class="s">&quot;s&quot;</span><span class="p">).</span><span class="n">ON</span><span class="p">(</span><span class="s">&quot;s&quot;</span><span class="p">,</span> <span class="s">&quot;SupplierID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;SupplierID&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">AND</span><span class="p">().</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;Discontinued&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="k">false</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductID</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">s</span><span class="p">].[</span><span class="n">CompanyName</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Products</span><span class="p">]</span> <span class="n">p</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Suppliers</span><span class="p">]</span> <span class="n">s</span> <span class="k">ON</span> <span class="p">[</span><span class="n">s</span><span class="p">].[</span><span class="n">SupplierID</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">SupplierID</span><span class="p">]</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">Discontinued</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="right-join">
+<h2>RIGHT JOIN<a class="headerlink" href="#right-join" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+     <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+       <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;ProductID&quot;</span><span class="p">)</span>
+       <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryName&quot;</span><span class="p">)</span>
+     <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Products&quot;</span><span class="p">,</span> <span class="s">&quot;p&quot;</span><span class="p">)</span>
+     <span class="p">.</span><span class="n">RIGHTJOIN</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Categories&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">).</span><span class="n">ON</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryID&quot;</span><span class="p">)</span>
+     <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductID</span><span class="p">],</span>
+ <span class="p">[</span><span class="k">c</span><span class="p">].[</span><span class="n">CategoryName</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Products</span><span class="p">]</span> <span class="n">p</span>
+<span class="k">RIGHT</span> <span class="k">JOIN</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Categories</span><span class="p">]</span> <span class="k">c</span> <span class="k">ON</span> <span class="p">[</span><span class="k">c</span><span class="p">].[</span><span class="n">CategoryID</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">CategoryID</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Multiple tables joined</strong></p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+ <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;ProductID&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;ProductName&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryName&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;s&quot;</span><span class="p">,</span> <span class="s">&quot;CompanyName&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Products&quot;</span><span class="p">,</span> <span class="s">&quot;p&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">RIGHTJOIN</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Categories&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">).</span><span class="n">ON</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;CategoryID&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">RIGHTJOIN</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Suppliers&quot;</span><span class="p">,</span> <span class="s">&quot;s&quot;</span><span class="p">).</span><span class="n">ON</span><span class="p">(</span><span class="s">&quot;s&quot;</span><span class="p">,</span> <span class="s">&quot;SupplierID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;SupplierID&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductID</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductName</span><span class="p">],</span>
+ <span class="p">[</span><span class="k">c</span><span class="p">].[</span><span class="n">CategoryName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">s</span><span class="p">].[</span><span class="n">CompanyName</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Products</span><span class="p">]</span> <span class="n">p</span>
+<span class="k">RIGHT</span> <span class="k">JOIN</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Categories</span><span class="p">]</span> <span class="k">c</span> <span class="k">ON</span> <span class="p">[</span><span class="k">c</span><span class="p">].[</span><span class="n">CategoryID</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">CategoryID</span><span class="p">]</span>
+<span class="k">RIGHT</span> <span class="k">JOIN</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Suppliers</span><span class="p">]</span> <span class="n">s</span> <span class="k">ON</span> <span class="p">[</span><span class="n">s</span><span class="p">].[</span><span class="n">SupplierID</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">SupplierID</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Join with multiple conditions using .AND(…)</strong></p>
+<p>You can put the left column join condition in the <code class="docutils literal notranslate"><span class="pre">.AND()</span></code> method</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+ <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;ProductID&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;ProductName&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;s&quot;</span><span class="p">,</span> <span class="s">&quot;CompanyName&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Products&quot;</span><span class="p">,</span> <span class="s">&quot;p&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">RIGHTJOIN</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Suppliers&quot;</span><span class="p">,</span> <span class="s">&quot;s&quot;</span><span class="p">).</span><span class="n">ON</span><span class="p">(</span><span class="s">&quot;s&quot;</span><span class="p">,</span> <span class="s">&quot;SupplierID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;SupplierID&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">AND</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;Discontinued&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="k">false</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductID</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">s</span><span class="p">].[</span><span class="n">CompanyName</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Products</span><span class="p">]</span> <span class="n">p</span>
+<span class="k">RIGHT</span> <span class="k">JOIN</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Suppliers</span><span class="p">]</span> <span class="n">s</span> <span class="k">ON</span> <span class="p">[</span><span class="n">s</span><span class="p">].[</span><span class="n">SupplierID</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">SupplierID</span><span class="p">]</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">Discontinued</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p><strong>Join with multiple conditions using .COLUMN(…)</strong></p>
+<p>You can also explicitly use the <code class="docutils literal notranslate"><span class="pre">.COLUMN()</span></code> method to specify the left column of the join condition</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+ <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;ProductID&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;ProductName&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;s&quot;</span><span class="p">,</span> <span class="s">&quot;CompanyName&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Products&quot;</span><span class="p">,</span> <span class="s">&quot;p&quot;</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">RIGHTJOIN</span><span class="p">(</span><span class="s">&quot;dbo&quot;</span><span class="p">,</span> <span class="s">&quot;Suppliers&quot;</span><span class="p">,</span> <span class="s">&quot;s&quot;</span><span class="p">).</span><span class="n">ON</span><span class="p">(</span><span class="s">&quot;s&quot;</span><span class="p">,</span> <span class="s">&quot;SupplierID&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;SupplierID&quot;</span><span class="p">)</span>
+   <span class="p">.</span><span class="n">AND</span><span class="p">().</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span> <span class="s">&quot;Discontinued&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="k">false</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductID</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">ProductName</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">s</span><span class="p">].[</span><span class="n">CompanyName</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Products</span><span class="p">]</span> <span class="n">p</span>
+<span class="k">RIGHT</span> <span class="k">JOIN</span> <span class="p">[</span><span class="n">dbo</span><span class="p">].[</span><span class="n">Suppliers</span><span class="p">]</span> <span class="n">s</span> <span class="k">ON</span> <span class="p">[</span><span class="n">s</span><span class="p">].[</span><span class="n">SupplierID</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">SupplierID</span><span class="p">]</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">p</span><span class="p">].[</span><span class="n">Discontinued</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="insert.html" class="btn btn-neutral float-right" title="INSERT" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="select.html" class="btn btn-neutral float-left" title="SELECT FROM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ricardo Pena.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

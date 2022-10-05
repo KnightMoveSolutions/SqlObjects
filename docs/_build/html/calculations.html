@@ -1,0 +1,501 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Calculations &mdash; KnightMoves.SqlObjects 1.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Subqueries" href="subqueries.html" />
+    <link rel="prev" title="UNION" href="union.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0255a3" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/knight_move_solutions_sqlobjects_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick-start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="select.html">SELECT FROM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="join.html">JOIN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="insert.html">INSERT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="update.html">UPDATE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="delete.html">DELETE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="where.html">WHERE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="case.html">CASE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group-by.html">GROUP BY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="order-by.html">ORDER BY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="having.html">HAVING</a></li>
+<li class="toctree-l1"><a class="reference internal" href="union.html">UNION</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Calculations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#arithmetic-operators">Arithmetic Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-column">Using .COLUMN()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-calculate">Using .Calculate()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-case">Using .CASE()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-when">Using .WHEN()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#in-the-where-clause">In the .WHERE() Clause</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="subqueries.html">Subqueries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comments.html">Comments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="serialization.html">Serialization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameterized-queries.html">Parameterized Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced-concepts.html">Advanced Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">KnightMoves.SqlObjects</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Calculations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/calculations.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p><a class="reference external" href="https://docs.knightmovesolutions.com">Documentation Home</a></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>All examples used are valid against the <a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/linq/downloading-sample-databases">Microsoft Northwind Sample Database</a>
+You can run the resulting SQL from the examples against Northwind in order to test and play with the SqlObjects library.</p>
+</div>
+<div class="section" id="calculations">
+<h1>Calculations<a class="headerlink" href="#calculations" title="Permalink to this headline">¶</a></h1>
+<p>Calculations are started with the <code class="docutils literal notranslate"><span class="pre">.COLUMN()</span></code>, <code class="docutils literal notranslate"><span class="pre">.Calculate()</span></code>, <code class="docutils literal notranslate"><span class="pre">.CASE()</span></code>, or <code class="docutils literal notranslate"><span class="pre">.WHEN()</span></code>
+Fluent API methods and their various overloads.</p>
+<p>Each of the arithmetic operators (=, -, *, /, %)
+are implemented with their respective Fluent API listed in the table below.</p>
+<div class="section" id="arithmetic-operators">
+<h2>Arithmetic Operators<a class="headerlink" href="#arithmetic-operators" title="Permalink to this headline">¶</a></h2>
+<p>Calculations in the form of</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">[LeftOperand]</span> <span class="pre">[ArithmeticOperator]</span> <span class="pre">[RightOperand]</span></code></p>
+</div></blockquote>
+<p>can be written using the <code class="docutils literal notranslate"><span class="pre">.Calculate()</span></code> method followed by one of the  Arithmetic Operator methods below:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 77%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Operator</p></th>
+<th class="head"><p>Output</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Plus()</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Minus()</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Times()</span></code></p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DividedBy()</span></code></p></td>
+<td><p>/</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Modulo()</span></code></p></td>
+<td><p>%</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="using-column">
+<h2>Using .COLUMN()<a class="headerlink" href="#using-column" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;UnitsInStock&quot;</span><span class="p">).</span><span class="n">Plus</span><span class="p">(</span><span class="s">&quot;UnitsOnOrder&quot;</span><span class="p">).</span><span class="n">AS</span><span class="p">(</span><span class="s">&quot;InventoryOnHand&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;UnitsInStock&quot;</span><span class="p">).</span><span class="n">Minus</span><span class="p">(</span><span class="s">&quot;ReorderLevel&quot;</span><span class="p">).</span><span class="n">AS</span><span class="p">(</span><span class="s">&quot;EffectiveInventory&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;UnitPrice&quot;</span><span class="p">).</span><span class="n">Times</span><span class="p">(</span><span class="s">&quot;ReorderLevel&quot;</span><span class="p">).</span><span class="n">AS</span><span class="p">(</span><span class="s">&quot;MinimumOrderTotal&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;UnitsInStock&quot;</span><span class="p">).</span><span class="n">Modulo</span><span class="p">(</span><span class="s">&quot;ReorderLevel&quot;</span><span class="p">).</span><span class="n">AS</span><span class="p">(</span><span class="s">&quot;UnsellableUnits&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;UnitsInStock&quot;</span><span class="p">).</span><span class="n">DividedBy</span><span class="p">(</span><span class="m">1</span><span class="p">).</span><span class="n">AS</span><span class="p">(</span><span class="s">&quot;DivideTest&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;Products&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">WHERE</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;UnitPrice&quot;</span><span class="p">).</span><span class="n">IsGreaterThan</span><span class="p">(</span><span class="m">0</span><span class="p">).</span><span class="n">AND</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;ReorderLevel&quot;</span><span class="p">).</span><span class="n">IsGreaterThan</span><span class="p">(</span><span class="m">0</span><span class="p">).</span><span class="n">AND</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;UnitsInStock&quot;</span><span class="p">).</span><span class="n">IsGreaterThan</span><span class="p">(</span><span class="s">&quot;[ReorderLevel]&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="p">([</span><span class="n">UnitsInStock</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">UnitsOnOrder</span><span class="p">])</span> <span class="k">AS</span> <span class="p">[</span><span class="n">InventoryOnHand</span><span class="p">],</span>
+ <span class="p">([</span><span class="n">UnitsInStock</span><span class="p">]</span> <span class="o">-</span> <span class="p">[</span><span class="n">ReorderLevel</span><span class="p">])</span> <span class="k">AS</span> <span class="p">[</span><span class="n">EffectiveInventory</span><span class="p">],</span>
+ <span class="p">([</span><span class="n">UnitPrice</span><span class="p">]</span> <span class="o">*</span> <span class="p">[</span><span class="n">ReorderLevel</span><span class="p">])</span> <span class="k">AS</span> <span class="p">[</span><span class="n">MinimumOrderTotal</span><span class="p">],</span>
+ <span class="p">([</span><span class="n">UnitsInStock</span><span class="p">]</span> <span class="o">%</span> <span class="p">[</span><span class="n">ReorderLevel</span><span class="p">])</span> <span class="k">AS</span> <span class="p">[</span><span class="n">UnsellableUnits</span><span class="p">],</span>
+ <span class="p">([</span><span class="n">UnitsInStock</span><span class="p">]</span> <span class="o">/</span> <span class="mi">1</span><span class="p">)</span> <span class="k">AS</span> <span class="p">[</span><span class="n">DivideTest</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">Products</span><span class="p">]</span>
+<span class="k">WHERE</span> <span class="mi">1</span><span class="o">=</span><span class="mi">1</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">UnitPrice</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">ReorderLevel</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">UnitsInStock</span><span class="p">]</span> <span class="o">&gt;</span> <span class="p">[</span><span class="n">ReorderLevel</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-calculate">
+<h2>Using .Calculate()<a class="headerlink" href="#using-calculate" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">Calculate</span><span class="p">(</span><span class="s">&quot;UnitsInStock&quot;</span><span class="p">).</span><span class="n">Plus</span><span class="p">(</span><span class="s">&quot;UnitsOnOrder&quot;</span><span class="p">).</span><span class="n">AS</span><span class="p">(</span><span class="s">&quot;InventoryOnHand&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">Calculate</span><span class="p">(</span><span class="s">&quot;UnitsInStock&quot;</span><span class="p">).</span><span class="n">Minus</span><span class="p">(</span><span class="s">&quot;ReorderLevel&quot;</span><span class="p">).</span><span class="n">AS</span><span class="p">(</span><span class="s">&quot;EffectiveInventory&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">Calculate</span><span class="p">(</span><span class="s">&quot;UnitPrice&quot;</span><span class="p">).</span><span class="n">Times</span><span class="p">(</span><span class="s">&quot;ReorderLevel&quot;</span><span class="p">).</span><span class="n">AS</span><span class="p">(</span><span class="s">&quot;MinimumOrderTotal&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">Calculate</span><span class="p">(</span><span class="s">&quot;UnitsInStock&quot;</span><span class="p">).</span><span class="n">Modulo</span><span class="p">(</span><span class="s">&quot;ReorderLevel&quot;</span><span class="p">).</span><span class="n">AS</span><span class="p">(</span><span class="s">&quot;UnsellableUnits&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">FLOOR</span><span class="p">(</span><span class="s">&quot;[UnitsInStock] / [ReorderLevel]&quot;</span><span class="p">).</span><span class="n">AS</span><span class="p">(</span><span class="s">&quot;FulfillableOrders&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">Calculate</span><span class="p">(</span><span class="m">1</span><span class="p">).</span><span class="n">DividedBy</span><span class="p">(</span><span class="m">1</span><span class="p">).</span><span class="n">AS</span><span class="p">(</span><span class="s">&quot;DivideTest&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;Products&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">WHERE</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;UnitPrice&quot;</span><span class="p">).</span><span class="n">IsGreaterThan</span><span class="p">(</span><span class="m">0</span><span class="p">).</span><span class="n">AND</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;ReorderLevel&quot;</span><span class="p">).</span><span class="n">IsGreaterThan</span><span class="p">(</span><span class="m">0</span><span class="p">).</span><span class="n">AND</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;UnitsInStock&quot;</span><span class="p">).</span><span class="n">IsGreaterThan</span><span class="p">(</span><span class="s">&quot;[ReorderLevel]&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="p">([</span><span class="n">UnitsInStock</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">UnitsOnOrder</span><span class="p">])</span> <span class="k">AS</span> <span class="p">[</span><span class="n">InventoryOnHand</span><span class="p">],</span>
+ <span class="p">([</span><span class="n">UnitsInStock</span><span class="p">]</span> <span class="o">-</span> <span class="p">[</span><span class="n">ReorderLevel</span><span class="p">])</span> <span class="k">AS</span> <span class="p">[</span><span class="n">EffectiveInventory</span><span class="p">],</span>
+ <span class="p">([</span><span class="n">UnitPrice</span><span class="p">]</span> <span class="o">*</span> <span class="p">[</span><span class="n">ReorderLevel</span><span class="p">])</span> <span class="k">AS</span> <span class="p">[</span><span class="n">MinimumOrderTotal</span><span class="p">],</span>
+ <span class="p">([</span><span class="n">UnitsInStock</span><span class="p">]</span> <span class="o">%</span> <span class="p">[</span><span class="n">ReorderLevel</span><span class="p">])</span> <span class="k">AS</span> <span class="p">[</span><span class="n">UnsellableUnits</span><span class="p">],</span>
+ <span class="n">FLOOR</span><span class="p">([</span><span class="n">UnitsInStock</span><span class="p">]</span> <span class="o">/</span> <span class="p">[</span><span class="n">ReorderLevel</span><span class="p">])</span> <span class="k">AS</span> <span class="p">[</span><span class="n">FulfillableOrders</span><span class="p">],</span>
+ <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">1</span><span class="p">)</span> <span class="k">AS</span> <span class="p">[</span><span class="n">DivideTest</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">Products</span><span class="p">]</span>
+<span class="k">WHERE</span> <span class="mi">1</span><span class="o">=</span><span class="mi">1</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">UnitPrice</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">ReorderLevel</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">UnitsInStock</span><span class="p">]</span> <span class="o">&gt;</span> <span class="p">[</span><span class="n">ReorderLevel</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Things to note about the example above.</p>
+<ol class="arabic simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Calculate()</span></code>, <code class="docutils literal notranslate"><span class="pre">.{ArithmeticOperator}()</span></code>, and the <code class="docutils literal notranslate"><span class="pre">.AS()</span></code> methods all accept strings that
+are assumed to be column names. Therefore, they are output in delimited format.</p></li>
+<li><p>It includes a preview of the <code class="docutils literal notranslate"><span class="pre">.FLOOR()</span></code> function, which is <a class="reference internal" href="functions.html#floor-function"><span class="std std-ref">documented here</span></a>.</p></li>
+<li><p>A calculation can be fed into a function, however, there is no provision for using Fluent API calls to
+acheive this. You will need to code the raw SQL as an argument into the function to pass the result of
+the calculation as the argument for the resulting SQL function.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">.DividedBy()</span></code> arithmetic operator method example uses a silly divide by one to show that the
+<code class="docutils literal notranslate"><span class="pre">.Calculate()</span></code> method can be used to provide literal numeric values for the left operand.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you need to provide a literal numeric value for the left operand use <code class="docutils literal notranslate"><span class="pre">.Calculate()</span></code>. This cannot
+be done when using <code class="docutils literal notranslate"><span class="pre">.COLUMN()</span></code> for obvious reasons.</p>
+</div>
+</div>
+<div class="section" id="using-case">
+<h2>Using .CASE()<a class="headerlink" href="#using-case" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;ProductID&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;ProductName&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">CASE</span><span class="p">(</span><span class="n">returnType</span><span class="p">:</span> <span class="n">SqlDbType</span><span class="p">.</span><span class="n">VarChar</span><span class="p">,</span> <span class="s">&quot;[UnitsInStock]&quot;</span><span class="p">).</span><span class="n">Modulo</span><span class="p">(</span><span class="s">&quot;ReorderLevel&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">WHEN</span><span class="p">(</span><span class="m">0</span><span class="p">).</span><span class="n">THEN</span><span class="p">(</span><span class="s">&quot;No&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">ELSE</span><span class="p">(</span><span class="s">&quot;Yes&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">END</span><span class="p">().</span><span class="n">AS</span><span class="p">(</span><span class="s">&quot;HasCloseOutUnits&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;Products&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">WHERE</span><span class="p">()</span>
+        <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;Discontinued&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="k">false</span><span class="p">).</span><span class="n">AND</span><span class="p">()</span>
+        <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;ReorderLevel&quot;</span><span class="p">).</span><span class="n">IsGreaterThan</span><span class="p">(</span><span class="m">0</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="p">[</span><span class="n">ProductID</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">ProductName</span><span class="p">],</span>
+ <span class="k">CASE</span> <span class="p">([</span><span class="n">UnitsInStock</span><span class="p">]</span> <span class="o">%</span> <span class="p">[</span><span class="n">ReorderLevel</span><span class="p">])</span>
+  <span class="k">WHEN</span> <span class="mi">0</span> <span class="k">THEN</span> <span class="s1">&#39;No&#39;</span>
+  <span class="k">ELSE</span> <span class="s1">&#39;Yes&#39;</span>
+ <span class="k">END</span> <span class="k">AS</span> <span class="p">[</span><span class="n">HasCloseOutUnits</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">Products</span><span class="p">]</span>
+<span class="k">WHERE</span> <span class="mi">1</span><span class="o">=</span><span class="mi">1</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">Discontinued</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">ReorderLevel</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="where-1-equals-1.html"><span class="doc">WHERE 1=1 ?</span></a></p>
+</div>
+<div class="section" id="using-when">
+<h2>Using .WHEN()<a class="headerlink" href="#using-when" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;ProductID&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;ProductName&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">CASE</span><span class="p">(</span><span class="n">returnType</span><span class="p">:</span> <span class="n">SqlDbType</span><span class="p">.</span><span class="n">VarChar</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">WHEN</span><span class="p">(</span><span class="s">&quot;[UnitsInStock]&quot;</span><span class="p">).</span><span class="n">Modulo</span><span class="p">(</span><span class="s">&quot;ReorderLevel&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="m">0</span><span class="p">).</span><span class="n">THEN</span><span class="p">(</span><span class="s">&quot;No&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">ELSE</span><span class="p">(</span><span class="s">&quot;Yes&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">END</span><span class="p">().</span><span class="n">AS</span><span class="p">(</span><span class="s">&quot;HasCloseOutUnits&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;Products&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">WHERE</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;Discontinued&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="k">false</span><span class="p">).</span><span class="n">AND</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;ReorderLevel&quot;</span><span class="p">).</span><span class="n">IsGreaterThan</span><span class="p">(</span><span class="m">0</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="p">[</span><span class="n">ProductID</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">ProductName</span><span class="p">],</span>
+ <span class="k">CASE</span>
+  <span class="k">WHEN</span> <span class="p">([</span><span class="n">UnitsInStock</span><span class="p">]</span> <span class="o">%</span> <span class="p">[</span><span class="n">ReorderLevel</span><span class="p">])</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">THEN</span> <span class="s1">&#39;No&#39;</span>
+  <span class="k">ELSE</span> <span class="s1">&#39;Yes&#39;</span>
+ <span class="k">END</span> <span class="k">AS</span> <span class="p">[</span><span class="n">HasCloseOutUnits</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">Products</span><span class="p">]</span>
+<span class="k">WHERE</span> <span class="mi">1</span><span class="o">=</span><span class="mi">1</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">Discontinued</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">ReorderLevel</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="where-1-equals-1.html"><span class="doc">WHERE 1=1 ?</span></a></p>
+</div>
+<div class="section" id="in-the-where-clause">
+<h2>In the .WHERE() Clause<a class="headerlink" href="#in-the-where-clause" title="Permalink to this headline">¶</a></h2>
+<p>Any of the methods above can be utilized in the WHERE clause. The example below demonstrates
+the use of a calculation initiated with the <code class="docutils literal notranslate"><span class="pre">.COLUMN()</span></code> method.</p>
+<div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="kt">var</span> <span class="n">sql</span> <span class="p">=</span> <span class="n">TSQL</span>
+
+    <span class="p">.</span><span class="n">SELECT</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;ProductID&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;ProductName&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">Literal</span><span class="p">(</span><span class="s">&quot;&#39;Yes&#39; AS [HasCloseOutUnits]&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">FROM</span><span class="p">(</span><span class="s">&quot;Products&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">WHERE</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;Discontinued&quot;</span><span class="p">).</span><span class="n">IsEqualTo</span><span class="p">(</span><span class="k">false</span><span class="p">).</span><span class="n">AND</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;ReorderLevel&quot;</span><span class="p">).</span><span class="n">IsGreaterThan</span><span class="p">(</span><span class="m">0</span><span class="p">).</span><span class="n">AND</span><span class="p">()</span>
+      <span class="p">.</span><span class="n">COLUMN</span><span class="p">(</span><span class="s">&quot;UnitsInStock&quot;</span><span class="p">).</span><span class="n">Modulo</span><span class="p">(</span><span class="s">&quot;ReorderLevel&quot;</span><span class="p">).</span><span class="n">IsGreaterThan</span><span class="p">(</span><span class="m">0</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">Build</span><span class="p">()</span>
+
+<span class="p">;</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+ <span class="p">[</span><span class="n">ProductID</span><span class="p">],</span>
+ <span class="p">[</span><span class="n">ProductName</span><span class="p">],</span>
+ <span class="s1">&#39;Yes&#39;</span> <span class="k">AS</span> <span class="p">[</span><span class="n">HasCloseOutUnits</span><span class="p">]</span>
+<span class="k">FROM</span> <span class="p">[</span><span class="n">Products</span><span class="p">]</span>
+<span class="k">WHERE</span> <span class="mi">1</span><span class="o">=</span><span class="mi">1</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">Discontinued</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+ <span class="k">AND</span> <span class="p">[</span><span class="n">ReorderLevel</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span>
+ <span class="k">AND</span> <span class="p">([</span><span class="n">UnitsInStock</span><span class="p">]</span> <span class="o">%</span> <span class="p">[</span><span class="n">ReorderLevel</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="where-1-equals-1.html"><span class="doc">WHERE 1=1 ?</span></a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="subqueries.html" class="btn btn-neutral float-right" title="Subqueries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="union.html" class="btn btn-neutral float-left" title="UNION" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Ricardo Pena.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
