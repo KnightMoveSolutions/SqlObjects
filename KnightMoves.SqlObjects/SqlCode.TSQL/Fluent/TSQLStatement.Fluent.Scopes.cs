@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace KnightMoves.SqlObjects.SqlCode.TSQL
+﻿namespace KnightMoves.SqlObjects.SqlCode.TSQL
 {
     public abstract partial class TSQLStatement : SqlStatement
     {
