@@ -24,8 +24,6 @@ namespace KnightMoves.SqlObjects.SqlCode.TSQL
 
                 if (s.IsWhereClause || s.IsInnerJoin || ( s.IsBetween && (s as ISqlBetweenCondition).EndVal == null ) || s.IsConditionGroup || s.IsHaving || a is ITSQLCaseExpression)
                     parent = s;
-
-                return true;
             },
             this,
             a => parent != null);

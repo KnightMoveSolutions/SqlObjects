@@ -897,8 +897,6 @@ namespace KnightMoves.SqlObjects
                     {
                         if (a is ISqlSelect)
                             selectStmt = a as SqlStatement;
-
-                        return true;
                     },
                     sqlStatement,
                     a => selectStmt != null
@@ -912,8 +910,6 @@ namespace KnightMoves.SqlObjects
                 {
                     if (selectStmt == null && a is ISqlSelect)
                         selectStmt = a as SqlStatement;
-
-                    return true;
                 });
             }
 

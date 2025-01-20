@@ -300,8 +300,6 @@ namespace KnightMoves.SqlObjects.SqlCode
 
                 if (s.IsSelect || s.IsWhereClause || s.IsConditionGroup || s.IsInsert || s.IsGroupBy || s.IsOrderBy || s.IsHaving)
                     parent = s;
-
-                return true;
             },
             this,
             a => parent != null);
@@ -319,8 +317,6 @@ namespace KnightMoves.SqlObjects.SqlCode
 
                 if (s.IsScript || s.IsSubQuery || s.IsConditionGroup || s.IsUpdate || s.IsDelete)
                     parentScope = s;
-
-                return true;
             },
             this,
             a => parentScope != null);
@@ -364,7 +360,6 @@ namespace KnightMoves.SqlObjects.SqlCode
             Root.ProcessChildren(c =>
             {
                 lastAddedNode = c as SqlStatement;
-                return true;
             });
 
             return lastAddedNode;

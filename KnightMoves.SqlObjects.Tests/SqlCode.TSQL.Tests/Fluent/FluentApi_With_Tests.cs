@@ -42,8 +42,6 @@ namespace KnightMoves.SqlObjects.Tests.TSql.Fluent
             {
                 if ((n as SqlStatement).Name == "ColSpec")
                     lookup = n as SqlStatement;
-
-                return true;
             });
 
             Assert.NotNull(lookup);
