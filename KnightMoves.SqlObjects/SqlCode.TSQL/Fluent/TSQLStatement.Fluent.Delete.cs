@@ -1,13 +1,12 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode.TSQL
+﻿namespace KnightMoves.SqlObjects.SqlCode.TSQL;
+
+public abstract partial class TSQLStatement : SqlStatement
 {
-    public abstract partial class TSQLStatement : SqlStatement
+    /// <summary>
+    /// Starts a SQL DELETE statement
+    /// </summary>
+    public override SqlStatement DELETE()
     {
-        /// <summary>
-        /// Starts a SQL DELETE statement
-        /// </summary>
-        public override SqlStatement DELETE()
-        {
-            return new TSQLDelete();
-        }
+        return new TSQLDelete();
     }
 }

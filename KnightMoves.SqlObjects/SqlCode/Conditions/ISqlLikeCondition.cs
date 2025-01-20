@@ -1,7 +1,6 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface ISqlLikeCondition : ISqlCondition
 {
-    public interface ISqlLikeCondition : ISqlCondition
-    {
-        string Pattern { get; set; }
-    }
+    string Pattern { get; set; }
 }

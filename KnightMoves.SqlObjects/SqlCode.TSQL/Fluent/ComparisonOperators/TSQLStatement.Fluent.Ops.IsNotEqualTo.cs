@@ -1,108 +1,107 @@
 ﻿using System;
 using System.Data;
 
-namespace KnightMoves.SqlObjects.SqlCode.TSQL
+namespace KnightMoves.SqlObjects.SqlCode.TSQL;
+
+public abstract partial class TSQLStatement : SqlStatement
 {
-    public abstract partial class TSQLStatement : SqlStatement
+    /// <summary>
+    /// Continue a calculation or a condition with the '<>' sign
+    /// </summary>
+    public override SqlStatement IsNotEqualTo()
     {
-        /// <summary>
-        /// Continue a calculation or a condition with the '<>' sign
-        /// </summary>
-        public override SqlStatement IsNotEqualTo()
-        {
-            ComparisonOperator = SqlComparisonOperators.IsNotEqualTo;
-            return this;
-        }
-
-        /// <summary>
-        /// Finish a calculation or a condition as '<>' to a column as the right operand 
-        /// </summary>
-        public override SqlStatement IsNotEqualTo(string multiPartIdentifier, string value)
-        {
-            SqlDbType? rightDbType = null;
-            if (string.IsNullOrEmpty(multiPartIdentifier)) rightDbType = SqlDbType.VarChar;
-            var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
-            var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsNotEqualTo, multiPartIdentifier, value, rightDbType);
-            parent.Children.Add(basicCondition);
-            return parent;
-        }
-
-        /// <summary>
-        /// Finish a calculation or a condition as '<>' to an <see cref="int"/> as the right operand
-        /// </summary>
-        public override SqlStatement IsNotEqualTo(int value)
-        {
-            var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
-            var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsNotEqualTo, null, value.ToString(), SqlDbType.Int);
-            parent.Children.Add(basicCondition);
-            return parent;
-        }
-
-        /// <summary>
-        /// Finish a calculation or a condition as '<>' to a <see cref="DateTime"/> as the right operand
-        /// </summary>
-        public override SqlStatement IsNotEqualTo(DateTime value)
-        {
-            var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
-            var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsNotEqualTo, null, value.ToString(SqlDataType.SQL_DATE_STRING_FORMAT), SqlDbType.DateTime);
-            parent.Children.Add(basicCondition);
-            return parent;
-        }
-
-        /// <summary>
-        /// Finish a calculation or a condition as '<>' to a <see cref="bool"/> as the right operand
-        /// </summary>
-        public override SqlStatement IsNotEqualTo(bool value)
-        {
-            var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
-            var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsNotEqualTo, null, value ? "1" : "0", SqlDbType.Bit);
-            parent.Children.Add(basicCondition);
-            return parent;
-        }
-
-        /// <summary>
-        /// Finish a calculation or a condition as '<>' to a <see cref="long"/> as the right operand
-        /// </summary>
-        public override SqlStatement IsNotEqualTo(long value)
-        {
-            var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
-            var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsNotEqualTo, null, value.ToString(), SqlDbType.BigInt);
-            parent.Children.Add(basicCondition);
-            return parent;
-        }
-
-        /// <summary>
-        /// Finish a calculation or a condition as '<>' to a <see cref="Guid"/> as the right operand
-        /// </summary>
-        public override SqlStatement IsNotEqualTo(Guid value)
-        {
-            var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
-            var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsNotEqualTo, null, value.ToString(), SqlDbType.UniqueIdentifier);
-            parent.Children.Add(basicCondition);
-            return parent;
-        }
-
-        /// <summary>
-        /// Finish a calculation or a condition as '<>' to a <see cref="char"/> as the right operand
-        /// </summary>
-        public override SqlStatement IsNotEqualTo(char value)
-        {
-            var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
-            var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsNotEqualTo, null, value.ToString(), SqlDbType.Char);
-            parent.Children.Add(basicCondition);
-            return parent;
-        }
-
-        /// <summary>
-        /// Finish a calculation or a condition as '<>' to a <see cref="decimal"/> as the right operand
-        /// </summary>
-        public override SqlStatement IsNotEqualTo(decimal value)
-        {
-            var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
-            var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsNotEqualTo, null, value.ToString(), SqlDbType.Decimal);
-            parent.Children.Add(basicCondition);
-            return parent;
-        }
-
+        ComparisonOperator = SqlComparisonOperators.IsNotEqualTo;
+        return this;
     }
+
+    /// <summary>
+    /// Finish a calculation or a condition as '<>' to a column as the right operand 
+    /// </summary>
+    public override SqlStatement IsNotEqualTo(string multiPartIdentifier, string value)
+    {
+        SqlDbType? rightDbType = null;
+        if (string.IsNullOrEmpty(multiPartIdentifier)) rightDbType = SqlDbType.VarChar;
+        var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
+        var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsNotEqualTo, multiPartIdentifier, value, rightDbType);
+        parent.Children.Add(basicCondition);
+        return parent;
+    }
+
+    /// <summary>
+    /// Finish a calculation or a condition as '<>' to an <see cref="int"/> as the right operand
+    /// </summary>
+    public override SqlStatement IsNotEqualTo(int value)
+    {
+        var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
+        var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsNotEqualTo, null, value.ToString(), SqlDbType.Int);
+        parent.Children.Add(basicCondition);
+        return parent;
+    }
+
+    /// <summary>
+    /// Finish a calculation or a condition as '<>' to a <see cref="DateTime"/> as the right operand
+    /// </summary>
+    public override SqlStatement IsNotEqualTo(DateTime value)
+    {
+        var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
+        var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsNotEqualTo, null, value.ToString(SqlDataType.SQL_DATE_STRING_FORMAT), SqlDbType.DateTime);
+        parent.Children.Add(basicCondition);
+        return parent;
+    }
+
+    /// <summary>
+    /// Finish a calculation or a condition as '<>' to a <see cref="bool"/> as the right operand
+    /// </summary>
+    public override SqlStatement IsNotEqualTo(bool value)
+    {
+        var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
+        var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsNotEqualTo, null, value ? "1" : "0", SqlDbType.Bit);
+        parent.Children.Add(basicCondition);
+        return parent;
+    }
+
+    /// <summary>
+    /// Finish a calculation or a condition as '<>' to a <see cref="long"/> as the right operand
+    /// </summary>
+    public override SqlStatement IsNotEqualTo(long value)
+    {
+        var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
+        var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsNotEqualTo, null, value.ToString(), SqlDbType.BigInt);
+        parent.Children.Add(basicCondition);
+        return parent;
+    }
+
+    /// <summary>
+    /// Finish a calculation or a condition as '<>' to a <see cref="Guid"/> as the right operand
+    /// </summary>
+    public override SqlStatement IsNotEqualTo(Guid value)
+    {
+        var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
+        var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsNotEqualTo, null, value.ToString(), SqlDbType.UniqueIdentifier);
+        parent.Children.Add(basicCondition);
+        return parent;
+    }
+
+    /// <summary>
+    /// Finish a calculation or a condition as '<>' to a <see cref="char"/> as the right operand
+    /// </summary>
+    public override SqlStatement IsNotEqualTo(char value)
+    {
+        var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
+        var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsNotEqualTo, null, value.ToString(), SqlDbType.Char);
+        parent.Children.Add(basicCondition);
+        return parent;
+    }
+
+    /// <summary>
+    /// Finish a calculation or a condition as '<>' to a <see cref="decimal"/> as the right operand
+    /// </summary>
+    public override SqlStatement IsNotEqualTo(decimal value)
+    {
+        var parent = IsColumn || this is ITSQLCase ? GetExpressionParent() : GetConditionParent();
+        var basicCondition = MakeBasicCondition(LeftMultiPartIdentifier, LeftOperandValue, null, SqlComparisonOperators.IsNotEqualTo, null, value.ToString(), SqlDbType.Decimal);
+        parent.Children.Add(basicCondition);
+        return parent;
+    }
+
 }

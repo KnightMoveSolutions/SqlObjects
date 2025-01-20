@@ -1,8 +1,7 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface IFluentSqlJoin
 {
-    public interface IFluentSqlJoin
-    {
-        SqlStatement ON(string column);
-        SqlStatement ON(string multiPartIdentifier, string column);
-    }
+    SqlStatement ON(string column);
+    SqlStatement ON(string multiPartIdentifier, string column);
 }

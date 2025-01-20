@@ -1,7 +1,6 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+public abstract partial class SqlStatement : IFluentSqlLike
 {
-    public abstract partial class SqlStatement : IFluentSqlLike
-    {
-        public abstract SqlStatement LIKE(string pattern);
-    }
+    public abstract SqlStatement LIKE(string pattern);
 }

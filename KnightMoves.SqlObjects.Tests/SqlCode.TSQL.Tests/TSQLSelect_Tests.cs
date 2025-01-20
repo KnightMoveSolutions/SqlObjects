@@ -4,232 +4,231 @@ using System;
 using System.Data;
 using Xunit;
 
-namespace KnightMoves.SqlObjects.Tests.TSql
+namespace KnightMoves.SqlObjects.Tests.TSql;
+
+public class TSQLSelect_Tests
 {
-    public class TSQLSelect_Tests
+    [Fact]
+    public void SQL_Returns_Select_With_Star_As_Default()
     {
-        [Fact]
-        public void SQL_Returns_Select_With_Star_As_Default()
+        // ARRANGE
+        var select = new TSQLSelect();
+
+        // ACTION
+        var sql = select.SQL();
+
+        var expected = " SELECT * ";
+
+        // ASSERT
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, select);
+    }
+
+    [Fact]
+    public void SQL_Returns_Select_With_Columns_and_Star()
+    {
+        // ARRANGE
+        var select = new TSQLSelect();
+
+        select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnA" });
+        select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnB" });
+        select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnC" });
+        select.Children.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.VarChar), Value = "*" });
+
+        // ACTION
+        var sql = select.SQL();
+
+        var expected = " SELECT" + Environment.NewLine +
+                       "  [ColumnA]," + Environment.NewLine +
+                       "  [ColumnB]," + Environment.NewLine +
+                       "  [ColumnC]," + Environment.NewLine +
+                       "  *" + Environment.NewLine;
+
+        // ASSERT
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, select);
+    }
+
+    [Fact]
+    public void SQL_Returns_Select_With_Aliases()
+    {
+        // ARRANGE
+        var select = new TSQLSelect();
+
+        select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnA", Alias = "A" });
+        select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnB", Alias = "B" });
+        select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnC", Alias = "C" });
+        select.Children.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.VarChar), Value = "*" });
+
+        // ACTION
+        var sql = select.SQL();
+
+        var expected = " SELECT" + Environment.NewLine +
+                       "  [ColumnA] AS [A]," + Environment.NewLine +
+                       "  [ColumnB] AS [B]," + Environment.NewLine +
+                       "  [ColumnC] AS [C]," + Environment.NewLine +
+                       "  *" + Environment.NewLine;
+
+        // ASSERT
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, select);
+    }
+
+    [Fact]
+    public void SQL_Returns_Select_With_Case()
+    {
+        // ARRANGE
+        var select = new TSQLSelect();
+
+        var caseObj = new TSQLCase { DataType = new TSQLDataType(SqlDbType.VarChar), Alias = "CaseResult" };
+
+        TSQLCaseWhen when;
+
+        when = new TSQLCaseWhen { DataType = new TSQLDataType(SqlDbType.VarChar) };
+
+        var cond1 = new TSQLBasicCondition
         {
-            // ARRANGE
-            var select = new TSQLSelect();
+            Operator = SqlComparisonOperators.IsEqualTo
+        };
 
-            // ACTION
-            var sql = select.SQL();
+        cond1.Children.Add(
+            new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnA" }
+        );
 
-            var expected = " SELECT * ";
+        cond1.Children.Add(
+            new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.VarChar), Value = "XYZ" }
+        );
 
-            // ASSERT
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, select);
-        }
+        when.Children.Add(cond1);
 
-        [Fact]
-        public void SQL_Returns_Select_With_Columns_and_Star()
+        when.Children.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.VarChar), Value = "1" });
+
+        caseObj.Children.Add(when);
+
+        when = new TSQLCaseWhen { DataType = new TSQLDataType(SqlDbType.VarChar) };
+
+        var cond2 = new TSQLBasicCondition
         {
-            // ARRANGE
-            var select = new TSQLSelect();
+            Operator = SqlComparisonOperators.IsEqualTo
+        };
 
-            select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnA" });
-            select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnB" });
-            select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnC" });
-            select.Children.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.VarChar), Value = "*" });
+        cond2.Children.Add(
+            new TSQLColumn 
+            { 
+                DataType = new TSQLDataType(SqlDbType.VarChar), 
+                ColumnName = "ColumnB" 
+            }
+        );
 
-            // ACTION
-            var sql = select.SQL();
+        cond2.Children.Add(
+            new TSQLLiteral 
+            { 
+                DataType = new TSQLDataType(SqlDbType.VarChar), 
+                Value = "ABC" 
+            }
+        );
 
-            var expected = " SELECT" + Environment.NewLine +
-                           "  [ColumnA]," + Environment.NewLine +
-                           "  [ColumnB]," + Environment.NewLine +
-                           "  [ColumnC]," + Environment.NewLine +
-                           "  *" + Environment.NewLine;
+        when.Children.Add(cond2);
 
-            // ASSERT
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, select);
-        }
+        when.Children.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.VarChar), Value = "2" });
 
-        [Fact]
-        public void SQL_Returns_Select_With_Aliases()
-        {
-            // ARRANGE
-            var select = new TSQLSelect();
+        var elseObj = new TSQLCaseElse { Result = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.VarChar), Value = "0" } };
 
-            select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnA", Alias = "A" });
-            select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnB", Alias = "B" });
-            select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnC", Alias = "C" });
-            select.Children.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.VarChar), Value = "*" });
+        caseObj.Children.Add(when);
 
-            // ACTION
-            var sql = select.SQL();
+        caseObj.Children.Add(elseObj);
 
-            var expected = " SELECT" + Environment.NewLine +
-                           "  [ColumnA] AS [A]," + Environment.NewLine +
-                           "  [ColumnB] AS [B]," + Environment.NewLine +
-                           "  [ColumnC] AS [C]," + Environment.NewLine +
-                           "  *" + Environment.NewLine;
+        select.Children.Add(caseObj);
 
-            // ASSERT
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, select);
-        }
+        select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnA", Alias = "A" });
+        select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnB", Alias = "B" });
+        select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnC", Alias = "C" });
+        select.Children.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.VarChar), Value = "*" });
 
-        [Fact]
-        public void SQL_Returns_Select_With_Case()
-        {
-            // ARRANGE
-            var select = new TSQLSelect();
+        // ACTION
+        var sql = select.SQL();
 
-            var caseObj = new TSQLCase { DataType = new TSQLDataType(SqlDbType.VarChar), Alias = "CaseResult" };
+        var expected = " SELECT" + Environment.NewLine +
+                       "  CASE" + Environment.NewLine +
+                       "   WHEN [ColumnA] = 'XYZ' THEN '1'" + Environment.NewLine +
+                       "   WHEN [ColumnB] = 'ABC' THEN '2'" + Environment.NewLine +
+                       "   ELSE '0'" + Environment.NewLine +
+                       "  END AS [CaseResult]," + Environment.NewLine +
+                       "  [ColumnA] AS [A]," + Environment.NewLine +
+                       "  [ColumnB] AS [B]," + Environment.NewLine +
+                       "  [ColumnC] AS [C]," + Environment.NewLine +
+                       "  *" + Environment.NewLine;
 
-            TSQLCaseWhen when;
+        // ASSERT
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, select);
+    }
 
-            when = new TSQLCaseWhen { DataType = new TSQLDataType(SqlDbType.VarChar) };
+    [Fact]
+    public void SQL_Returns_Select_With_Functions()
+    {
+        // ARRANGE
+        var avg = new TSQLFuncAvg();
 
-            var cond1 = new TSQLBasicCondition
-            {
-                Operator = SqlComparisonOperators.IsEqualTo
-            };
+        avg.DataType = new TSQLDataType(SqlDbType.Variant);
+        avg.SetParameterValue("aggregateExpression", new TSQLColumn { DataType = new TSQLDataType(SqlDbType.Variant), ColumnName = "ColumnA" });
+        avg.Alias = "AvgA";
 
-            cond1.Children.Add(
-                new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnA" }
-            );
+        var sum = new TSQLFuncSum();
 
-            cond1.Children.Add(
-                new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.VarChar), Value = "XYZ" }
-            );
+        sum.DataType = new TSQLDataType(SqlDbType.Variant);
+        sum.SetParameterValue("aggregateExpression", new TSQLColumn { DataType = new TSQLDataType(SqlDbType.Variant), ColumnName = "ColumnB" });
+        sum.Alias = "SumB";
 
-            when.Children.Add(cond1);
+        var select = new TSQLSelect();
 
-            when.Children.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.VarChar), Value = "1" });
+        select.Children.Add(avg);
+        select.Children.Add(sum);
+        select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnA", Alias = "A" });
+        select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnB", Alias = "B" });
+        select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnC", Alias = "C" });
+        select.Children.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.VarChar), Value = "*" });
 
-            caseObj.Children.Add(when);
+        // ACTION
+        var sql = select.SQL();
 
-            when = new TSQLCaseWhen { DataType = new TSQLDataType(SqlDbType.VarChar) };
+        var expected = " SELECT" + Environment.NewLine +
+                       "  AVG([ColumnA]) AS [AvgA]," + Environment.NewLine +
+                       "  SUM([ColumnB]) AS [SumB]," + Environment.NewLine +
+                       "  [ColumnA] AS [A]," + Environment.NewLine +
+                       "  [ColumnB] AS [B]," + Environment.NewLine +
+                       "  [ColumnC] AS [C]," + Environment.NewLine +
+                       "  *" + Environment.NewLine;
 
-            var cond2 = new TSQLBasicCondition
-            {
-                Operator = SqlComparisonOperators.IsEqualTo
-            };
+        // ASSERT
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, select);
+    }
 
-            cond2.Children.Add(
-                new TSQLColumn 
-                { 
-                    DataType = new TSQLDataType(SqlDbType.VarChar), 
-                    ColumnName = "ColumnB" 
-                }
-            );
+    [Fact]
+    public void SQL_Returns_Select_With_Comment()
+    {
+        // ARRANGE
+        var select = new TSQLSelect();
 
-            cond2.Children.Add(
-                new TSQLLiteral 
-                { 
-                    DataType = new TSQLDataType(SqlDbType.VarChar), 
-                    Value = "ABC" 
-                }
-            );
+        select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnA" });
+        select.Children.Add(new TSQLComment { CommentText = "Comment about ColumnB below" });
+        select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnB" });
+        select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnC" });
+        select.Children.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.VarChar), Value = "*" });
 
-            when.Children.Add(cond2);
+        // ACTION
+        var sql = select.SQL();
 
-            when.Children.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.VarChar), Value = "2" });
+        var expected = " SELECT" + Environment.NewLine +
+                      "  [ColumnA]," + Environment.NewLine +
+                      "  -- Comment about ColumnB below" + Environment.NewLine +
+                      "  [ColumnB]," + Environment.NewLine +
+                      "  [ColumnC]," + Environment.NewLine +
+                      "  *" + Environment.NewLine;
 
-            var elseObj = new TSQLCaseElse { Result = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.VarChar), Value = "0" } };
-
-            caseObj.Children.Add(when);
-
-            caseObj.Children.Add(elseObj);
-
-            select.Children.Add(caseObj);
-
-            select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnA", Alias = "A" });
-            select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnB", Alias = "B" });
-            select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnC", Alias = "C" });
-            select.Children.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.VarChar), Value = "*" });
-
-            // ACTION
-            var sql = select.SQL();
-
-            var expected = " SELECT" + Environment.NewLine +
-                           "  CASE" + Environment.NewLine +
-                           "   WHEN [ColumnA] = 'XYZ' THEN '1'" + Environment.NewLine +
-                           "   WHEN [ColumnB] = 'ABC' THEN '2'" + Environment.NewLine +
-                           "   ELSE '0'" + Environment.NewLine +
-                           "  END AS [CaseResult]," + Environment.NewLine +
-                           "  [ColumnA] AS [A]," + Environment.NewLine +
-                           "  [ColumnB] AS [B]," + Environment.NewLine +
-                           "  [ColumnC] AS [C]," + Environment.NewLine +
-                           "  *" + Environment.NewLine;
-
-            // ASSERT
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, select);
-        }
-
-        [Fact]
-        public void SQL_Returns_Select_With_Functions()
-        {
-            // ARRANGE
-            var avg = new TSQLFuncAvg();
-
-            avg.DataType = new TSQLDataType(SqlDbType.Variant);
-            avg.SetParameterValue("aggregateExpression", new TSQLColumn { DataType = new TSQLDataType(SqlDbType.Variant), ColumnName = "ColumnA" });
-            avg.Alias = "AvgA";
-
-            var sum = new TSQLFuncSum();
-
-            sum.DataType = new TSQLDataType(SqlDbType.Variant);
-            sum.SetParameterValue("aggregateExpression", new TSQLColumn { DataType = new TSQLDataType(SqlDbType.Variant), ColumnName = "ColumnB" });
-            sum.Alias = "SumB";
-
-            var select = new TSQLSelect();
-
-            select.Children.Add(avg);
-            select.Children.Add(sum);
-            select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnA", Alias = "A" });
-            select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnB", Alias = "B" });
-            select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnC", Alias = "C" });
-            select.Children.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.VarChar), Value = "*" });
-
-            // ACTION
-            var sql = select.SQL();
-
-            var expected = " SELECT" + Environment.NewLine +
-                           "  AVG([ColumnA]) AS [AvgA]," + Environment.NewLine +
-                           "  SUM([ColumnB]) AS [SumB]," + Environment.NewLine +
-                           "  [ColumnA] AS [A]," + Environment.NewLine +
-                           "  [ColumnB] AS [B]," + Environment.NewLine +
-                           "  [ColumnC] AS [C]," + Environment.NewLine +
-                           "  *" + Environment.NewLine;
-
-            // ASSERT
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, select);
-        }
-
-        [Fact]
-        public void SQL_Returns_Select_With_Comment()
-        {
-            // ARRANGE
-            var select = new TSQLSelect();
-
-            select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnA" });
-            select.Children.Add(new TSQLComment { CommentText = "Comment about ColumnB below" });
-            select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnB" });
-            select.Children.Add(new TSQLColumn { DataType = new TSQLDataType(SqlDbType.VarChar), ColumnName = "ColumnC" });
-            select.Children.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.VarChar), Value = "*" });
-
-            // ACTION
-            var sql = select.SQL();
-
-            var expected = " SELECT" + Environment.NewLine +
-                          "  [ColumnA]," + Environment.NewLine +
-                          "  -- Comment about ColumnB below" + Environment.NewLine +
-                          "  [ColumnB]," + Environment.NewLine +
-                          "  [ColumnC]," + Environment.NewLine +
-                          "  *" + Environment.NewLine;
-
-            // ASSERT
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, select);
-        }
+        // ASSERT
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, select);
     }
 }

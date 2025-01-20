@@ -1,9 +1,8 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
-{
-    public abstract partial class SqlStatement : IFluentSqlDelete
-    {
-        public abstract SqlStatement DELETE();
+﻿namespace KnightMoves.SqlObjects.SqlCode;
 
-        // FROM implemented in SqlStatement.Fluent.From.cs
-    }
+public abstract partial class SqlStatement : IFluentSqlDelete
+{
+    public abstract SqlStatement DELETE();
+
+    // FROM implemented in SqlStatement.Fluent.From.cs
 }

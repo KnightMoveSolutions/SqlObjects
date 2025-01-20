@@ -1,9 +1,8 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface ISqlFrom
 {
-    public interface ISqlFrom
-    {
-        string Schema { get; set; }
-        string Table { get; set; }
-        string MultiPartIdentifier { get; set; }
-    }
+    string Schema { get; set; }
+    string Table { get; set; }
+    string MultiPartIdentifier { get; set; }
 }

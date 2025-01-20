@@ -1,8 +1,7 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface ISqlCondition
 {
-    public interface ISqlCondition
-    {
-        SqlLogicalOperators LogicalOperator { get; set; }
-        ISqlQueryExpression LeftOperand { get; set; }
-    }
+    SqlLogicalOperators LogicalOperator { get; set; }
+    ISqlQueryExpression LeftOperand { get; set; }
 }

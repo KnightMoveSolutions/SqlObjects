@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace KnightMoves.SqlObjects.SqlCode
+namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface IFluentSqlDay
 {
-    public interface IFluentSqlDay
-    {
-        SqlStatement DAY(DateTime dateExpression);
-        SqlStatement DAY(string dateExpression);
-        SqlStatement DAY(string multipartIdentifier, string column);
-    }
+    SqlStatement DAY(DateTime dateExpression);
+    SqlStatement DAY(string dateExpression);
+    SqlStatement DAY(string multipartIdentifier, string column);
 }

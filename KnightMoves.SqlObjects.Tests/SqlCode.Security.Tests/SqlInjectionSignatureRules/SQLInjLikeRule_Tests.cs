@@ -1,34 +1,33 @@
 ﻿using KnightMoves.SqlObjects.SqlCode.Security;
 using Xunit;
 
-namespace KnightMoves.SqlObjects.Tests.SqlCode.Security
+namespace KnightMoves.SqlObjects.Tests.SqlCode.Security;
+
+public class SQLInjLikeRule_Tests
 {
-    public class SQLInjLikeRule_Tests
+    [Fact]
+    public void ContainsSqlInjection_Returns_True()
     {
-        [Fact]
-        public void ContainsSqlInjection_Returns_True()
-        {
-            // ARRANGE
-            var rule = new SQLInjLikeRule();
+        // ARRANGE
+        var rule = new SQLInjLikeRule();
 
-            // ACTION
-            var result = rule.ContainsSqlInjection("this has LIKE keyword");
+        // ACTION
+        var result = rule.ContainsSqlInjection("this has LIKE keyword");
 
-            // ASSERT
-            Assert.True(result);
-        }
+        // ASSERT
+        Assert.True(result);
+    }
 
-        [Fact]
-        public void ContainsSqlInjection_Returns_False()
-        {
-            // ARRANGE
-            var rule = new SQLInjLikeRule();
+    [Fact]
+    public void ContainsSqlInjection_Returns_False()
+    {
+        // ARRANGE
+        var rule = new SQLInjLikeRule();
 
-            // ACTION
-            var result = rule.ContainsSqlInjection("nothing to see here please move along");
+        // ACTION
+        var result = rule.ContainsSqlInjection("nothing to see here please move along");
 
-            // ASSERT
-            Assert.False(result);
-        }
+        // ASSERT
+        Assert.False(result);
     }
 }

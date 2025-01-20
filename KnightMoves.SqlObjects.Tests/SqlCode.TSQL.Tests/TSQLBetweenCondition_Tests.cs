@@ -2,29 +2,28 @@
 using KnightMoves.SqlObjects.SqlCode.TSQL;
 using Xunit;
 
-namespace KnightMoves.SqlObjects.Tests.TSql
+namespace KnightMoves.SqlObjects.Tests.TSql;
+
+public class TSQLBetweenCondition_Tests
 {
-    public class TSQLBetweenCondition_Tests
+    [Fact]
+    public void SQL_Method_Returns_Expected_SQL()
     {
-        [Fact]
-        public void SQL_Method_Returns_Expected_SQL()
+        // ARRANGE
+        var between = new TSQLBetweenCondition
         {
-            // ARRANGE
-            var between = new TSQLBetweenCondition
-            {
-                LeftOperand = new TSQLColumn { DataType = new TSQLDataType(SqlDbType.Int), ColumnName = "ColumnName" },
-                StartVal = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "1" },
-                EndVal = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "100" }
-            };
+            LeftOperand = new TSQLColumn { DataType = new TSQLDataType(SqlDbType.Int), ColumnName = "ColumnName" },
+            StartVal = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "1" },
+            EndVal = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "100" }
+        };
 
-            // ACTION
-            var sql = between.SQL();
+        // ACTION
+        var sql = between.SQL();
 
-            var expected = "[ColumnName] BETWEEN 1 AND 100";
+        var expected = "[ColumnName] BETWEEN 1 AND 100";
 
-            // ASSERT
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, between);
-        }
+        // ASSERT
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, between);
     }
 }

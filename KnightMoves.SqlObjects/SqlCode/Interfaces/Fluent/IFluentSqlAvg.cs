@@ -1,9 +1,8 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface IFluentSqlAvg
 {
-    public interface IFluentSqlAvg
-    {
-        SqlStatement AVG(decimal aggregateExpression);
-        SqlStatement AVG(string aggregateExpression);
-        SqlStatement AVG(string multipartIdentifier, string column);
-    }
+    SqlStatement AVG(decimal aggregateExpression);
+    SqlStatement AVG(string aggregateExpression);
+    SqlStatement AVG(string multipartIdentifier, string column);
 }

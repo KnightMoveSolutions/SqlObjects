@@ -1,8 +1,7 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface IFluentSqlAdHoc
 {
-    public interface IFluentSqlAdHoc
-    {
-        SqlStatement Script(string scriptCode);
-        SqlStatement Literal(string literal);
-    }
+    SqlStatement Script(string scriptCode);
+    SqlStatement Literal(string literal);
 }

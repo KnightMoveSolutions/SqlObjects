@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace KnightMoves.SqlObjects.SqlCode
+namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface IFluentSqlDateAdd
 {
-    public interface IFluentSqlDateAdd
-    {
-        SqlStatement DATEADD(DateParts datePart, int increment, DateTime dateExpression);
-        SqlStatement DATEADD(DateParts datePart, int increment, string dateExpression);
-        SqlStatement DATEADD(DateParts datePart, int increment, string multipartIdentifier, string column);
-    }
+    SqlStatement DATEADD(DateParts datePart, int increment, DateTime dateExpression);
+    SqlStatement DATEADD(DateParts datePart, int increment, string dateExpression);
+    SqlStatement DATEADD(DateParts datePart, int increment, string multipartIdentifier, string column);
 }

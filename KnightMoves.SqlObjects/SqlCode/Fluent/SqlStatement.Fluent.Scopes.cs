@@ -1,10 +1,9 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+public abstract partial class SqlStatement : IFluentSqlScopes
 {
-    public abstract partial class SqlStatement : IFluentSqlScopes
-    {
-        public abstract SqlStatement StartConditionScope();
-        public abstract SqlStatement EndConditionScope();
-        public abstract SqlStatement SubQueryStart();
-        public abstract SqlStatement SubQueryEnd();
-    }
+    public abstract SqlStatement StartConditionScope();
+    public abstract SqlStatement EndConditionScope();
+    public abstract SqlStatement SubQueryStart();
+    public abstract SqlStatement SubQueryEnd();
 }

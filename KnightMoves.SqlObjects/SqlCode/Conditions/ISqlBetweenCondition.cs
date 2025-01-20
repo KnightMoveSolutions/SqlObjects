@@ -1,8 +1,7 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface ISqlBetweenCondition : ISqlCondition
 {
-    public interface ISqlBetweenCondition : ISqlCondition
-    {
-        ISqlQueryExpression StartVal { get; set; }
-        ISqlQueryExpression EndVal { get; set; }
-    }
+    ISqlQueryExpression StartVal { get; set; }
+    ISqlQueryExpression EndVal { get; set; }
 }

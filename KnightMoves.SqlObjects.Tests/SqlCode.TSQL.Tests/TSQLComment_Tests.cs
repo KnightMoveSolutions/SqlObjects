@@ -2,139 +2,138 @@
 using KnightMoves.SqlObjects.SqlCode.TSQL;
 using Xunit;
 
-namespace KnightMoves.SqlObjects.Tests.TSql
+namespace KnightMoves.SqlObjects.Tests.TSql;
+
+public class TSQLComment_Tests
 {
-    public class TSQLComment_Tests
+    private readonly string NL = Environment.NewLine;
+
+    [Fact]
+    public void SQL_Returns_Single_Line_Comment()
     {
-        private readonly string NL = Environment.NewLine;
+        // ARRANGE
+        var commentText = "This should be a single-line comment";
 
-        [Fact]
-        public void SQL_Returns_Single_Line_Comment()
-        {
-            // ARRANGE
-            var commentText = "This should be a single-line comment";
+        var comment = new TSQLComment { CommentText = commentText };
 
-            var comment = new TSQLComment { CommentText = commentText };
+        // ACTION
+        var sql = comment.SQL();
 
-            // ACTION
-            var sql = comment.SQL();
+        var expected = $" -- {commentText}{NL}";
 
-            var expected = $" -- {commentText}{NL}";
+        // ASSERT
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, comment);
+    }
 
-            // ASSERT
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, comment);
-        }
+    [Fact]
+    public void SQL_Returns_Single_Line_Comment_Trimmed()
+    {
+        // ARRANGE
+        var commentText = $"   {'\t'}   This should be a single-line comment";
 
-        [Fact]
-        public void SQL_Returns_Single_Line_Comment_Trimmed()
-        {
-            // ARRANGE
-            var commentText = $"   {'\t'}   This should be a single-line comment";
+        var comment = new TSQLComment { CommentText = commentText };
 
-            var comment = new TSQLComment { CommentText = commentText };
+        // ACTION
+        var sql = comment.SQL();
 
-            // ACTION
-            var sql = comment.SQL();
+        var expected = $" -- This should be a single-line comment{NL}";
 
-            var expected = $" -- This should be a single-line comment{NL}";
+        // ASSERT
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, comment);
+    }
 
-            // ASSERT
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, comment);
-        }
+    [Fact]
+    public void SQL_Returns_Multi_Line_Comment()
+    {
+        // ARRANGE
+        var commentText = $"This should be a multi-line comment{NL}" + 
+                          $"The second line of the comment is here{NL}" +
+                          $"The third line of the comment is here";
 
-        [Fact]
-        public void SQL_Returns_Multi_Line_Comment()
-        {
-            // ARRANGE
-            var commentText = $"This should be a multi-line comment{NL}" + 
-                              $"The second line of the comment is here{NL}" +
-                              $"The third line of the comment is here";
+        var comment = new TSQLComment { CommentText = commentText };
 
-            var comment = new TSQLComment { CommentText = commentText };
+        // ACTION
+        var sql = comment.SQL();
 
-            // ACTION
-            var sql = comment.SQL();
+        var expected = $" /*{NL}" + 
+                       $"  * This should be a multi-line comment{NL}" +
+                       $"  * The second line of the comment is here{NL}" + 
+                       $"  * The third line of the comment is here{NL}" + 
+                       $" */{NL}";
 
-            var expected = $" /*{NL}" + 
-                           $"  * This should be a multi-line comment{NL}" +
-                           $"  * The second line of the comment is here{NL}" + 
-                           $"  * The third line of the comment is here{NL}" + 
-                           $" */{NL}";
-
-            // ASSERT
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, comment);
-        }
+        // ASSERT
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, comment);
+    }
 
 
-        [Fact]
-        public void SQL_Returns_Multi_Line_Comment_Trimmed()
-        {
-            // ARRANGE
-            var commentText = @"This should be a multi-line comment
+    [Fact]
+    public void SQL_Returns_Multi_Line_Comment_Trimmed()
+    {
+        // ARRANGE
+        var commentText = @"This should be a multi-line comment
                    " + "\t" + @"The second line of the comment is here
                                 The third line of the comment is here";
 
-            var comment = new TSQLComment { CommentText = commentText };
+        var comment = new TSQLComment { CommentText = commentText };
 
-            // ACTION
-            var sql = comment.SQL();
+        // ACTION
+        var sql = comment.SQL();
 
-            var expected = $" /*{NL}" +
-                           $"  * This should be a multi-line comment{NL}" +
-                           $"  * The second line of the comment is here{NL}" +
-                           $"  * The third line of the comment is here{NL}" +
-                           $" */{NL}";
+        var expected = $" /*{NL}" +
+                       $"  * This should be a multi-line comment{NL}" +
+                       $"  * The second line of the comment is here{NL}" +
+                       $"  * The third line of the comment is here{NL}" +
+                       $" */{NL}";
 
-            // ASSERT
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, comment);
-        }
+        // ASSERT
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, comment);
+    }
 
-        [Fact]
-        public void SQL_Returns_Many_Single_Line_Comments()
-        {
-            // ARRANGE
-            var commentText = $"This is the first line of the comment{NL}" +
-                              $"The second line of the comment is here{NL}" +
-                              $"The third line of the comment is here";
+    [Fact]
+    public void SQL_Returns_Many_Single_Line_Comments()
+    {
+        // ARRANGE
+        var commentText = $"This is the first line of the comment{NL}" +
+                          $"The second line of the comment is here{NL}" +
+                          $"The third line of the comment is here";
 
-            var comment = new TSQLComment { CommentText = commentText, SingleLineCommentsOnly = true };
+        var comment = new TSQLComment { CommentText = commentText, SingleLineCommentsOnly = true };
 
-            // ACTION
-            var sql = comment.SQL();
+        // ACTION
+        var sql = comment.SQL();
 
-            var expected = $" -- This is the first line of the comment{NL}" +
-                           $" -- The second line of the comment is here{NL}" +
-                           $" -- The third line of the comment is here{NL}";
+        var expected = $" -- This is the first line of the comment{NL}" +
+                       $" -- The second line of the comment is here{NL}" +
+                       $" -- The third line of the comment is here{NL}";
 
-            // ASSERT
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, comment);
-        }
+        // ASSERT
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, comment);
+    }
 
-        [Fact]
-        public void SQL_Returns_Many_Single_Line_Comments_Trimmed()
-        {
-            // ARRANGE
-            var commentText = @"This is the first line of the comment
+    [Fact]
+    public void SQL_Returns_Many_Single_Line_Comments_Trimmed()
+    {
+        // ARRANGE
+        var commentText = @"This is the first line of the comment
                    " + "\t" + @"The second line of the comment is here
                                 The third line of the comment is here";
 
-            var comment = new TSQLComment { CommentText = commentText, SingleLineCommentsOnly = true };
+        var comment = new TSQLComment { CommentText = commentText, SingleLineCommentsOnly = true };
 
-            // ACTION
-            var sql = comment.SQL();
+        // ACTION
+        var sql = comment.SQL();
 
-            var expected = $" -- This is the first line of the comment{NL}" +
-                           $" -- The second line of the comment is here{NL}" +
-                           $" -- The third line of the comment is here{NL}";
+        var expected = $" -- This is the first line of the comment{NL}" +
+                       $" -- The second line of the comment is here{NL}" +
+                       $" -- The third line of the comment is here{NL}";
 
-            // ASSERT
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, comment);
-        }
+        // ASSERT
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, comment);
     }
 }

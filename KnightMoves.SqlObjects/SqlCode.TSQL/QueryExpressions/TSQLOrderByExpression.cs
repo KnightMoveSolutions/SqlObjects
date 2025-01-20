@@ -1,11 +1,36 @@
 ﻿using System.Linq;
 using System.Text;
 
-namespace KnightMoves.SqlObjects.SqlCode.TSQL
+namespace KnightMoves.SqlObjects.SqlCode.TSQL;
+
+/// <summary>
+/// This class implements <see cref="ISqlOrderByExpression"/> and builds a T-SQL
+/// ORDER BY expression that includes the sort direction (either ASC or DESC)
+/// <code>
+/// [orderByExpression] ASC
+/// </code>
+/// <code>
+/// [orderByExpression] DESC
+/// </code>
+/// </summary>
+public class TSQLOrderByExpression : TSQLStatement, ISqlOrderByExpression
 {
     /// <summary>
-    /// This class implements <see cref="ISqlOrderByExpression"/> and builds a T-SQL
-    /// ORDER BY expression that includes the sort direction (either ASC or DESC)
+    /// The ORDER BY expression
+    /// </summary>
+    //[JsonConverter(typeof(TreeNodeJsonConverter))]
+    //public ISqlQueryExpression Expression { get; set; }
+
+    /// <summary>
+    /// The sort order direction (either ASC or DESC)
+    /// </summary>
+    public SqlOrderByDirections Direction { get; set; } = SqlOrderByDirections.ASC;
+
+    /// <summary>
+    /// <para>
+    /// Returns an expression suitable for use in an ORDER BY clause that includes the 
+    /// expression and its specified sort direction (either ASC or DESC)
+    /// </para>
     /// <code>
     /// [orderByExpression] ASC
     /// </code>
@@ -13,54 +38,28 @@ namespace KnightMoves.SqlObjects.SqlCode.TSQL
     /// [orderByExpression] DESC
     /// </code>
     /// </summary>
-    public class TSQLOrderByExpression : TSQLStatement, ISqlOrderByExpression
+    public override string SQL()
     {
-        /// <summary>
-        /// The ORDER BY expression
-        /// </summary>
-        //[JsonConverter(typeof(TreeNodeJsonConverter))]
-        //public ISqlQueryExpression Expression { get; set; }
+        var sql = new StringBuilder();
 
-        /// <summary>
-        /// The sort order direction (either ASC or DESC)
-        /// </summary>
-        public SqlOrderByDirections Direction { get; set; } = SqlOrderByDirections.ASC;
+        var orderByExpression = Children.FirstOrDefault(c => (c as SqlStatement).IsQueryExpression) as ISqlQueryExpression;
 
-        /// <summary>
-        /// <para>
-        /// Returns an expression suitable for use in an ORDER BY clause that includes the 
-        /// expression and its specified sort direction (either ASC or DESC)
-        /// </para>
-        /// <code>
-        /// [orderByExpression] ASC
-        /// </code>
-        /// <code>
-        /// [orderByExpression] DESC
-        /// </code>
-        /// </summary>
-        public override string SQL()
+        var orderByExpressionStr = string.Empty;
+
+        if (!string.IsNullOrEmpty(orderByExpression.Alias))
         {
-            var sql = new StringBuilder();
-
-            var orderByExpression = Children.FirstOrDefault(c => (c as SqlStatement).IsQueryExpression) as ISqlQueryExpression;
-
-            var orderByExpressionStr = string.Empty;
-
-            if (!string.IsNullOrEmpty(orderByExpression.Alias))
-            {
-                orderByExpressionStr = $"[{orderByExpression.Alias.SanitizeDelimitedValue()}]";
-            } 
-            else
-            {
-                orderByExpressionStr = orderByExpression.ToString().Trim();
-            }
-
-            if ((orderByExpression as SqlStatement).IsSubQuery)
-                orderByExpressionStr = $"{IndentString}{orderByExpressionStr}";
-
-            sql.Append($"{IndentString}{orderByExpressionStr} {Direction}");
-
-            return sql.ToString();
+            orderByExpressionStr = $"[{orderByExpression.Alias.SanitizeDelimitedValue()}]";
+        } 
+        else
+        {
+            orderByExpressionStr = orderByExpression.ToString().Trim();
         }
+
+        if ((orderByExpression as SqlStatement).IsSubQuery)
+            orderByExpressionStr = $"{IndentString}{orderByExpressionStr}";
+
+        sql.Append($"{IndentString}{orderByExpressionStr} {Direction}");
+
+        return sql.ToString();
     }
 }

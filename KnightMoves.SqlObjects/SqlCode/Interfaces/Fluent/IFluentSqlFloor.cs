@@ -1,9 +1,8 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface IFluentSqlFloor
 {
-    public interface IFluentSqlFloor
-    {
-        SqlStatement FLOOR(decimal numericExpression);
-        SqlStatement FLOOR(string numericExpression);
-        SqlStatement FLOOR(string multipartIdentifier, string column);
-    }
+    SqlStatement FLOOR(decimal numericExpression);
+    SqlStatement FLOOR(string numericExpression);
+    SqlStatement FLOOR(string multipartIdentifier, string column);
 }

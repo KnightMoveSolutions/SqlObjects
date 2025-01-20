@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace KnightMoves.SqlObjects.SqlCode
+namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface ISqlInListCondition : ISqlCondition
 {
-    public interface ISqlInListCondition : ISqlCondition
-    {
-        List<ISqlQueryExpression> InList { get; set; }
-    }
+    List<ISqlQueryExpression> InList { get; set; }
 }

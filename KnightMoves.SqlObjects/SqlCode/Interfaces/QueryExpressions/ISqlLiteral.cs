@@ -1,8 +1,7 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface ISqlLiteral : ISqlQueryExpression
 {
-    public interface ISqlLiteral : ISqlQueryExpression
-    {
-        bool IsQuoted { get; }
-        string Value { get; set; }
-    }
+    bool IsQuoted { get; }
+    string Value { get; set; }
 }

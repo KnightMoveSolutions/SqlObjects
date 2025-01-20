@@ -1,8 +1,7 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface IFluentSqlMax
 {
-    public interface IFluentSqlMax
-    {
-        SqlStatement MAX(string aggregateExpression);
-        SqlStatement MAX(string multipartIdentifier, string column);
-    }
+    SqlStatement MAX(string aggregateExpression);
+    SqlStatement MAX(string multipartIdentifier, string column);
 }

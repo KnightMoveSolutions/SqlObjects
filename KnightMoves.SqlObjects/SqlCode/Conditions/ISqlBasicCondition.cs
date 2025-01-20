@@ -1,7 +1,6 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface ISqlBasicCondition : ISqlCondition
 {
-    public interface ISqlBasicCondition : ISqlCondition
-    {
-        SqlComparisonOperators Operator { get; set; }
-    }
+    SqlComparisonOperators Operator { get; set; }
 }

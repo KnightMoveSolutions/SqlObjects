@@ -1,10 +1,9 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+public abstract partial class SqlStatement : IFluentSqlAdHoc 
 {
-    public abstract partial class SqlStatement : IFluentSqlAdHoc 
-    {
 
-        public abstract SqlStatement Script(string scriptCode);
+    public abstract SqlStatement Script(string scriptCode);
 
-        public abstract SqlStatement Literal(string literal);
-    }
+    public abstract SqlStatement Literal(string literal);
 }

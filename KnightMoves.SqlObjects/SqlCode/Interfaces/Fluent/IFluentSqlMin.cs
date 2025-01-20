@@ -1,8 +1,7 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface IFluentSqlMin
 {
-    public interface IFluentSqlMin
-    {
-        SqlStatement MIN(string aggregateExpression);
-        SqlStatement MIN(string multipartIdentifier, string column);
-    }
+    SqlStatement MIN(string aggregateExpression);
+    SqlStatement MIN(string multipartIdentifier, string column);
 }

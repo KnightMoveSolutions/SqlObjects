@@ -2,44 +2,43 @@
 using KnightMoves.SqlObjects.SqlCode.TSQL;
 using Xunit;
 
-namespace KnightMoves.SqlObjects.Tests.TSql
+namespace KnightMoves.SqlObjects.Tests.TSql;
+
+public class TSQLFuncMin_Tests
 {
-    public class TSQLFuncMin_Tests
+    [Fact]
+    public void SQL_Returns_Min_With_Default()
     {
-        [Fact]
-        public void SQL_Returns_Min_With_Default()
-        {
-            // ARRANGE
-            var func = new TSQLFuncMin();
+        // ARRANGE
+        var func = new TSQLFuncMin();
 
-            // ACTION
-            var sql = func.SQL();
+        // ACTION
+        var sql = func.SQL();
 
-            var expected = "MIN(0)";
+        var expected = "MIN(0)";
 
-            // ASSERT
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, func);
-        }
+        // ASSERT
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, func);
+    }
 
-        [Fact]
-        public void SQL_Returns_Min_With_Column()
-        {
-            // ARRANGE
-            var func = new TSQLFuncMin();
+    [Fact]
+    public void SQL_Returns_Min_With_Column()
+    {
+        // ARRANGE
+        var func = new TSQLFuncMin();
 
-            var aggregateExpression = new TSQLColumn { DataType = new TSQLDataType(SqlDbType.Variant), ColumnName = "ColumnName" };
+        var aggregateExpression = new TSQLColumn { DataType = new TSQLDataType(SqlDbType.Variant), ColumnName = "ColumnName" };
 
-            func.SetParameterValue(TSQLFuncMinParams.aggregateExpression, aggregateExpression);
+        func.SetParameterValue(TSQLFuncMinParams.aggregateExpression, aggregateExpression);
 
-            // ACTION
-            var sql = func.SQL();
+        // ACTION
+        var sql = func.SQL();
 
-            var expected = "MIN([ColumnName])";
+        var expected = "MIN([ColumnName])";
 
-            // ASSERT
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, func);
-        }
+        // ASSERT
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, func);
     }
 }

@@ -3,57 +3,56 @@ using KnightMoves.SqlObjects.SqlCode;
 using KnightMoves.SqlObjects.SqlCode.TSQL;
 using Xunit;
 
-namespace KnightMoves.SqlObjects.Tests.TSql
+namespace KnightMoves.SqlObjects.Tests.TSql;
+
+public class TSQLCalculation_Tests
 {
-    public class TSQLCalculation_Tests
+    [Fact]
+    public void SQL_Method_Returns_Calculation()
     {
-        [Fact]
-        public void SQL_Method_Returns_Calculation()
+        // ARRANGE
+        var calc = new TSQLCalculation
         {
-            // ARRANGE
-            var calc = new TSQLCalculation
-            {
-                LeftOperand = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "9999" },
-                Operator = SqlArithmeticOperators.Plus,
-                RightOperand = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "1234" }
-            };
+            LeftOperand = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "9999" },
+            Operator = SqlArithmeticOperators.Plus,
+            RightOperand = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "1234" }
+        };
 
-            // ACTION
-            var sql = calc.SQL();
+        // ACTION
+        var sql = calc.SQL();
 
-            var expected = "(9999 + 1234)";
+        var expected = "(9999 + 1234)";
 
-            // ASSERT
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, calc);
-        }
+        // ASSERT
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, calc);
+    }
 
-        [Fact]
-        public void SQL_Method_Returns_Nested_Calculation()
+    [Fact]
+    public void SQL_Method_Returns_Nested_Calculation()
+    {
+        // ARRANGE
+        var subCalc = new TSQLCalculation
         {
-            // ARRANGE
-            var subCalc = new TSQLCalculation
-            {
-                LeftOperand = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "9999" },
-                Operator = SqlArithmeticOperators.Multiply,
-                RightOperand = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "1234" }
-            };
+            LeftOperand = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "9999" },
+            Operator = SqlArithmeticOperators.Multiply,
+            RightOperand = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "1234" }
+        };
 
-            var calc = new TSQLCalculation
-            {
-                LeftOperand = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "9999" },
-                Operator = SqlArithmeticOperators.Plus,
-                RightOperand = subCalc
-            };
+        var calc = new TSQLCalculation
+        {
+            LeftOperand = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "9999" },
+            Operator = SqlArithmeticOperators.Plus,
+            RightOperand = subCalc
+        };
 
-            // ACTION
-            var sql = calc.SQL();
+        // ACTION
+        var sql = calc.SQL();
 
-            var expected = "(9999 + (9999 * 1234))";
+        var expected = "(9999 + (9999 * 1234))";
 
-            // ASSERT
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, calc);
-        }
+        // ASSERT
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, calc);
     }
 }

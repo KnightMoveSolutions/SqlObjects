@@ -1,8 +1,7 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface ISqlQueryExpression
 {
-    public interface ISqlQueryExpression
-    {
-        string Alias { get; set; }
-        SqlDataType DataType { get; set; }
-    }
+    string Alias { get; set; }
+    SqlDataType DataType { get; set; }
 }

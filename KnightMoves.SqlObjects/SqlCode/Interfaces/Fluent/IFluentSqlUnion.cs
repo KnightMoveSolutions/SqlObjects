@@ -1,7 +1,6 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface IFluentSqlUnion
 {
-    public interface IFluentSqlUnion
-    {
-        SqlStatement UNION();
-    }
+    SqlStatement UNION();
 }

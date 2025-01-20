@@ -1,7 +1,6 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode.TSQL
-{
-    public interface ITSQLCaseExpression : ISqlQueryExpression
-    {
+﻿namespace KnightMoves.SqlObjects.SqlCode.TSQL;
 
-    }
+public interface ITSQLCaseExpression : ISqlQueryExpression
+{
+
 }

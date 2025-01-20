@@ -1,7 +1,6 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
-{
-    public interface ISqlGroupBy : ISqlStatement
-    {
+﻿namespace KnightMoves.SqlObjects.SqlCode;
 
-    }
+public interface ISqlGroupBy : ISqlStatement
+{
+
 }

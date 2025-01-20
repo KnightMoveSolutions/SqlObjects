@@ -1,7 +1,6 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface IFluentSqlLike
 {
-    public interface IFluentSqlLike
-    {
-        SqlStatement LIKE(string pattern);
-    }
+    SqlStatement LIKE(string pattern);
 }

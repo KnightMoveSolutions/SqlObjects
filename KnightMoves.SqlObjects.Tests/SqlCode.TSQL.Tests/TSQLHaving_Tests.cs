@@ -4,306 +4,305 @@ using KnightMoves.SqlObjects.SqlCode;
 using KnightMoves.SqlObjects.SqlCode.TSQL;
 using Xunit;
 
-namespace KnightMoves.SqlObjects.Tests.TSql
+namespace KnightMoves.SqlObjects.Tests.TSql;
+
+public class TSQLHaving_Tests
 {
-    public class TSQLHaving_Tests
+    [Fact]
+    public void SQL_Returns_Having_With_Default()
     {
-        [Fact]
-        public void SQL_Returns_Having_With_Default()
+        // ARRANGE
+        var having = new TSQLHaving();
+
+        having.Children.Clear();
+
+        // ACTION
+        var sql = having.SQL();
+
+        var expected = " HAVING 1=1" + Environment.NewLine;
+
+        // ASSERT
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, having);
+    }
+
+    [Fact]
+    public void SQL_Returns_Having_With_BasicCondition()
+    {
+        // ARRANGE
+        var having = new TSQLHaving();
+
+        having.Children.Clear();
+
+        var cond = new TSQLBasicCondition
         {
-            // ARRANGE
-            var having = new TSQLHaving();
+            Operator = SqlComparisonOperators.IsEqualTo,
+            LogicalOperator = SqlLogicalOperators.AND
+        };
 
-            having.Children.Clear();
+        cond.Children.Add(
+            new TSQLColumn 
+            { 
+                DataType = new TSQLDataType(SqlDbType.Int), 
+                ColumnName = "ColumnName" 
+            }
+        );
 
-            // ACTION
-            var sql = having.SQL();
+        cond.Children.Add(
+            new TSQLLiteral 
+            { 
+                DataType = new TSQLDataType(SqlDbType.Int), 
+                Value = "99" 
+            }
+        );
 
-            var expected = " HAVING 1=1" + Environment.NewLine;
+        having.Children.Add(cond);
 
-            // ASSERT
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, having);
-        }
+        // ACTION
+        var sql = having.SQL();
 
-        [Fact]
-        public void SQL_Returns_Having_With_BasicCondition()
+        var expected = " HAVING 1=1" + Environment.NewLine +
+                       "  AND [ColumnName] = 99" + Environment.NewLine;
+
+        // ASSERT
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, having);
+    }
+
+    [Fact]
+    public void SQL_Returns_Having_With_All_Condition_Types()
+    {
+        // ARRANGE
+        var having = new TSQLHaving();
+
+        having.Children.Clear();
+
+        var basicCond = new TSQLBasicCondition
         {
-            // ARRANGE
-            var having = new TSQLHaving();
+            Operator = SqlComparisonOperators.IsEqualTo,
+            LogicalOperator = SqlLogicalOperators.AND
+        };
 
-            having.Children.Clear();
+        basicCond.Children.Add(
+            new TSQLColumn 
+            { 
+                DataType = new TSQLDataType(SqlDbType.Int), 
+                ColumnName = "ColumnNameA" 
+            }
+        );
 
-            var cond = new TSQLBasicCondition
-            {
-                Operator = SqlComparisonOperators.IsEqualTo,
-                LogicalOperator = SqlLogicalOperators.AND
-            };
+        basicCond.Children.Add(
+            new TSQLLiteral 
+            { 
+                DataType = new TSQLDataType(SqlDbType.Int), 
+                Value = "99" 
+            }
+        );
 
-            cond.Children.Add(
-                new TSQLColumn 
-                { 
-                    DataType = new TSQLDataType(SqlDbType.Int), 
-                    ColumnName = "ColumnName" 
-                }
-            );
+        having.Children.Add(basicCond);
 
-            cond.Children.Add(
-                new TSQLLiteral 
-                { 
-                    DataType = new TSQLDataType(SqlDbType.Int), 
-                    Value = "99" 
-                }
-            );
-
-            having.Children.Add(cond);
-
-            // ACTION
-            var sql = having.SQL();
-
-            var expected = " HAVING 1=1" + Environment.NewLine +
-                           "  AND [ColumnName] = 99" + Environment.NewLine;
-
-            // ASSERT
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, having);
-        }
-
-        [Fact]
-        public void SQL_Returns_Having_With_All_Condition_Types()
+        var between = new TSQLBetweenCondition
         {
-            // ARRANGE
-            var having = new TSQLHaving();
+            LeftOperand = new TSQLColumn { DataType = new TSQLDataType(SqlDbType.Int), ColumnName = "ColumnNameB" },
+            StartVal = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "1" },
+            EndVal = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "100" },
+            LogicalOperator = SqlLogicalOperators.AND
+        };
 
-            having.Children.Clear();
+        having.Children.Add(between);
 
-            var basicCond = new TSQLBasicCondition
-            {
-                Operator = SqlComparisonOperators.IsEqualTo,
-                LogicalOperator = SqlLogicalOperators.AND
-            };
+        var inList = new TSQLInListCondition();
 
-            basicCond.Children.Add(
-                new TSQLColumn 
-                { 
-                    DataType = new TSQLDataType(SqlDbType.Int), 
-                    ColumnName = "ColumnNameA" 
-                }
-            );
+        inList.Children.Add(
+            new TSQLColumn 
+            { 
+                DataType = new TSQLDataType(SqlDbType.Int), 
+                ColumnName = "ColumnNameC" 
+            }
+        );
 
-            basicCond.Children.Add(
-                new TSQLLiteral 
-                { 
-                    DataType = new TSQLDataType(SqlDbType.Int), 
-                    Value = "99" 
-                }
-            );
+        inList.InList.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "1" });
+        inList.InList.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "2" });
+        inList.InList.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "3" });
+        inList.InList.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "4" });
+        inList.InList.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "5" });
 
-            having.Children.Add(basicCond);
+        inList.LogicalOperator = SqlLogicalOperators.AND;
 
-            var between = new TSQLBetweenCondition
-            {
-                LeftOperand = new TSQLColumn { DataType = new TSQLDataType(SqlDbType.Int), ColumnName = "ColumnNameB" },
-                StartVal = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "1" },
-                EndVal = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "100" },
-                LogicalOperator = SqlLogicalOperators.AND
-            };
+        having.Children.Add(inList);
 
-            having.Children.Add(between);
-
-            var inList = new TSQLInListCondition();
-
-            inList.Children.Add(
-                new TSQLColumn 
-                { 
-                    DataType = new TSQLDataType(SqlDbType.Int), 
-                    ColumnName = "ColumnNameC" 
-                }
-            );
-
-            inList.InList.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "1" });
-            inList.InList.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "2" });
-            inList.InList.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "3" });
-            inList.InList.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "4" });
-            inList.InList.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "5" });
-
-            inList.LogicalOperator = SqlLogicalOperators.AND;
-
-            having.Children.Add(inList);
-
-            var like = new TSQLLikeCondition
-            {
-                Pattern = "%pattern%",
-                LogicalOperator = SqlLogicalOperators.AND
-            };
-
-            like.Children.Add(
-                new TSQLColumn 
-                { 
-                    DataType = new TSQLDataType(SqlDbType.Int), 
-                    ColumnName = "ColumnNameD" 
-                }
-            );
-
-            having.Children.Add(like);
-
-            // ACTION
-            var sql = having.SQL();
-
-            var expected = " HAVING 1=1" + Environment.NewLine +
-                           "  AND [ColumnNameA] = 99" + Environment.NewLine +
-                           "  AND [ColumnNameB] BETWEEN 1 AND 100" + Environment.NewLine +
-                           "  AND [ColumnNameC] IN (1,2,3,4,5)" + Environment.NewLine +
-                           "  AND [ColumnNameD] LIKE '%pattern%'" + Environment.NewLine;
-
-            // ASSERT
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, having);
-        }
-
-        [Fact]
-        public void SQL_Returns_Having_With_Condition_Group()
+        var like = new TSQLLikeCondition
         {
-            // ARRANGE
-            var having = new TSQLHaving();
+            Pattern = "%pattern%",
+            LogicalOperator = SqlLogicalOperators.AND
+        };
 
-            having.Children.Clear();
+        like.Children.Add(
+            new TSQLColumn 
+            { 
+                DataType = new TSQLDataType(SqlDbType.Int), 
+                ColumnName = "ColumnNameD" 
+            }
+        );
 
-            var condGrp = new TSQLConditionGroup();
+        having.Children.Add(like);
 
-            var basicCond = new TSQLBasicCondition
-            {
-                Operator = SqlComparisonOperators.IsEqualTo,
-                LogicalOperator = SqlLogicalOperators.AND
-            };
+        // ACTION
+        var sql = having.SQL();
 
-            basicCond.Children.Add(
-                new TSQLColumn 
-                { 
-                    DataType = new TSQLDataType(SqlDbType.Int), 
-                    ColumnName = "ColumnNameA" 
-                }
-            );
+        var expected = " HAVING 1=1" + Environment.NewLine +
+                       "  AND [ColumnNameA] = 99" + Environment.NewLine +
+                       "  AND [ColumnNameB] BETWEEN 1 AND 100" + Environment.NewLine +
+                       "  AND [ColumnNameC] IN (1,2,3,4,5)" + Environment.NewLine +
+                       "  AND [ColumnNameD] LIKE '%pattern%'" + Environment.NewLine;
 
-            basicCond.Children.Add(
-                new TSQLLiteral 
-                { 
-                    DataType = new TSQLDataType(SqlDbType.Int), 
-                    Value = "99" 
-                }
-            );
+        // ASSERT
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, having);
+    }
 
-            condGrp.Children.Add(basicCond);
+    [Fact]
+    public void SQL_Returns_Having_With_Condition_Group()
+    {
+        // ARRANGE
+        var having = new TSQLHaving();
 
-            var between = new TSQLBetweenCondition
-            {
-                LeftOperand = new TSQLColumn { DataType = new TSQLDataType(SqlDbType.Int), ColumnName = "ColumnNameB" },
-                StartVal = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "1" },
-                EndVal = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "100" },
-                LogicalOperator = SqlLogicalOperators.AND
-            };
+        having.Children.Clear();
 
-            condGrp.Children.Add(between);
+        var condGrp = new TSQLConditionGroup();
 
-            var inList = new TSQLInListCondition();
-
-            inList.Children.Add(
-                new TSQLColumn 
-                { 
-                    DataType = new TSQLDataType(SqlDbType.Int), 
-                    ColumnName = "ColumnNameC" 
-                }
-            );
-
-            inList.InList.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "1" });
-            inList.InList.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "2" });
-            inList.InList.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "3" });
-            inList.InList.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "4" });
-            inList.InList.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "5" });
-
-            inList.LogicalOperator = SqlLogicalOperators.AND;
-
-            condGrp.Children.Add(inList);
-
-            var like = new TSQLLikeCondition
-            {
-                Pattern = "%pattern%",
-                LogicalOperator = SqlLogicalOperators.AND
-            };
-
-            like.Children.Add(
-                new TSQLColumn 
-                { 
-                    DataType = new TSQLDataType(SqlDbType.Int), 
-                    ColumnName = "ColumnNameD" 
-                }
-            );
-
-            condGrp.Children.Add(like);
-
-            having.Children.Add(condGrp);
-
-            // ACTION
-            var sql = having.SQL();
-
-            var expected = " HAVING 1=1" + Environment.NewLine +
-                           "  AND" + Environment.NewLine +
-                           "  (" + Environment.NewLine +
-                           "   [ColumnNameA] = 99 AND" + Environment.NewLine +
-                           "   [ColumnNameB] BETWEEN 1 AND 100 AND" + Environment.NewLine +
-                           "   [ColumnNameC] IN (1,2,3,4,5) AND" + Environment.NewLine +
-                           "   [ColumnNameD] LIKE '%pattern%'" + Environment.NewLine +
-                           "  )" + Environment.NewLine;
-
-            // ASSERT
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, having);
-        }
-
-        [Fact]
-        public void SQL_Returns_Having_With_BasicCondition_and_Comment()
+        var basicCond = new TSQLBasicCondition
         {
-            // ARRANGE
-            var having = new TSQLHaving();
+            Operator = SqlComparisonOperators.IsEqualTo,
+            LogicalOperator = SqlLogicalOperators.AND
+        };
 
-            having.Children.Clear();
+        basicCond.Children.Add(
+            new TSQLColumn 
+            { 
+                DataType = new TSQLDataType(SqlDbType.Int), 
+                ColumnName = "ColumnNameA" 
+            }
+        );
 
-            having.Children.Add(new TSQLComment { CommentText = "Comment about condition below" });
+        basicCond.Children.Add(
+            new TSQLLiteral 
+            { 
+                DataType = new TSQLDataType(SqlDbType.Int), 
+                Value = "99" 
+            }
+        );
 
-            var cond = new TSQLBasicCondition
-            {
-                Operator = SqlComparisonOperators.IsEqualTo,
-                LogicalOperator = SqlLogicalOperators.AND
-            };
+        condGrp.Children.Add(basicCond);
 
-            cond.Children.Add(
-                new TSQLColumn 
-                { 
-                    DataType = new TSQLDataType(SqlDbType.Int), 
-                    ColumnName = "ColumnName" 
-                }
-            );
+        var between = new TSQLBetweenCondition
+        {
+            LeftOperand = new TSQLColumn { DataType = new TSQLDataType(SqlDbType.Int), ColumnName = "ColumnNameB" },
+            StartVal = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "1" },
+            EndVal = new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "100" },
+            LogicalOperator = SqlLogicalOperators.AND
+        };
 
-            cond.Children.Add(
-                new TSQLLiteral 
-                { 
-                    DataType = new TSQLDataType(SqlDbType.Int), 
-                    Value = "99" 
-                }
-            );
+        condGrp.Children.Add(between);
 
-            having.Children.Add(cond);
+        var inList = new TSQLInListCondition();
 
-            // ACTION
-            var sql = having.SQL();
+        inList.Children.Add(
+            new TSQLColumn 
+            { 
+                DataType = new TSQLDataType(SqlDbType.Int), 
+                ColumnName = "ColumnNameC" 
+            }
+        );
 
-            var expected = " HAVING 1=1" + Environment.NewLine +
-                           "  -- Comment about condition below" + Environment.NewLine +
-                           "  AND [ColumnName] = 99" + Environment.NewLine;
+        inList.InList.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "1" });
+        inList.InList.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "2" });
+        inList.InList.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "3" });
+        inList.InList.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "4" });
+        inList.InList.Add(new TSQLLiteral { DataType = new TSQLDataType(SqlDbType.Int), Value = "5" });
 
-            // ASSERT
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, having);
-        }
+        inList.LogicalOperator = SqlLogicalOperators.AND;
+
+        condGrp.Children.Add(inList);
+
+        var like = new TSQLLikeCondition
+        {
+            Pattern = "%pattern%",
+            LogicalOperator = SqlLogicalOperators.AND
+        };
+
+        like.Children.Add(
+            new TSQLColumn 
+            { 
+                DataType = new TSQLDataType(SqlDbType.Int), 
+                ColumnName = "ColumnNameD" 
+            }
+        );
+
+        condGrp.Children.Add(like);
+
+        having.Children.Add(condGrp);
+
+        // ACTION
+        var sql = having.SQL();
+
+        var expected = " HAVING 1=1" + Environment.NewLine +
+                       "  AND" + Environment.NewLine +
+                       "  (" + Environment.NewLine +
+                       "   [ColumnNameA] = 99 AND" + Environment.NewLine +
+                       "   [ColumnNameB] BETWEEN 1 AND 100 AND" + Environment.NewLine +
+                       "   [ColumnNameC] IN (1,2,3,4,5) AND" + Environment.NewLine +
+                       "   [ColumnNameD] LIKE '%pattern%'" + Environment.NewLine +
+                       "  )" + Environment.NewLine;
+
+        // ASSERT
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, having);
+    }
+
+    [Fact]
+    public void SQL_Returns_Having_With_BasicCondition_and_Comment()
+    {
+        // ARRANGE
+        var having = new TSQLHaving();
+
+        having.Children.Clear();
+
+        having.Children.Add(new TSQLComment { CommentText = "Comment about condition below" });
+
+        var cond = new TSQLBasicCondition
+        {
+            Operator = SqlComparisonOperators.IsEqualTo,
+            LogicalOperator = SqlLogicalOperators.AND
+        };
+
+        cond.Children.Add(
+            new TSQLColumn 
+            { 
+                DataType = new TSQLDataType(SqlDbType.Int), 
+                ColumnName = "ColumnName" 
+            }
+        );
+
+        cond.Children.Add(
+            new TSQLLiteral 
+            { 
+                DataType = new TSQLDataType(SqlDbType.Int), 
+                Value = "99" 
+            }
+        );
+
+        having.Children.Add(cond);
+
+        // ACTION
+        var sql = having.SQL();
+
+        var expected = " HAVING 1=1" + Environment.NewLine +
+                       "  -- Comment about condition below" + Environment.NewLine +
+                       "  AND [ColumnName] = 99" + Environment.NewLine;
+
+        // ASSERT
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, having);
     }
 }

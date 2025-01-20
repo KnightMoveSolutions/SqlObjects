@@ -1,86 +1,85 @@
 ﻿using System;
 using System.Text;
 
-namespace KnightMoves.SqlObjects.SqlCode.TSQL
+namespace KnightMoves.SqlObjects.SqlCode.TSQL;
+
+/// <summary>
+/// This class implements <see cref="ISqlLeftJoin"/> and builds a SQL LEFT JOIN statement
+/// listing all <see cref="ISqlCondition"/>s that have been added to it
+/// </summary>
+public class TSQLLeftJoin : TSQLStatement, ISqlLeftJoin
 {
     /// <summary>
-    /// This class implements <see cref="ISqlLeftJoin"/> and builds a SQL LEFT JOIN statement
-    /// listing all <see cref="ISqlCondition"/>s that have been added to it
+    /// The Schema of the Table
     /// </summary>
-    public class TSQLLeftJoin : TSQLStatement, ISqlLeftJoin
+    public string Schema { get; set; }
+
+    /// <summary>
+    /// The Table name
+    /// </summary>
+    public string Table { get; set; }
+
+    /// <summary>
+    /// The table's Multipart Identifier alias value
+    /// </summary>
+    public string MultipartIdentifier { get; set; }
+
+    public TSQLLeftJoin() { }
+
+    public TSQLLeftJoin(string table) : this(string.Empty, table, string.Empty) { }
+
+    public TSQLLeftJoin(string schema, string table) : this(schema, table, string.Empty) { }
+
+    public TSQLLeftJoin(string schema, string table, string multipartIdentifier)
     {
-        /// <summary>
-        /// The Schema of the Table
-        /// </summary>
-        public string Schema { get; set; }
+        Schema = schema;
+        Table = table;
+        MultipartIdentifier = multipartIdentifier;
+    }
 
-        /// <summary>
-        /// The Table name
-        /// </summary>
-        public string Table { get; set; }
+    /// <summary>
+    /// Builds a SQL LEFT JOIN statement using in the format below where "t" is the <see cref="MultipartIdentifier"/>
+    /// <code>
+    /// LEFT JOIN [Schema].[Table] t ON
+    /// </code>
+    /// <code>
+    ///  -- Join conditions will be listed here
+    /// </code>
+    /// </summary>
+    public override string SQL()
+    {
+        var sql = new StringBuilder();
 
-        /// <summary>
-        /// The table's Multipart Identifier alias value
-        /// </summary>
-        public string MultipartIdentifier { get; set; }
+        sql.Append($"{IndentString}LEFT JOIN ");
 
-        public TSQLLeftJoin() { }
-
-        public TSQLLeftJoin(string table) : this(string.Empty, table, string.Empty) { }
-
-        public TSQLLeftJoin(string schema, string table) : this(schema, table, string.Empty) { }
-
-        public TSQLLeftJoin(string schema, string table, string multipartIdentifier)
+        if (!string.IsNullOrEmpty(Table))
         {
-            Schema = schema;
-            Table = table;
-            MultipartIdentifier = multipartIdentifier;
+            if (!string.IsNullOrEmpty(Schema))
+                sql.Append($"[{Schema.SanitizeDelimitedValue()}].");
+
+            sql.Append($"[{Table.SanitizeDelimitedValue()}]");
         }
 
-        /// <summary>
-        /// Builds a SQL LEFT JOIN statement using in the format below where "t" is the <see cref="MultipartIdentifier"/>
-        /// <code>
-        /// LEFT JOIN [Schema].[Table] t ON
-        /// </code>
-        /// <code>
-        ///  -- Join conditions will be listed here
-        /// </code>
-        /// </summary>
-        public override string SQL()
+        if (!string.IsNullOrEmpty(MultipartIdentifier))
         {
-            var sql = new StringBuilder();
-
-            sql.Append($"{IndentString}LEFT JOIN ");
-
-            if (!string.IsNullOrEmpty(Table))
-            {
-                if (!string.IsNullOrEmpty(Schema))
-                    sql.Append($"[{Schema.SanitizeDelimitedValue()}].");
-
-                sql.Append($"[{Table.SanitizeDelimitedValue()}]");
-            }
-
-            if (!string.IsNullOrEmpty(MultipartIdentifier))
-            {
-                sql.Append($" {MultipartIdentifier}");
-            }
-
-            sql.Append(" ON");
-
-            foreach (SqlStatement sqlStmt in Children)
-            {
-                if (!sqlStmt.IsCondition)
-                    continue;
-
-                if (sqlStmt.IsConditionGroup)
-                    sql.Append(Environment.NewLine);
-                else
-                    sql.Append(" ");
-
-                sql.Append($"{sqlStmt}{Environment.NewLine}");
-            }
-
-            return sql.ToString();
+            sql.Append($" {MultipartIdentifier}");
         }
+
+        sql.Append(" ON");
+
+        foreach (SqlStatement sqlStmt in Children)
+        {
+            if (!sqlStmt.IsCondition)
+                continue;
+
+            if (sqlStmt.IsConditionGroup)
+                sql.Append(Environment.NewLine);
+            else
+                sql.Append(" ");
+
+            sql.Append($"{sqlStmt}{Environment.NewLine}");
+        }
+
+        return sql.ToString();
     }
 }

@@ -1,8 +1,7 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface IFluentSqlCount
 {
-    public interface IFluentSqlCount
-    {
-        SqlStatement COUNT(string aggregateExpression);
-        SqlStatement COUNT(string multipartIdentifier, string column);
-    }
+    SqlStatement COUNT(string aggregateExpression);
+    SqlStatement COUNT(string multipartIdentifier, string column);
 }

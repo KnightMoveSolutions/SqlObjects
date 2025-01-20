@@ -1,7 +1,6 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
-{
-    public interface ISqlScript : ISqlStatement
-    {
+﻿namespace KnightMoves.SqlObjects.SqlCode;
 
-    }
+public interface ISqlScript : ISqlStatement
+{
+
 }

@@ -1,8 +1,7 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface ISqlOrderByExpression
 {
-    public interface ISqlOrderByExpression
-    {
-        //ISqlQueryExpression Expression { get; set; }
-        SqlOrderByDirections Direction { get; set; }
-    }
+    //ISqlQueryExpression Expression { get; set; }
+    SqlOrderByDirections Direction { get; set; }
 }

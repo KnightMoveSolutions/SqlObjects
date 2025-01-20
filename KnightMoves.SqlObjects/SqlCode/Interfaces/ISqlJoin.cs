@@ -1,13 +1,12 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
-{
-    public interface ISqlJoin
-    {
-        string Schema { get; set; }
-        string Table { get; set; }
-        string MultipartIdentifier { get; set; }
-    }
+﻿namespace KnightMoves.SqlObjects.SqlCode;
 
-    public interface ISqlInnerJoin : ISqlJoin { }
-    public interface ISqlLeftJoin : ISqlJoin { }
-    public interface ISqlRightJoin : ISqlJoin { }
+public interface ISqlJoin
+{
+    string Schema { get; set; }
+    string Table { get; set; }
+    string MultipartIdentifier { get; set; }
 }
+
+public interface ISqlInnerJoin : ISqlJoin { }
+public interface ISqlLeftJoin : ISqlJoin { }
+public interface ISqlRightJoin : ISqlJoin { }

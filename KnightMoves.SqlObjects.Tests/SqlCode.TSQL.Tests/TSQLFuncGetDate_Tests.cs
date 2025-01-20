@@ -1,23 +1,22 @@
 ﻿using KnightMoves.SqlObjects.SqlCode.TSQL;
 using Xunit;
 
-namespace KnightMoves.SqlObjects.Tests.TSql
+namespace KnightMoves.SqlObjects.Tests.TSql;
+
+public class TSQLFuncGetDate_Tests
 {
-    public class TSQLFuncGetDate_Tests
+    [Fact]
+    public void SQL_Returns_GetDate()
     {
-        [Fact]
-        public void SQL_Returns_GetDate()
-        {
-            // ARRANGE
-            var func = new TSQLFuncGetDate();
+        // ARRANGE
+        var func = new TSQLFuncGetDate();
 
-            // ACTION
-            var sql = func.SQL();
+        // ACTION
+        var sql = func.SQL();
 
-            var expected = "GETDATE()";
+        var expected = "GETDATE()";
 
-            Assert.Equal(expected, sql);
-            TestHelper.Assert.SerializationWorks(expected, func);
-        }
+        Assert.Equal(expected, sql);
+        TestHelper.Assert.SerializationWorks(expected, func);
     }
 }

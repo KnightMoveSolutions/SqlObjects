@@ -1,7 +1,6 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
-{
-    public interface ISqlConditionGroup : ISqlCondition
-    {
+﻿namespace KnightMoves.SqlObjects.SqlCode;
 
-    }
+public interface ISqlConditionGroup : ISqlCondition
+{
+
 }

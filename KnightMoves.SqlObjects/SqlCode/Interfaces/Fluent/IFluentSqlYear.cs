@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace KnightMoves.SqlObjects.SqlCode
+namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface IFluentSqlYear
 {
-    public interface IFluentSqlYear
-    {
-        SqlStatement YEAR(DateTime dateExpression);
-        SqlStatement YEAR(string dateExpression);
-        SqlStatement YEAR(string multipartIdentifier, string column);
-    }
+    SqlStatement YEAR(DateTime dateExpression);
+    SqlStatement YEAR(string dateExpression);
+    SqlStatement YEAR(string multipartIdentifier, string column);
 }

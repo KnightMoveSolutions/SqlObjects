@@ -1,8 +1,7 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface ISqlInsert : ISqlStatement
 {
-    public interface ISqlInsert : ISqlStatement
-    {
-        string Schema { get; set; }
-        string Table { get; set; }
-    }
+    string Schema { get; set; }
+    string Table { get; set; }
 }

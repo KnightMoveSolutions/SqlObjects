@@ -1,8 +1,7 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+public interface IFluentSqlSum
 {
-    public interface IFluentSqlSum
-    {
-        SqlStatement SUM(string aggregateExpression);
-        SqlStatement SUM(string multipartIdentifier, string column);
-    }
+    SqlStatement SUM(string aggregateExpression);
+    SqlStatement SUM(string multipartIdentifier, string column);
 }

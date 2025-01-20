@@ -1,48 +1,47 @@
-﻿namespace KnightMoves.SqlObjects.SqlCode
+﻿namespace KnightMoves.SqlObjects.SqlCode;
+
+/// <summary>
+/// Used to identity SQL comparison operators for <see cref="ISqlCondition"/>s in a SQL WHERE clause
+/// </summary>
+public enum SqlComparisonOperators
 {
     /// <summary>
-    /// Used to identity SQL comparison operators for <see cref="ISqlCondition"/>s in a SQL WHERE clause
+    /// =
     /// </summary>
-    public enum SqlComparisonOperators
-    {
-        /// <summary>
-        /// =
-        /// </summary>
-        IsEqualTo,
+    IsEqualTo,
 
-        /// <summary>
-        /// &lt;&gt;
-        /// </summary>
-        IsNotEqualTo,
+    /// <summary>
+    /// &lt;&gt;
+    /// </summary>
+    IsNotEqualTo,
 
-        /// <summary>
-        /// &gt;
-        /// </summary>
-        IsGreaterThan,
+    /// <summary>
+    /// &gt;
+    /// </summary>
+    IsGreaterThan,
 
-        /// <summary>
-        /// &lt;
-        /// </summary>
-        IsLessThan,
+    /// <summary>
+    /// &lt;
+    /// </summary>
+    IsLessThan,
 
-        /// <summary>
-        /// &gt;=
-        /// </summary>
-        IsGreaterThanOrEqualTo,
+    /// <summary>
+    /// &gt;=
+    /// </summary>
+    IsGreaterThanOrEqualTo,
 
-        /// <summary>
-        /// &lt;=
-        /// </summary>
-        IsLessThanOrEqualTo,
+    /// <summary>
+    /// &lt;=
+    /// </summary>
+    IsLessThanOrEqualTo,
 
-        /// <summary>
-        /// IS
-        /// </summary>
-        IS,
+    /// <summary>
+    /// IS
+    /// </summary>
+    IS,
 
-        /// <summary>
-        /// IS NOT
-        /// </summary>
-        ISNOT
-    }
+    /// <summary>
+    /// IS NOT
+    /// </summary>
+    ISNOT
 }
