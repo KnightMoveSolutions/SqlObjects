@@ -104,7 +104,7 @@ public class TSQLLiteral : TSQLStatement, ISqlLiteral
 
     private Type GetNativeDataType()
     {
-        Enum.TryParse(((SqlDataType)DataType).DataType, out SqlDbType dbType);
+        Enum.TryParse((DataType).DataType, out SqlDbType dbType);
 
         if (
             dbType == SqlDbType.Char || 

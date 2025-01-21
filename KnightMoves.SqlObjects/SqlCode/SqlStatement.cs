@@ -185,7 +185,7 @@ public abstract partial class SqlStatement : TreeNode<string, SqlStatement>, ISq
     /// </summary>
     public string Build()
     {
-        var script = (Root ?? this) as SqlStatement;
+        var script = Root ?? this;
         return script.SQL();
     }
 
@@ -294,15 +294,13 @@ public abstract partial class SqlStatement : TreeNode<string, SqlStatement>, ISq
     {
         SqlStatement parent = null;
 
-        ProcessAncestors(a =>
+        ProcessAncestors(s =>
         {
-            var s = a as SqlStatement;
-
             if (s.IsSelect || s.IsWhereClause || s.IsConditionGroup || s.IsInsert || s.IsGroupBy || s.IsOrderBy || s.IsHaving)
                 parent = s;
         },
         this,
-        a => parent != null);
+        s => parent != null);
 
         return parent;
     }
@@ -311,15 +309,13 @@ public abstract partial class SqlStatement : TreeNode<string, SqlStatement>, ISq
     {
         SqlStatement parentScope = null;
 
-        ProcessAncestors(a =>
+        ProcessAncestors(s =>
         {
-            var s = a as SqlStatement;
-
             if (s.IsScript || s.IsSubQuery || s.IsConditionGroup || s.IsUpdate || s.IsDelete)
                 parentScope = s;
         },
         this,
-        a => parentScope != null);
+        s => parentScope != null);
 
         return parentScope;
     }
@@ -352,14 +348,14 @@ public abstract partial class SqlStatement : TreeNode<string, SqlStatement>, ISq
 
     private SqlStatement GetLastAddedNode()
     {
-        var lastAddedNode = Root as SqlStatement;
+        var lastAddedNode = Root;
 
         if (!Root.Children.Any())
             return lastAddedNode;
 
         Root.ProcessChildren(c =>
         {
-            lastAddedNode = c as SqlStatement;
+            lastAddedNode = c;
         });
 
         return lastAddedNode;

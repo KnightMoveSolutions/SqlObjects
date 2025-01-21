@@ -23,10 +23,7 @@ public abstract partial class TSQLStatement : SqlStatement
     /// <summary>
     /// Signifies the termination of a condition scope (i.e. closing parentheses)
     /// </summary>
-    public override SqlStatement EndConditionScope()
-    {
-        return Parent as SqlStatement;
-    }
+    public override SqlStatement EndConditionScope() => Parent;
 
     /// <summary>
     /// Creates a sub-query scope object intended to contain a query inside of it
@@ -66,9 +63,6 @@ public abstract partial class TSQLStatement : SqlStatement
     /// <summary>
     /// Signifies the termination of a sub-query (i.e. closing parentheses)
     /// </summary>
-    public override SqlStatement SubQueryEnd()
-    {
-        return GetParentScope();
-    }
+    public override SqlStatement SubQueryEnd() => GetParentScope();
 
 }

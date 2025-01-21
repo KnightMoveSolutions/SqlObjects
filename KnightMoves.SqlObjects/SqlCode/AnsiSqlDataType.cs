@@ -30,7 +30,7 @@ public class AnsiSqlDataType : SqlDataType
 
         set
         {
-            if (!Enum.TryParse<DbType>(value, out _dataType))
+            if (!Enum.TryParse(value, out _dataType))
                 throw new Exception("The data type must be a valid string representation of a DbType enumeration value.");
         }
     }

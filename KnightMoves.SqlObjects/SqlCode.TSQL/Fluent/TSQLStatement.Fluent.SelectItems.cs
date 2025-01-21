@@ -171,7 +171,7 @@ public abstract partial class TSQLStatement : SqlStatement
         qryExpression.Alias = alias;
 
         if (IsSubQuery)
-            return Parent as SqlStatement;
+            return Parent;
 
         return this;
     }

@@ -20,11 +20,9 @@ public class TSQLSelect : TSQLStatement, ISqlSelect
     {
         var sql = new StringBuilder();
 
-        var children = Children.Select(c => c as SqlStatement);
-
         sql.Append($"{IndentString}SELECT");
 
-        if(!children.Any())
+        if(!Children.Any())
         {
             sql.Append(" * ");
 
@@ -35,7 +33,7 @@ public class TSQLSelect : TSQLStatement, ISqlSelect
 
         ISqlQueryExpression expression;
 
-        foreach (var sqlObject in children.Where(c => c.IsQueryExpression || c.IsComment))
+        foreach (var sqlObject in Children.Where(c => c.IsQueryExpression || c.IsComment))
         {
             if (sqlObject.IsComment)
             {

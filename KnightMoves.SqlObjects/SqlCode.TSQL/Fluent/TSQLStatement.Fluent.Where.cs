@@ -47,7 +47,7 @@ public abstract partial class TSQLStatement : SqlStatement
         var parent = GetParentScope();
 
         if (parent.IsUpdate || parent.IsDelete)
-            parent = parent.Parent as SqlStatement;
+            parent = parent.Parent;
 
         parent.Children.Add(where);
         where.AND(multiPartIdentifier, operand);
@@ -130,7 +130,7 @@ public abstract partial class TSQLStatement : SqlStatement
         var parent = GetParentScope();
 
         if (parent.IsUpdate || parent.IsDelete)
-            parent = parent.Parent as SqlStatement;
+            parent = parent.Parent;
 
         parent.Children.Add(where);
         return where;

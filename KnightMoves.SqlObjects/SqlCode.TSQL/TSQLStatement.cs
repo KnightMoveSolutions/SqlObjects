@@ -18,15 +18,13 @@ public abstract partial class TSQLStatement : SqlStatement
         if (this is ITSQLCaseExpression)
             return this;
 
-        ProcessAncestors(a =>
+        ProcessAncestors(s =>
         {
-            var s = a as SqlStatement;
-
-            if (s.IsWhereClause || s.IsInnerJoin || ( s.IsBetween && (s as ISqlBetweenCondition).EndVal == null ) || s.IsConditionGroup || s.IsHaving || a is ITSQLCaseExpression)
+            if (s.IsWhereClause || s.IsInnerJoin || ( s.IsBetween && (s as ISqlBetweenCondition).EndVal == null ) || s.IsConditionGroup || s.IsHaving || s is ITSQLCaseExpression)
                 parent = s;
         },
         this,
-        a => parent != null);
+        s => parent != null);
 
         return parent;
     }
@@ -105,7 +103,7 @@ public abstract partial class TSQLStatement : SqlStatement
             return this as ISqlQueryExpression;
         }
 
-        if ((IsWhereClause || IsHaving ) && Children.Any() && (Children.Last() as SqlStatement).IsQueryExpression)
+        if ((IsWhereClause || IsHaving ) && Children.Any() && Children.Last().IsQueryExpression)
         {
             var leftOperand = Children.Last();
             Children.Remove(leftOperand);

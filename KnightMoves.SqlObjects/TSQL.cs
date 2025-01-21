@@ -649,7 +649,7 @@ public static class TSQL
                 };
             }
 
-            SqlStatement caseStmt = parent.Children.LastOrDefault(c => c is ITSQLCase) as SqlStatement;
+            SqlStatement caseStmt = parent.Children.LastOrDefault(c => c is ITSQLCase);
 
             var basicCondition = new TSQLBasicCondition { Operator = parent.ComparisonOperator.Value };
 
@@ -896,7 +896,7 @@ public static class TSQL
                 a =>
                 {
                     if (a is ISqlSelect)
-                        selectStmt = a as SqlStatement;
+                        selectStmt = a;
                 },
                 sqlStatement,
                 a => selectStmt != null
@@ -909,7 +909,7 @@ public static class TSQL
             sqlStatement.Root.ProcessChildren(a =>
             {
                 if (selectStmt == null && a is ISqlSelect)
-                    selectStmt = a as SqlStatement;
+                    selectStmt = a;
             });
         }
 

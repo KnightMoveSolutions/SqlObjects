@@ -114,7 +114,7 @@ public abstract partial class TSQLStatement : SqlStatement
         if (!parent.IsOrderBy)
             throw new InvalidOperationException("ASC() can be used only within the scope of an ORDER BY clause");
 
-        var expression = parent.Children.LastOrDefault(e => (e as SqlStatement).IsOrderByExpression) as ISqlOrderByExpression;
+        var expression = parent.Children.LastOrDefault(e => e.IsOrderByExpression) as ISqlOrderByExpression;
 
         if (expression == null)
             return parent;
@@ -134,7 +134,7 @@ public abstract partial class TSQLStatement : SqlStatement
         if (!parent.IsOrderBy)
             throw new InvalidOperationException("DESC() can be used only within the scope of an ORDER BY clause");
 
-        var expression = parent.Children.LastOrDefault(e => (e as SqlStatement).IsOrderByExpression) as ISqlOrderByExpression;
+        var expression = parent.Children.LastOrDefault(e => e.IsOrderByExpression) as ISqlOrderByExpression;
 
         if (expression == null)
             return parent;

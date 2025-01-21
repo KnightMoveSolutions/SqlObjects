@@ -25,25 +25,18 @@ public class TSQLGroupBy : TSQLStatement, ISqlGroupBy
         // First we check to see if any items were added to the group by object as children
         if (Children.Any(c => c is ISqlQueryExpression))
         {
-            groupItems = Children
-                            .Select(c => c as SqlStatement)
-                            .Where(c => c.IsQueryExpression || c.IsComment);
+            groupItems = Children.Where(c => c.IsQueryExpression || c.IsComment);
         }
 
         // If not then we look for a SELECT clause in the sibling collection to auto-build the items
         if (groupItems == null)
         {
-            var selectList = Siblings
-                                .Select(c => c as SqlStatement)
-                                .SingleOrDefault(s => s.IsSelect);
+            var selectList = Siblings.SingleOrDefault(s => s.IsSelect);
 
             if (selectList == null)
                 return $"{IndentString}-- No Group items or SELECT clause found to build GROUP BY clause from";
 
-            groupItems = selectList
-                            .Children
-                            .Select(c => c as SqlStatement)
-                            .Where(c => c.IsQueryExpression);
+            groupItems = selectList.Children.Where(c => c.IsQueryExpression);
         }
 
         if (!groupItems.Any())

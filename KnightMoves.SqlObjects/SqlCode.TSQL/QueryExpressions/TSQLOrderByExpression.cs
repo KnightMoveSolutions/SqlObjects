@@ -42,7 +42,7 @@ public class TSQLOrderByExpression : TSQLStatement, ISqlOrderByExpression
     {
         var sql = new StringBuilder();
 
-        var orderByExpression = Children.FirstOrDefault(c => (c as SqlStatement).IsQueryExpression) as ISqlQueryExpression;
+        var orderByExpression = Children.FirstOrDefault(c => c.IsQueryExpression) as ISqlQueryExpression;
 
         var orderByExpressionStr = string.Empty;
 

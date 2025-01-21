@@ -33,7 +33,6 @@ public class TSQLSubQuery : TSQLStatement, ISqlSubQuery
         sql.Append($"{IndentString}({Environment.NewLine}");
 
         var subQueryFragments = Children
-                                    .Select(c => c as SqlStatement)
                                     .Where(c => c.IsSelect || c.IsFrom || c.IsJoin || c.IsWhereClause).ToList();
 
         foreach (var subQueryFragment in subQueryFragments)

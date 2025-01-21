@@ -25,12 +25,10 @@ public class TSQLOrderBy : TSQLStatement, ISqlOrderBy
 
         IEnumerable<SqlStatement> orderByExpressions = null;
 
-        var children = Children.Select(c => c as SqlStatement);
-
         // First we check to see if any items were added to the group by object as children
-        if (children.Any(c => c.IsOrderByExpression))
+        if (Children.Any(c => c.IsOrderByExpression))
         {
-            orderByExpressions = children.Where(c => c.IsOrderByExpression || c.IsComment);
+            orderByExpressions = Children.Where(c => c.IsOrderByExpression || c.IsComment);
         }
 
         if (orderByExpressions == null || !orderByExpressions.Any())

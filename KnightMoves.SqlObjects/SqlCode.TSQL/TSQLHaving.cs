@@ -21,9 +21,7 @@ public class TSQLHaving : TSQLStatement, ISqlHaving
 
         sql.Append($"{IndentString}HAVING 1=1{Environment.NewLine}");
 
-        var children = Children.Select(c => c as SqlStatement);
-
-        foreach (var sqlObject in children.Where(s => s.IsCondition || s.IsComment))
+        foreach (var sqlObject in Children.Where(s => s.IsCondition || s.IsComment))
         {
             if (sqlObject.IsComment)
             {

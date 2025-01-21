@@ -19,11 +19,9 @@ public class TSQLWhereClause : TSQLStatement, ISqlWhereClause
     {
         var sql = new StringBuilder();
 
-        var children = Children.Select(c => c as SqlStatement);
-
         sql.Append($"{IndentString}WHERE 1=1{Environment.NewLine}");
 
-        foreach (var sqlObject in children.Where(s => s.IsCondition || s.IsComment))
+        foreach (var sqlObject in Children.Where(s => s.IsCondition || s.IsComment))
         {
             if (sqlObject.IsComment)
             {

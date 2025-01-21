@@ -48,9 +48,7 @@ public class TSQLInsert : TSQLStatement, ISqlInsert
 
         sql.Append($"{IndentString}({Environment.NewLine}");
 
-        var children = Children.Select(c => c as SqlStatement);
-
-        foreach (var column in children.Where(c => c.IsColumn))
+        foreach (var column in Children.Where(c => c.IsColumn))
             sql.Append($"{column},{Environment.NewLine}");
 
         sql.Remove(sql.Length - 3, 1);
@@ -65,7 +63,7 @@ public class TSQLInsert : TSQLStatement, ISqlInsert
 
         sql.Append($" VALUES ({Environment.NewLine}");
 
-        foreach (var sqlStatement in children.Where(c => !c.IsColumn))
+        foreach (var sqlStatement in Children.Where(c => !c.IsColumn))
             sql.Append($"{sqlStatement},{Environment.NewLine}");
 
         sql.Remove(sql.Length - 3, 1);

@@ -51,7 +51,6 @@ public class TSQLUpdate : TSQLStatement, ISqlUpdate
         sql.Append($"[{Table.SanitizeDelimitedValue()}] SET{Environment.NewLine}");
 
         var updates = Children
-                        .Select(c => c as SqlStatement)
                         .Where(c => 
                         {
                             var u = c as ISqlBasicCondition;
