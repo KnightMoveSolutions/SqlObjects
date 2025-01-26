@@ -51,4 +51,3 @@ Output:
    AND [r].[RegionID] = 2
    
 :doc:`where-1-equals-1`
-

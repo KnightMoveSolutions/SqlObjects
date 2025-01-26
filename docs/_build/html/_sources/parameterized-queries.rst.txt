@@ -46,3 +46,4 @@ Then somewhere using Dapper ORM for example:
    var product = connection.Query<Product>(sql, paramObj);
 
 You can specify ``@paramVar`` variables anywhere in your query where it makes sense and it will render the variable accordingly.
+

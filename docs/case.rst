@@ -214,4 +214,3 @@ Contains an example of using ad hoc :doc:`SQL Scripts <scripts>` documented :doc
     END
 
 :doc:`where-1-equals-1`
-

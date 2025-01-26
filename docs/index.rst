@@ -30,6 +30,7 @@ Welcome to KnightMoves.SqlObjects documentation!
    security
    advanced-concepts
    support
+   license
 
 Indices and tables
 ==================

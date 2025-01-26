@@ -176,3 +176,4 @@ Output:
   -- manager. This comment should also display nicely
   -- in the middle of the SQL structure.
   INNER JOIN [dbo].[Employees] m ON [m].[EmployeeID] = [e].[ReportsTo]
+

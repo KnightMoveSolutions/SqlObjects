@@ -122,4 +122,3 @@ Output:
     WHEN 0 THEN 'OutOfStock'
     ELSE 'InStock'
    END
-

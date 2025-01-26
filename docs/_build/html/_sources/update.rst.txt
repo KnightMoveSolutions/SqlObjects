@@ -166,5 +166,3 @@ Output:
    
    Obviously you can use a ``@ParameterName`` in the ``WHERE`` clause in conjunction with any of the 
    variations of ``UPDATE`` statements above, which is recommended.
-   
-   

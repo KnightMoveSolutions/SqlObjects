@@ -245,3 +245,4 @@ Output:
    AND RIGHT(DATENAME(Month, [HireDate]), 3) = 'ber'
    
 :doc:`where-1-equals-1`
+

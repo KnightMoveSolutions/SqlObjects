@@ -387,3 +387,4 @@ Output:
   FROM [dbo].[Products] p
   RIGHT JOIN [dbo].[Suppliers] s ON [s].[SupplierID] = [p].[SupplierID]
    AND [p].[Discontinued] = 0
+

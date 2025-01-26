@@ -39,4 +39,3 @@ Using this library provides the following benefits.
 
 - Strongly-typed Fluent API methods that automatically quote and translate values (e.g. bool value false to 0)
 - String input for values are protected against SQL injection in case values are provided before submitting to the ORM 
-

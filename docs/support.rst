@@ -38,4 +38,3 @@ With that said, your patience and understanding is extremely appreciated with hi
 refined, enhanced, and improved with your feedback over time. 
 
 Enjoy!
-

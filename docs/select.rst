@@ -447,4 +447,3 @@ Output:
    [ProductID],
    [ProductName]
   FROM [Products]
-

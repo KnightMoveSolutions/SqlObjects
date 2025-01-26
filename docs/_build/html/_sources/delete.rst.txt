@@ -50,3 +50,4 @@ Output:
   DELETE FROM [dbo].[Categories]
   WHERE 1=1
    AND [CategoryID] = 9
+

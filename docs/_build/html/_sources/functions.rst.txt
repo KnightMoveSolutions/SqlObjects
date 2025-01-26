@@ -571,4 +571,3 @@ Output:
    YEAR(@dateVar) AS [Result2],
    YEAR([e].[HireDate]) AS [Result3]
   FROM [dbo].[Employees] e
-

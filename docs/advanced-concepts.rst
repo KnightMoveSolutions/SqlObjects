@@ -331,8 +331,6 @@ that you are trying to add to. When this happens you have a couple of options.
 
           if (sqlFragment.IsSelect)
               selectFragment = sqlFragment;
-
-          return true;
       });
 
       // Confirm that we looked up the desired SELECT object
@@ -614,7 +612,6 @@ the method is called from.
     sqlObj.Root.ProcessTree(node =>
     {
         Console.WriteLine(node.IndentString + node.GetType().Name);
-        return true;
     });
 
 In the code above, notice that we reference the ``Root`` object. The ``Root`` object is referenced by 
@@ -670,7 +667,6 @@ a ``TSQLScript`` object, then processing will not include itself (i.e. the ``TSQ
     sqlObj.Root.ProcessChildren(node =>
     {
         Console.WriteLine(node.IndentString + node.GetType().Name);
-        return true;
     });
 
 And here's the output:
@@ -709,7 +705,6 @@ walk UP the tree using the ``ProcessAncestors()`` method.
         node =>
         {
             Console.WriteLine(node.IndentString + node.GetType().Name);
-            return true;
         },
         countFunction
     );

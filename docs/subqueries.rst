@@ -98,3 +98,4 @@ Output:
   ) AS [us]
 
 :doc:`where-1-equals-1`
+

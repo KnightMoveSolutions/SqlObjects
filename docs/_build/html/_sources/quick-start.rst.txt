@@ -39,3 +39,4 @@ Output:
      SELECT
       *
      FROM [Products]
+

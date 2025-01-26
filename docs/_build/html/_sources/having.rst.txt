@@ -55,4 +55,3 @@ concerns by clicking on the links below.
 - :ref:`between-condition`
 - :ref:`in-clause`
 - :ref:`like-condition`
-

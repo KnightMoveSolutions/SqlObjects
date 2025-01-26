@@ -262,4 +262,3 @@ Output:
    AND ([UnitsInStock] % [ReorderLevel]) > 0
 
 :doc:`where-1-equals-1`
-

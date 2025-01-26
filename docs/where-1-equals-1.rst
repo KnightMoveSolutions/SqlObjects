@@ -1,3 +1,5 @@
+:orphan:
+
 `Documentation Home <https://docs.knightmovesolutions.com>`_
 
 ===========
@@ -178,3 +180,4 @@ If none of the reasons above make you comfortable about having that ``1=1`` cond
 writing your own library.  (Just Sayin)  
 
 =]
+

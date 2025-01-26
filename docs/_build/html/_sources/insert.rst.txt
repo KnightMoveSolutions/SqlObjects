@@ -337,4 +337,3 @@ Output:
   SELECT
    @CategoryName,
    @Description
-

@@ -123,6 +123,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="support.html">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
             
@@ -488,8 +489,6 @@ tagged with an ID.</p>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">sqlFragment</span><span class="p">.</span><span class="n">IsSelect</span><span class="p">)</span>
         <span class="n">selectFragment</span> <span class="p">=</span> <span class="n">sqlFragment</span><span class="p">;</span>
-
-    <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
 <span class="p">});</span>
 
 <span class="c1">// Confirm that we looked up the desired SELECT object</span>
@@ -725,7 +724,6 @@ the method is called from.</p>
 <div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="n">sqlObj</span><span class="p">.</span><span class="n">Root</span><span class="p">.</span><span class="n">ProcessTree</span><span class="p">(</span><span class="n">node</span> <span class="p">=&gt;</span>
 <span class="p">{</span>
     <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">IndentString</span> <span class="p">+</span> <span class="n">node</span><span class="p">.</span><span class="n">GetType</span><span class="p">().</span><span class="n">Name</span><span class="p">);</span>
-    <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
 <span class="p">});</span>
 </pre></div>
 </div>
@@ -771,7 +769,6 @@ a <code class="docutils literal notranslate"><span class="pre">TSQLScript</span>
 <div class="highlight-csharp notranslate"><div class="highlight"><pre><span></span><span class="n">sqlObj</span><span class="p">.</span><span class="n">Root</span><span class="p">.</span><span class="n">ProcessChildren</span><span class="p">(</span><span class="n">node</span> <span class="p">=&gt;</span>
 <span class="p">{</span>
     <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">IndentString</span> <span class="p">+</span> <span class="n">node</span><span class="p">.</span><span class="n">GetType</span><span class="p">().</span><span class="n">Name</span><span class="p">);</span>
-    <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
 <span class="p">});</span>
 </pre></div>
 </div>
@@ -803,7 +800,6 @@ walk UP the tree using the <code class="docutils literal notranslate"><span clas
     <span class="n">node</span> <span class="p">=&gt;</span>
     <span class="p">{</span>
         <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">IndentString</span> <span class="p">+</span> <span class="n">node</span><span class="p">.</span><span class="n">GetType</span><span class="p">().</span><span class="n">Name</span><span class="p">);</span>
-        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
     <span class="p">},</span>
     <span class="n">countFunction</span>
 <span class="p">);</span>
