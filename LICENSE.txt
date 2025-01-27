@@ -32,7 +32,7 @@ America.
 initial distribution identified as the person below. 
 
 Full Name: 		Ricardo L. Pena 
-Email Address:	ricardo.pena@knightmovesolutions.com 
+Email Address:  ricardo.pena@knightmovesolutions.com 
 Company:		Knight Move Solutions, Inc.
 
 1.3 Original Work means the initial Source Code and binary artifacts, text files, image files, and any 
