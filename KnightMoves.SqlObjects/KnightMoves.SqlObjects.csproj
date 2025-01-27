@@ -2,10 +2,50 @@
 
   <PropertyGroup>
     <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+    <Version>1.0.0</Version>
+    <Authors>Ricardo Pena</Authors>
+    <Company>Knight Move Solutions, Inc.</Company>
+    <Description>A C# wrapper to the SQL language for creating SQL code in .NET projects for use with ADO, Dapper, or other ORMs</Description>
+    <Copyright>Copyright 2025</Copyright>
+    <PackageProjectUrl>https://docs.knightmovesolutions.com/sql-objects/index.html</PackageProjectUrl>
+    <PackageIcon>knight_move_solutions_logo.png</PackageIcon>
+    <RepositoryUrl>https://github.com/KnightMoveSolutions/SqlObjects</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>sql; sql strings; sql builder; sql string builder; sql query builder; orm sql; dapper sql;</PackageTags>
+    <PackageReleaseNotes>Initial Version 1.0.0 Package</PackageReleaseNotes>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <IncludeSymbols>False</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\knight_move_solutions_logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="KnightMoves.Hierarchical" Version="3.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="knight_move_solutions_logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
