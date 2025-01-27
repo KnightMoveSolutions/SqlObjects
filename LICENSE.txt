@@ -213,15 +213,19 @@ hereby agree as follows:
     (b) That the Author agrees to the best of his/her knowledge that the Contribution does not 
         infringe on any other patent, trademark, copyright, or trade secret of any other work outside 
         of the Contribution and the Licensed Work.
+        
     (c) That the Author of the Contribution forfeits all Ownership Rights of the Contribution to the 
         Owner of the Licensed Work.
+        
     (d) That the Author waives all other legal rights to the Contribution beyond the Ownership 
         Rights defined in this License that the Governing Jurisdiction recognizes including but not 
         limited to copyrights, patents, and trade secrets.
+        
     (e) That the Author agrees to allow the Owner to publicly publish the identity of the Author for 
         attribution, to acknowledge credit for the Contribution by the Author, where the Owner has 
         the right but not the obligation to accept anonymous Contributions or Contributions 
         without attribution upon the Author’s written request to remain unattributed. 
+        
     (f)	That the Author agrees that the electronic transfer of the Contribution, or transfer by any 
         other medium of the Contribution, to the Owner shall be deemed acceptance of the Terms 
         of Contributions in this Section.  
